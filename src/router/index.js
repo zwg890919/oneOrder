@@ -4,15 +4,20 @@ import Router from 'vue-router'
 Vue.use(Router)
 export default new Router({
   routes: [
+    { path: '*', redirect: "/404" },
+    { path: '/404', component: () => import('@/views/errorPage/404'), hidden: true },
+    { path: "/login", name: "login", component: () => import(`@/views/login`) },
     {
-      path: '/',
-      redirect: "/login"
+      path: '',
+      redirect: "/home",
+      component: () => import('@/views/layout/index'),
+      children: [{
+        path: 'home',
+        name: 'home',
+        component: () => import('@/views/test/index')
+      }]
     },
-    {
-      path: "/login",
-      name: "login",
-      component: () => import(`@/views/login`)
-    }
+
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {

@@ -11,9 +11,12 @@ import proxy from './api';
 import * as filterList from './assets/js/filter'
 import Vue2Filters from 'vue2-filters'
 
-import '@/assets/css/base.css'
+import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import '@/styles/index.scss'
 
+import store from '@/store'
+import './permission'
 Vue.config.productionTip = false
 
 // Vue.use(ElementUI);
@@ -56,6 +59,7 @@ window.$http = proxy;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
