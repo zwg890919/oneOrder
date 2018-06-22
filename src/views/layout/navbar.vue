@@ -2,19 +2,23 @@
   <el-menu class="navbar" mode="horizontal">
     <i class="iconfont icon-menu"></i>
     <div class="right-menu">
-      <i class="iconfont icon-editscreenfull" @click="toggleScreen"></i>
-      <el-dropdown class="avatar-container right-menu-item" trigger="click">
-        <div class="avatar-wrapper">
-          <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>黄金糕</el-dropdown-item>
-          <el-dropdown-item>狮子头</el-dropdown-item>
-          <el-dropdown-item>螺蛳粉</el-dropdown-item>
-          <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-          <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <span>
+        <i class="iconfont icon-editscreenfull" style="font-size:20px" @click="toggleScreen"></i>
+      </span>
+      <div class="right-menu-item">
+        <el-dropdown class="right-menu-item" trigger="click">
+          <div class="avatar-wrapper">
+            <div class="head">
+              <img src="../../assets/images/a0.jpg" width="40" height="40">
+              <i class="el-icon-caret-bottom"></i>
+            </div>
+          </div>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>修改密码</el-dropdown-item>
+            <el-dropdown-item divided>退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </el-menu>
 </template>
@@ -40,7 +44,7 @@
       height: 50px;
       line-height: 50px;
       border-radius: 0px !important;
-      &>.iconfont {
+      & > .iconfont {
           font-size: 24px;
           margin: 0px 10px;
       }
@@ -50,36 +54,38 @@
           &:focus {
               outline: none;
           }
-          .right-menu-item {
+          & > span {
               display: inline-block;
-              margin: 0 8px;
+              padding: 0 12px;
+              vertical-align: middle;
+              cursor: pointer;
           }
           .screenfull {
-            height:20px;
+              height: 20px;
           }
-          .international {
-              vertical-align: top;
-          }
-          .theme-switch {
-              vertical-align: 15px;
-          }
-          .avatar-container {
+          .right-menu-item {
+              position: relative;
+              display: inline-block;
+              vertical-align: middle;
               height: 50px;
-              margin-right: 30px;
+              // padding: 0 20px;
+              padding-right: 20px;
+              font-size: 12px;
+              cursor: pointer;
               .avatar-wrapper {
-                  cursor: pointer;
-                  margin-top: 5px;
-                  position: relative;
-                  .user-avatar {
-                      width: 40px;
-                      height: 40px;
-                      border-radius: 10px;
-                  }
-                  .el-icon-caret-bottom {
-                      position: absolute;
-                      right: -20px;
-                      top: 25px;
-                      font-size: 12px;
+                  .head {
+                      position: relative;
+                      display: inline-block;
+                      vertical-align: middle;
+                      img {
+                          border-radius: 10px;
+                      }
+                      i {
+                          position: absolute;
+                          right: -20px;
+                          top: 25px;
+                          font-size: 12px;
+                      }
                   }
               }
           }

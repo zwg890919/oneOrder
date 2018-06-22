@@ -18,7 +18,22 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      next()
+      if (store.getters.menuRoles.length === 0) {
+        store.dispatch('getUserRole').then(res => {
+          const roles = res;
+          store.dispatch('generateRouters', { roles }).then(res => {
+            // router.addRoutes(store.getters.menuRouters)
+            next()
+          })
+
+        }).catch((err) => {
+          Cookies.get('admin-token', '')
+          next({ path: '/' })
+        })
+      } else {
+        next()
+      }
+
     }
   } else {
     // 目标链接是否在白名单内

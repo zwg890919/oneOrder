@@ -25,6 +25,7 @@ var proxy = new Proxy({}, {
         return await axios.all(httpArr);
       };
     } else {
+
       return function (data = {}, suffix = {}) {
         let item = apiList[key] || {};
         return item.type ? method[item.type](item.url, data, suffix) : false

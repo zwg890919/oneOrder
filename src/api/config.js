@@ -6,4 +6,6 @@ export default {
     'Content-Type': 'application/x-www-form-urlencoded',
   },
   home: { type: 'get', url: 'home' },
+  login: { type: 'post', url: 'user/dologin' },
+  userInfo: { type: 'get', url: 'user/userInfo' },
 };

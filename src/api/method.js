@@ -12,7 +12,7 @@ function checkStatus(response) {
 
 function error(msg) {
   return false;
-  console.log(msg);
+
 }
 
 export default {
@@ -28,6 +28,7 @@ export default {
  * @return {[promise object]} axios [a promise object]
  */
   get(url, data) {
+    // console.log(config.api + url)
     return axios({
       method: 'get',
       url: config.api + url,

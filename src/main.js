@@ -17,9 +17,10 @@ import '@/styles/index.scss'
 
 import store from '@/store'
 import './permission'
+import './mock'
+
 Vue.config.productionTip = false
 
-// Vue.use(ElementUI);
 Vue.use(ElementUI, { size: 'medium', zIndex: 3000 });
 Vue.use(Vue2Filters)
 
@@ -35,7 +36,12 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(
   response => {
-    if (!response.data.success) H5App.$toast.fail(response.data.i18nMessage);
+    if (!response.data.success){
+      OneApp.$notify.error({
+        title: '错误',
+        message: response.data.i18nMessage
+      });
+    }
     return response;
   },
   error => {
@@ -56,7 +62,7 @@ router.beforeEach((to, from, next) => {
 
 window.$http = proxy;
 /* eslint-disable no-new */
-new Vue({
+const OneApp =  new Vue({
   el: '#app',
   router,
   store,
