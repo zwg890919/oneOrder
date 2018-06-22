@@ -10,22 +10,14 @@ export default new Router({
     {
       path: '',
       redirect: "/home",
-      // component: () => import('@/views/layout/index'),
+      component: () => import('@/views/layout/index'),
       children: [{
         path: 'home',
         name: 'home',
         component: () => import('@/views/test/index')
       }]
     },
-    {
-      path: '/app',
-      name: 'app',
-      component: () => import('@/views/layout/index'),
-      children: [
-        productRouter
-      ]   
-    }
-
+    productRouter
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
