@@ -191,3 +191,47 @@ code {
 .multiselect--active {
   z-index: 1000 !important;
 }
+
+.wrapper{
+  &-option{
+    margin:10px;
+    &__title{
+      border-bottom: 1px solid #e9eaec;
+      padding: 14px 16px;
+      line-height: 1;
+      font-size:14px;
+    }
+  }
+  &-button{
+    margin-bottom:15px;
+  }
+}
+.link-color, .link-color:hover{
+  color:#00aaff;
+}
+
+.infoTable {
+  width:100%;
+  border: 1px solid #dedede;
+  margin-bottom: 20px;
+}
+.infoTable tr {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #dedede;
+}
+.infoTable tr:last-child {
+      border-bottom: none;
+}
+.infoTable tr:nth-child(even) {
+      background: #efefef;
+}
+.infoTable td {
+    padding-left: 10px;
+}
+.infoTable td:first-child {
+      width: 180px;
+      border-right: 1px solid #dedede;
+}
+
+

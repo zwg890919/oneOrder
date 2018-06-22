@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <sidebar class="sidebar-container"></sidebar>
-    <div class="main-container">
+    <div class="main-container clearfix">
       <navbar></navbar>
       <!--
       <tags-view></tags-view>
