@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import productRouter from "./product";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -10,13 +10,21 @@ export default new Router({
     {
       path: '',
       redirect: "/home",
-      component: () => import('@/views/layout/index'),
+      // component: () => import('@/views/layout/index'),
       children: [{
         path: 'home',
         name: 'home',
         component: () => import('@/views/test/index')
       }]
     },
+    {
+      path: '/app',
+      name: 'app',
+      component: () => import('@/views/layout/index'),
+      children: [
+        productRouter
+      ]   
+    }
 
   ],
   mode: "history",

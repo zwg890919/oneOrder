@@ -191,3 +191,14 @@ code {
 .multiselect--active {
   z-index: 1000 !important;
 }
+
+.wrapper{
+  &-option{
+    margin:10px;
+  }
+  &-button{
+    margin-bottom:15px;
+  }
+}
+
+
