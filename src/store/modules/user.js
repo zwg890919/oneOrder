@@ -3,7 +3,7 @@ import { eachAllChild } from '@/utils/index'
 const user = {
   state: {
     menuRoles: [],
-    FunRoles: [],
+    funRoles: [],
     menuRouters: []
   },
   mutations: {
@@ -36,11 +36,9 @@ const user = {
       const currentApp = roles[0];
       var codeList = [], menuRouters = [];
       eachAllChild({
-        name: '应用',
         childrens: roles
       }, (item) => {
-
-        // item.menuCode && codeList.push(item.menuCode)
+        item.menuCode && codeList.push(item.menuCode)
       })
       commit('SET_FUNROLES', codeList)
     }

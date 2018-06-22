@@ -17,7 +17,7 @@ Mock.mock('/api/user/userInfo', 'get', (config) => {
         {
           name: '管理后台',
           menuId: 1,
-          component:'',
+          component: '',
           path: '',
           menuCode: '',
           authLevel: 1,
@@ -25,7 +25,7 @@ Mock.mock('/api/user/userInfo', 'get', (config) => {
           childrens: [{
             name: '产品管理',
             menuId: 2,
-            component:'',
+            component: '',
             path: '/product',
             menuCode: '',
             authLevel: 2,
@@ -38,12 +38,13 @@ Mock.mock('/api/user/userInfo', 'get', (config) => {
               childrens: [{
                 name: '新增产品',
                 menuId: 4,
-                component:'',
+                component: '',
                 path: '',
                 menuCode: 'addProduct',
-                authLevel: 4
+                authLevel: 4,
+                childrens: []
               }]
-            },{
+            }, {
               name: '业务员',
               menuId: 3,
               path: 'productList',
@@ -52,10 +53,11 @@ Mock.mock('/api/user/userInfo', 'get', (config) => {
               childrens: [{
                 name: '新增业务员',
                 menuId: 4,
-                component:'',
+                component: '',
                 path: '',
-                menuCode: 'addProduct',
-                authLevel: 4
+                menuCode: 'addPerson',
+                authLevel: 4,
+                childrens: []
               }]
             }]
           }]
@@ -63,7 +65,7 @@ Mock.mock('/api/user/userInfo', 'get', (config) => {
         {
           name: '平台设置',
           menuId: 5,
-          component:'',
+          component: '',
           path: '',
           menuCode: '',
           authLevel: 1,
@@ -71,31 +73,34 @@ Mock.mock('/api/user/userInfo', 'get', (config) => {
           childrens: [{
             name: '权限管理',
             menuId: 6,
-            component:'',
+            component: '',
             path: '',
             menuCode: '',
             authLevel: 2,
             childrens: [{
               name: '角色管理',
               menuId: 7,
-              component:'',
+              component: '',
               path: '/product/productList',
               menuCode: '',
               authLevel: 3,
-            },{
+              childrens: []
+            }, {
               name: '员工管理',
               menuId: 8,
-              component:'',
+              component: '',
               path: '/product/productList',
               menuCode: '',
               authLevel: 3,
-            },{
+              childrens: []
+            }, {
               name: '部门管理',
               menuId: 9,
-              component:'',
+              component: '',
               path: '/product/productList',
               menuCode: '',
               authLevel: 3,
+              childrens: []
             },]
           }]
         },

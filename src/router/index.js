@@ -14,7 +14,7 @@ export default new Router({
       children: [{
         path: 'home',
         name: 'home',
-        component: () => import('@/views/test/index')
+        component: () => import ('@/views/product/productList.vue')
       }]
     },
     productRouter

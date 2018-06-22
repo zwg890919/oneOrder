@@ -11,12 +11,12 @@
       <el-input class="login-wrap__input" v-model="formInline.userMobile" placeholder="请输入用户名"></el-input>
       <el-input class="login-wrap__input password" v-model="formInline.userPassword" placeholder="请输入密码"></el-input>
       <el-row :gutter="20">
-          <el-col :span="16">
-            <el-input class="login-wrap__input validate" v-model="formInline.verifyCode" placeholder="请输入验证码"></el-input>
-          </el-col>
-          <el-col :span="4">
-            <img src="../../assets/images/login/verify.png" onclick="this.src='api/verifycode?' + Math.random()">
-          </el-col>
+        <el-col :span="16">
+          <el-input class="login-wrap__input validate" v-model="formInline.verifyCode" placeholder="请输入验证码"></el-input>
+        </el-col>
+        <el-col :span="4">
+          <img src="../../assets/images/login/verify.png" onclick="this.src='api/verifycode?' + Math.random()">
+        </el-col>
       </el-row>
       <el-button style="width:100%;" type="primary" @click="addrouter">登陆</el-button>
       <p class="login-reg">
@@ -30,141 +30,145 @@
   </div>
 </template>
 <script>
-import Cookie from 'js-cookie'
-export default {
-  data() {
-    return {
-      formInline: {
-        userMobile: "",
-        userPassword: "",
-        verifyCode: ""
-      },
-      errorMessage: ""
-    }
-  },
-  created() {
-  },
-  methods: {
-    addrouter() {
-      Cookie.set('admin-token',"123132")
+  export default {
+    data() {
+      return {
+        formInline: {
+          userMobile: "",
+          userPassword: "",
+          verifyCode: ""
+        },
+        errorMessage: ""
+      }
+    },
+    created() {
+    },
+    methods: {
+      addrouter() {
+        this.$store.dispatch('userLogin', this.formInline).then(() => {
+        }).catch(() => {
+        })
+      }
     }
   }
-}
 
 </script>
 <style lang="scss">
-.login {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: url("../../assets/images/login/bg.jpg") center no-repeat;
-  background-size: cover;
-  &-header {
-    height: 70px;
-    background: #fff;
-    opacity: 0.9;
-    .login-container {
-      width: 970px;
-      height: 100%;
-      padding: 20px 0;
-      margin: 0px auto;
-      .login-header-logo {
-        float: left;
-        width: 105px;
-        height: 30px;
-        background: url(../../assets/images/login/logo.png) center center / cover;
+  .login {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: url("../../assets/images/login/bg.jpg") center no-repeat;
+      background-size: cover;
+      &-header {
+          height: 70px;
+          background: #fff;
+          opacity: 0.9;
+          .login-container {
+              width: 970px;
+              height: 100%;
+              padding: 20px 0;
+              margin: 0px auto;
+              .login-header-logo {
+                  float: left;
+                  width: 105px;
+                  height: 30px;
+                  background: url(../../assets/images/login/logo.png) center
+                      center / cover;
+              }
+              span {
+                  float: left;
+                  height: 18px;
+                  padding: 0px 15px;
+                  margin: 7px 0px 7px 15px;
+                  line-height: 18px;
+                  font-size: 16px;
+                  color: #679fd7;
+                  border-left: 1px solid #127fce;
+              }
+          }
       }
-      span {
-        float: left;
-        height: 18px;
-        padding: 0px 15px;
-        margin: 7px 0px 7px 15px;
-        line-height: 18px;
-        font-size: 16px;
-        color: #679fd7;
-        border-left: 1px solid #127fce;
+      &-bottom {
+          position: absolute;
+          bottom: 0px;
+          width: 100%;
+          height: 75px;
+          background: #fff;
+          opacity: 0.9;
+          p {
+              text-align: center;
+              line-height: 75px;
+          }
       }
-    }
-  }
-  &-bottom {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 75px;
-    background: #fff;
-    opacity: 0.9;
-    p {
-      text-align: center;
-      line-height: 75px;
-    }
-  }
-  &-wrap {
-    position: absolute;
-    top: 20%;
-    right: 10%;
-    z-index: 101;
-    width: 400px;
-    height: 350px;
-    padding: 0 50px;
-    background: rgba(255, 255, 255, 0.9);
-    &__input {
-      position: relative;
-      margin-bottom: 15px;
-      &:before {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        z-index: 1;
-        content: "";
-        width: 16px;
-        height: 12px;
-        margin-top: -6px;
-        background: url('../../assets/images/login/loginicon.png') no-repeat 0 -36px;
+      &-wrap {
+          position: absolute;
+          top: 20%;
+          right: 10%;
+          z-index: 101;
+          width: 400px;
+          height: 350px;
+          padding: 0 50px;
+          background: rgba(255, 255, 255, 0.9);
+          &__input {
+              position: relative;
+              margin-bottom: 15px;
+              &:before {
+                  position: absolute;
+                  left: 10px;
+                  top: 50%;
+                  z-index: 1;
+                  content: "";
+                  width: 16px;
+                  height: 12px;
+                  margin-top: -6px;
+                  background: url("../../assets/images/login/loginicon.png")
+                      no-repeat 0 -36px;
+              }
+              input {
+                  padding-left: 35px;
+              }
+          }
+          .password {
+              &:before {
+                  left: 12px;
+                  width: 10px;
+                  height: 14px;
+                  margin-top: -7px;
+                  background: url("../../assets/images/login/loginicon.png")
+                      no-repeat -38px -35px;
+              }
+          }
+          .validate {
+              &:before {
+                  left: 10px;
+                  width: 16px;
+                  height: 12px;
+                  margin-top: -5px;
+                  background: url("../../assets/images/login/loginicon.png")
+                      no-repeat -84px -37px;
+              }
+          }
       }
-      input {
-        padding-left: 35px;
+      &-box__error {
+          margin: 20px 0 30px 0;
+          height: 18px;
+          font: 12px/1.5 Microsoft YaHei, sans-serif;
+          text-align: left;
+          color: #ff1216;
       }
-    }
-    .password {
-      &:before {
-        left: 12px;
-        width: 10px;
-        height: 14px;
-        margin-top: -7px;
-        background: url('../../assets/images/login/loginicon.png') no-repeat -38px -35px;
+      &-input__icon {
+          padding: 0px 6px;
+          font-size: 20px;
       }
-    }
-    .validate {
-      &:before {
-        left: 10px;
-        width: 16px;
-        height: 12px;
-        margin-top: -5px;
-        background: url('../../assets/images/login/loginicon.png') no-repeat -84px -37px;
+      &-reg {
+          margin-top: 15px;
+          text-align: right;
+          a {
+              color: #00b4ff;
+              font-family: Microsoft YaHei, sans-serif;
+          }
       }
-    }
   }
-  &-box__error {
-    margin: 20px 0 30px 0;
-    height: 18px;
-    font: 12px/1.5 Microsoft YaHei, sans-serif;
-    text-align: left;
-    color: #ff1216;
-  }
-  &-input__icon {
-    padding: 0px 6px;
-    font-size: 20px;
-  }
-  &-reg {
-    margin-top: 15px;
-    text-align: right;
-    a {
-      color: #00b4ff;
-      font-family: Microsoft YaHei, sans-serif;
-    }
-  }
-}
-
 </style>
