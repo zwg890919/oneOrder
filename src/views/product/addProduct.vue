@@ -81,69 +81,105 @@
 				    	<el-radio v-model="radio" label="1">是</el-radio>
   						<el-radio v-model="radio" label="2">否</el-radio>
 					</el-form-item>
-					<h4>产品基础信息</h4>
-					</el-form-item>
-					<el-form-item label="姓名">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="姓名">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="产品方简称">
-				    	<el-select v-model="form.region" placeholder="请选择产品类型">
-					    	<el-option label="房抵贷" value="shanghai"></el-option>
-					    	<el-option label="公积金贷" value="beijing"></el-option>
+					<h4>支持的地区</h4>
+					<el-form-item label="省份">
+				    	<el-select v-model="form.region" placeholder="请选择省份">
 					    </el-select>
 					</el-form-item>
-					<el-form-item label="产品方简称">
-				    	<el-select v-model="form.region" placeholder="请选择产品类型">
-					    	<el-option label="房抵贷" value="shanghai"></el-option>
-					    	<el-option label="公积金贷" value="beijing"></el-option>
+					<el-form-item label="城市">
+				    	<el-select v-model="form.region" placeholder="请选择城市">
 					    </el-select>
+					</el-form-item>
+					<h4>产品利率</h4>
+					<el-form-item label="费用类型">
+				    	<el-select v-model="form.region" placeholder="请选择费用类型">
+					    </el-select>
+					</el-form-item>
+					<el-form-item label="期限">
+				    	<el-input v-model="form.name"></el-input>
+					</el-form-item>
+					<el-form-item label="还款方式">
+				    	<el-select v-model="form.region" placeholder="请选择还款方式">
+					    </el-select>
+					</el-form-item>
+					<el-form-item label="费率">
+				    	<el-input v-model="form.name"></el-input>
+					</el-form-item>
+					<el-form-item label="">
+				    	<el-button type="primary">+添加费率</el-button>
+					</el-form-item>
+					<el-form-item label="费用类型">
+				    	<el-select v-model="form.region" placeholder="请选择费用类型">
+					    </el-select>
+					</el-form-item>
+					<el-form-item label="费用区间">
+						<el-row>
+							<el-col :span="11">
+								<el-input placeholder="最低费率" v-model="form.name"></el-input>
+							</el-col>
+							<el-col :span="2" class="split-line">
+								~
+							</el-col>
+							<el-col :span="11">
+								<el-input placeholder="最高费率" v-model="form.name"></el-input>
+							</el-col>
+						</el-row>
+					</el-form-item>
+					<el-form-item label="">
+				    	<el-button type="primary">+添加其他费率</el-button>
+					</el-form-item>
+					<h4>费用说明</h4>
+					<el-form-item label="费用说明">
+				    	<el-input
+							  type="textarea"
+							  :rows="4"
+							  placeholder="请输入内容">
+							</el-input>
 					</el-form-item>
 				</el-col>
 				<el-col :span="8" :offset="2">
-					<h4>产品基础信息</h4>
+					<h4>准入条件</h4>
+					<el-form-item label="标题">
+						<el-input v-model="form.name"></el-input>
 					</el-form-item>
-					<el-form-item label="姓名">
+					<el-form-item label="条件">
+						<el-input v-model="form.name"></el-input>
+					</el-form-item>
+					<el-form-item label="">
+				    	<el-button type="primary">+添加准入条件</el-button>
+					</el-form-item>
+					<h4>产品简介</h4>
+					</el-form-item>
+					<el-form-item label="适用人群">
 				    	<el-input v-model="form.name"></el-input>
 					</el-form-item>
-					<el-form-item label="姓名">
+					<el-form-item label="借款用途">
 				    	<el-input v-model="form.name"></el-input>
 					</el-form-item>
-					<el-form-item label="产品方简称">
-				    	<el-select v-model="form.region" placeholder="请选择产品类型">
-					    	<el-option label="房抵贷" value="shanghai"></el-option>
-					    	<el-option label="公积金贷" value="beijing"></el-option>
-					    </el-select>
+					<el-form-item label="产品描述">
+				    	<el-input
+							  type="textarea"
+							  :rows="4"
+							  placeholder="请输入内容">
+							</el-input>
 					</el-form-item>
-					<el-form-item label="产品方简称">
-				    	<el-select v-model="form.region" placeholder="请选择产品类型">
-					    	<el-option label="房抵贷" value="shanghai"></el-option>
-					    	<el-option label="公积金贷" value="beijing"></el-option>
-					    </el-select>
-					</el-form-item>
-					<h4>产品基础信息</h4>
-					</el-form-item>
-					<el-form-item label="姓名">
+					<h4>常见问题</h4>
+					<el-form-item label="问题">
 				    	<el-input v-model="form.name"></el-input>
 					</el-form-item>
-					<el-form-item label="姓名">
-				    	<el-input v-model="form.name"></el-input>
+					<el-form-item label="答案">
+				    	<el-input
+							  type="textarea"
+							  :rows="4"
+							  placeholder="请输入内容">
+							</el-input>
 					</el-form-item>
-					<el-form-item label="产品方简称">
-				    	<el-select v-model="form.region" placeholder="请选择产品类型">
-					    	<el-option label="房抵贷" value="shanghai"></el-option>
-					    	<el-option label="公积金贷" value="beijing"></el-option>
-					    </el-select>
+					<el-form-item label="">
+				    	<el-button type="primary">+添加其他问题</el-button>
 					</el-form-item>
-					<el-form-item label="产品方简称">
-				    	<el-select v-model="form.region" placeholder="请选择产品类型">
-					    	<el-option label="房抵贷" value="shanghai"></el-option>
-					    	<el-option label="公积金贷" value="beijing"></el-option>
-					    </el-select>
+					<el-form-item label="">
+						<el-button type="primary" style="width: 100%;">创建产品</el-button>
 					</el-form-item>
-					<el-button type="primary" style="width: 100%;">创建产品</el-button>
 				</el-col>
 			</el-form>
 		</el-card>

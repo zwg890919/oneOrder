@@ -231,8 +231,24 @@ code {
     padding-left: 10px;
 }
 .infoTable td:first-child {
-      width: 180px;
-      border-right: 1px solid #dedede;
+  width: 180px;
+  border-right: 1px solid #dedede;
 }
-
-
+.split-line{
+  color:#999;
+  text-align:center;
+}
+.table-button{
+  float:right;
+  margin-right: 30px
+}
+.table-info {
+  background: #efefef;
+  border: 1px solid #dedede;
+}
+.table-info .el-form-item{
+  margin-bottom:0px;
+}
+.table-info .el-form-item__label{
+  color:#98a6ad;
+}

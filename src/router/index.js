@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import productRouter from "./product";
+import userRouter from "./user";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -17,7 +18,8 @@ export default new Router({
         component: () => import ('@/views/product/productList.vue')
       }]
     },
-    productRouter
+    productRouter,
+    userRouter
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
