@@ -1,6 +1,6 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <i class="iconfont icon-menu"></i>
+    <i class="login-header-logo"></i>
     <div class="right-menu">
       <span>
         <i class="iconfont icon-editscreenfull" style="font-size:20px" @click="toggleScreen"></i>
@@ -44,6 +44,16 @@
       height: 50px;
       line-height: 50px;
       border-radius: 0px !important;
+      border-bottom:0px;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+      .login-header-logo {
+          float: left;
+          width: 105px;
+          height: 30px;
+          margin: 10px;
+          background: url(../../assets/images/login/logo.png) center center /
+              cover;
+      }
       & > .iconfont {
           font-size: 24px;
           margin: 0px 10px;

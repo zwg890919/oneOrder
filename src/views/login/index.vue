@@ -46,6 +46,7 @@
     methods: {
       addrouter() {
         this.$store.dispatch('userLogin', this.formInline).then(() => {
+          this.$router.push({ name: 'home' })
         }).catch(() => {
         })
       }

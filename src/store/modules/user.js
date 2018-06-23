@@ -4,7 +4,7 @@ const user = {
   state: {
     menuRoles: [],
     funRoles: [],
-    menuRouters: []
+    currentApp: []
   },
   mutations: {
     SET_MENUROLES: (state, menuRoles) => {
@@ -12,7 +12,10 @@ const user = {
     },
     SET_FUNROLES: (state, funRoles) => {
       state.funRoles = funRoles
-    }
+    },
+    SET_CURRENTAPP: (state, currentApp) => {
+      state.currentApp = currentApp
+    },
   },
   actions: {
     async userLogin({ commit }, loginParams) {
@@ -21,27 +24,29 @@ const user = {
     },
     async getUserRole({ commit }) {
       const userRole = await $http.userInfo()
-      commit('SET_MENUROLES', userRole.datas.roles || [])
-      return userRole.datas.roles
-    },
-    generateRouters({ commit, state }, data) {
-      const { roles } = data;
-      roles.forEach(listitem => { //应用级别
-        listitem.childrens && listitem.childrens.forEach(item => {  //菜单级别
-          if (item.childrens.length > 0) { //判断是否为页面
-            item.single = item.childrens.some(function (a) { return a.authLevel == 4 }) ? 1 : 2;
+      const roles = userRole.datas.roles || [];
+      roles.forEach(listItem => {
+        listItem.childrens && listItem.childrens.forEach(item => {
+          if (item.childrens.length > 0 && item.menuType == 1) {
+            item.isSingle = item.childrens.some(function (a) { return a.menuType == 1 }) ? 1 : 2;
+            if (item.isSingle) {
+              item.childrens.forEach(function (m, n) {
+                m.isSingle = m.childrens.some(function (a) { return a.menuType == 3 });
+              });
+            }
           }
         })
-      });
-      const currentApp = roles[0];
-      var codeList = [], menuRouters = [];
+      })
+      commit('SET_MENUROLES', roles)
+      commit('SET_CURRENTAPP', roles[0])
+      var codeList = [];
       eachAllChild({
         childrens: roles
-      }, (item) => {
+      }, (item, index) => {
         item.menuCode && codeList.push(item.menuCode)
       })
       commit('SET_FUNROLES', codeList)
-    }
+    },
   }
 }
 

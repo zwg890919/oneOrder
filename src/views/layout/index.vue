@@ -1,8 +1,8 @@
 <template>
   <div class="layout">
+    <navbar></navbar>
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container clearfix">
-      <navbar></navbar>
       <!--
       <tags-view></tags-view>
       <app-main></app-main> -->

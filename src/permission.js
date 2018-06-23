@@ -20,12 +20,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.menuRoles.length === 0) {
         store.dispatch('getUserRole').then(res => {
-          const roles = res;
-          store.dispatch('generateRouters', { roles }).then(res => {
-            // router.addRoutes(store.getters.menuRouters)
-            next()
-          })
-
+          next()
         }).catch((err) => {
           Cookies.get('admin-token', '')
           next({ path: '/' })
