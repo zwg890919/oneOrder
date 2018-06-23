@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import productRouter from "./product";
 import userRouter from "./user";
+import chargeRouter from "./charge";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -19,7 +20,8 @@ export default new Router({
       }]
     },
     productRouter,
-    userRouter
+    userRouter,
+    chargeRouter
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
