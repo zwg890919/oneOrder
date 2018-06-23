@@ -3,10 +3,21 @@
     <navbar></navbar>
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container clearfix">
-      <!--
-      <tags-view></tags-view>
-      <app-main></app-main> -->
-      <router-view :key="key"></router-view>
+      <!-- <el-card>
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>
+            <a href="/">活动管理</a>
+          </el-breadcrumb-item>
+          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        </el-breadcrumb>
+      </el-card> -->
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive :include="cachedViews">
+          <router-view :key="key"></router-view>
+        </keep-alive>
+      </transition>
     </div>
   </div>
 </template>
