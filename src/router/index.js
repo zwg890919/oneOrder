@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import productRouter from "./product";
 import userRouter from "./user";
 import chargeRouter from "./charge";
+import applicationRouter from "./application";
+import operateRouter from './operate';
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -21,7 +23,9 @@ export default new Router({
     },
     productRouter,
     userRouter,
-    chargeRouter
+    chargeRouter,
+    applicationRouter,
+    operateRouter
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
