@@ -5,6 +5,8 @@ import userRouter from "./user";
 import chargeRouter from "./charge";
 import settingRouter from "./setting";
 
+import applicationRouter from "./application";
+import operateRouter from './operate';
 
 Vue.use(Router)
 export default new Router({
@@ -25,7 +27,9 @@ export default new Router({
     productRouter,
     userRouter,
     chargeRouter,
-    settingRouter
+    settingRouter,
+    applicationRouter,
+    operateRouter
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
