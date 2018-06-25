@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import productRouter from "./product";
 import userRouter from "./user";
 import chargeRouter from "./charge";
+import settingRouter from "./setting";
+
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -16,12 +19,13 @@ export default new Router({
       children: [{
         path: 'home',
         name: 'home',
-        component: () => import ('@/views/product/productList.vue')
+        component: () => import ('@/views/home')
       }]
     },
     productRouter,
     userRouter,
-    chargeRouter
+    chargeRouter,
+    settingRouter
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {

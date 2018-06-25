@@ -47,6 +47,9 @@ const user = {
       })
       commit('SET_FUNROLES', codeList)
     },
+    CHANGE_CURRENTAPP({commit,state},appIndex){
+      commit('SET_CURRENTAPP', state.menuRoles[appIndex])
+    }
   }
 }
 

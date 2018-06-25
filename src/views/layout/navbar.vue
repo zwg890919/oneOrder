@@ -8,7 +8,7 @@
     </div>
     <transition name="fade-transform" mode="out-in">
       <div class="applist" v-show="appListShow">
-        <div v-for="(item,index) in menuRoles" :key="index">
+        <div v-for="(item,index) in menuRoles" :key="index" @click="changeApp(index)">
           <p>{{item.name}}</p>
           <img src="https://tb.jyc99.com/static/images/app_monitor.png" alt="" width="100" height="100">
         </div>
@@ -50,7 +50,6 @@
       ]),
     },
     created() {
-      console.log(this.menuRoles)
     },
     methods: {
       toggleScreen() {
@@ -65,6 +64,11 @@
       },
       showAppList() {
         this.appListShow = !this.appListShow;
+      },
+      changeApp(index) {
+        this.appListShow = false;
+        this.$store.dispatch('CHANGE_CURRENTAPP', index);
+        this.$router.push({ name: 'home' })
       }
     }
   }
@@ -75,7 +79,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 4000;
+      z-index: 2000;
       height: 50px;
       line-height: 44px;
       border-radius: 0px !important;
