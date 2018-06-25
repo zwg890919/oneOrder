@@ -36,8 +36,6 @@
 				<el-col  :span="2" :offset="1">
 					<el-col>
 						<el-button style="margin-bottom: 15px;" size="small">查询</el-button>
-					</el-col>
-					<el-col>
 						<el-button size="small">重置</el-button>
 					</el-col>
 				</el-col>

@@ -15,8 +15,6 @@
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
-					</el-row>
-					<el-row>
 						<el-col :span="6">
 							<el-form-item label="放款时间">
 									 <el-date-picker
@@ -32,8 +30,6 @@
 				<el-col  :span="2" :offset="1">
 					<el-col>
 						<el-button style="margin-bottom: 15px;" size="small">查询</el-button>
-					</el-col>
-					<el-col>
 						<el-button size="small">重置</el-button>
 					</el-col>
 				</el-col>

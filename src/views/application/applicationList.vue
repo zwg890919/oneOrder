@@ -89,7 +89,7 @@
 						</el-col>
 					</el-row>
 					<el-row>
-						<el-col :span="12">
+						<el-col :span="6">
 							<el-form-item label="进件时间">
 									 <el-date-picker
 								      type="daterange"
@@ -99,7 +99,7 @@
 								    </el-date-picker>
 							</el-form-item>
 						</el-col>
-						<el-col :span="12">
+						<el-col :span="6">
 							<el-form-item label="放款时间">
 									 <el-date-picker
 								      type="daterange"
