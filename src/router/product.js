@@ -5,15 +5,23 @@ export default {
   children: [{
     path: '',
     name: 'product',
-    redirect: 'productList'
+    redirect: 'productList',
   }, {
     path: 'productList',
     name: 'product.productList',
-    component: () => import('@/views/product/productList.vue')
+    component: () => import('@/views/product/productList.vue'),
+    meta: {
+      title: 'productList',
+      icon: 'addProduct'
+    },
   }, {
     path: 'addProduct',
     name: 'product.addProduct',
-    component: () => import('@/views/product/addProduct.vue')
+    component: () => import('@/views/product/addProduct.vue'),
+    meta: {
+      title: 'addProduct',
+      icon: 'addProduct'
+    },
   }, {
     path: 'productInfo/:userId',
     component: () => import('@/views/product/productInfo.vue'),
@@ -25,6 +33,10 @@ export default {
       path: 'index',
       name: 'product.productInfo.index',
       component: () => import('@/views/product/productInfo/index.vue'),
+      meta: {
+        title: 'productInfo',
+        icon: 'productInfo'
+      },
     }]
   }]
 }

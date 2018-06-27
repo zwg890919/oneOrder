@@ -40,12 +40,12 @@
     <!-- 设置角色权限 -->
     <el-dialog title="设置角色权限" :visible.sync="accreditVisible" class="accredit-dialog" top="7vh">
       <el-scrollbar class="accredit-body" wrapClass="scrollbar-wrapper">
-        <el-tree :data="data2" show-checkbox node-key="id" :default-expanded-keys="[2, 3]" :default-checked-keys="[5]" :props="defaultProps">
+        <el-tree ref="authTree" :data="data2" show-checkbox node-key="id" default-expand-all :default-checked-keys="[5]" :props="defaultProps">
         </el-tree>
       </el-scrollbar>
       <div slot="footer" class="dialog-footer">
         <el-button @click="accreditVisible = false">取 消</el-button>
-        <el-button type="primary" @click="accreditVisible = false">确 定</el-button>
+        <el-button type="primary" @click="showChange">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -119,7 +119,8 @@
         multipleSelection: [],
         addVisible: false,
         editVisible: false,
-        accreditVisible: false
+        accreditVisible: false,
+        userRoles: []
       }
     },
     methods: {
@@ -132,11 +133,17 @@
         this.addVisible = true;
       },
       changeAccredit() {
+        this.userRoles = []
         this.accreditVisible = true;
       },
       handleSelectionChange(val) {
         this.multipleSelection.push(val);
       },
+      showChange() {
+        // this.userRoles.push.apply(this.$refs.authTree.getCheckedKeys(),this.$refs.authTree.getHalfCheckedKeys())
+        this.userRoles = [...this.$refs.authTree.getCheckedKeys(),...this.$refs.authTree.getHalfCheckedKeys()]
+        console.log(this.userRoles)
+      }
     }
   }
 </script>
