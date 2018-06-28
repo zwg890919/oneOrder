@@ -11,7 +11,7 @@ export default {
     name: 'product.productList',
     component: () => import('@/views/product/productList.vue'),
     meta: {
-      title: 'productList',
+      title: '产品列表',
       icon: 'addProduct'
     },
   }, {
@@ -19,7 +19,7 @@ export default {
     name: 'product.addProduct',
     component: () => import('@/views/product/addProduct.vue'),
     meta: {
-      title: 'addProduct',
+      title: '添加产品',
       icon: 'addProduct'
     },
   }, {
@@ -34,7 +34,7 @@ export default {
       name: 'product.productInfo.index',
       component: () => import('@/views/product/productInfo/index.vue'),
       meta: {
-        title: 'productInfo',
+        title: '产品详情',
         icon: 'productInfo'
       },
     }]
