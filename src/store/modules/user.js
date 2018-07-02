@@ -20,7 +20,7 @@ const user = {
   actions: {
     async userLogin({ commit }, loginParams) {
       const data = await $http.login(loginParams)
-      await Cookies.set('admin-token', data.datas.token)
+      await Cookies.set('admin-token', 'isLogin')
     },
     async getUserRole({ commit }) {
       const userRole = await $http.userInfo()

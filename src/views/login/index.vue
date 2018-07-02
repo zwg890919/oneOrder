@@ -8,17 +8,17 @@
     </div>
     <div class="login-wrap">
       <p class="login-box__error">{{errorMessage}}</p>
-      <el-input class="login-wrap__input" v-model="formInline.userMobile" placeholder="请输入用户名"></el-input>
-      <el-input class="login-wrap__input password" v-model="formInline.userPassword" placeholder="请输入密码"></el-input>
+      <el-input class="login-wrap__input" v-model="formInline.userLoginCode" placeholder="请输入用户名"></el-input>
+      <el-input class="login-wrap__input password" type="password" v-model="formInline.password" placeholder="请输入密码"></el-input>
       <el-row :gutter="20">
         <el-col :span="16">
           <el-input class="login-wrap__input validate" v-model="formInline.verifyCode" placeholder="请输入验证码"></el-input>
         </el-col>
         <el-col :span="4">
-          <img src="../../assets/images/login/verify.png" onclick="this.src='api/verifycode?' + Math.random()">
+          <img src="api/zouyidan_auth/biz/reqVerifyCode" onclick="this.src='api/zouyidan_auth/biz/reqVerifyCode?' + Math.random()">
         </el-col>
       </el-row>
-      <el-button style="width:100%;" type="primary" @click="addrouter">登陆</el-button>
+      <el-button style="width:100%;" type="primary" @click="userLogin">登陆</el-button>
       <p class="login-reg">
         <a>立即注册</a>
         <a>忘记密码？</a>
@@ -34,8 +34,8 @@
     data() {
       return {
         formInline: {
-          userMobile: "",
-          userPassword: "",
+          userLoginCode: "",
+          password: "",
           verifyCode: ""
         },
         errorMessage: ""
@@ -44,10 +44,31 @@
     created() {
     },
     methods: {
+      async userLogin() {
+        if(this.formInline.userLoginCode == '') {
+          this.errorMessage = '请输入用户名'
+          return;
+        }
+        if(this.formInline.password == ''){
+          this.errorMessage = '请输入密码'
+          return;
+        }
+        if(this.formInline.verifyCode == ''){
+          this.errorMessage = '请输入图形验证码'
+          return;
+        }
+        const data = await $http.login(this.formInline)
+        if(data.success){
+          this.$router.push({ name: 'home' })
+        }else{
+          this.errorMessage = data.i18nMessage;
+        }
+      },
       addrouter() {
         this.$store.dispatch('userLogin', this.formInline).then(() => {
-          this.$router.push({ name: 'home' })
+          // this.$router.push({ name: 'home' })
         }).catch(() => {
+
         })
       }
     }
