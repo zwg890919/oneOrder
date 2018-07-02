@@ -4,8 +4,9 @@
 import router from './router'
 import store from './store'
 import Cookies from 'js-cookie'
-
+import { eachAllChild } from '@/utils/index'
 import NProgress from 'nprogress'
+
 import 'nprogress/nprogress.css'
 
 //链接白名单
@@ -19,16 +20,19 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     } else {
       if (store.getters.menuRoles.length === 0) {
-        store.dispatch('getUserRole').then(res => {
-          next()
-        }).catch((err) => {
-          Cookies.get('admin-token', '')
-          next({ path: '/' })
-        })
-      } else {
-        next()
+        store.dispatch('getUserRole')
       }
-
+      let menuList = [];
+      eachAllChild({
+        childrens: store.getters.menuRoles
+      }, (item, index) => {
+        item.menuHref && menuList.push(item.menuHref)
+      })
+      if (menuList.indexOf(to.name)) {
+        next()
+      } else {
+        next({ path: "/error/401", replace: true })
+      }
     }
   } else {
     // 目标链接是否在白名单内

@@ -1,25 +1,14 @@
 <template>
   <div>
     <el-card class="wrapper-option">
-      <el-form ref="form" :model="form" label-width="100px" size="small">
-        <el-row>
-          <el-col :span="6">
-            <el-form-item label="用户名称">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="7" :offset="1">
-            <el-button style="margin-bottom: 15px;" size="small">查询</el-button>
-            <el-button size="small">重置</el-button>
-          </el-col>
-        </el-row>
-      </el-form>
-    </el-card>
-    <el-card class="wrapper-option">
       <div class="wrapper-button clearfix">
         <el-button type="primary" size="small" @click="addDep">新增</el-button>
         <el-button size="small" @click="modifyDep">修改</el-button>
         <el-button size="small">删除</el-button>
+        <div class="fr">
+          <el-input v-model="form.value" style="width:220px;float:left;margin-right:15px;"></el-input>
+          <el-button>搜索</el-button>
+        </div>
       </div>
       <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55"></el-table-column>
@@ -111,7 +100,7 @@
       }
     },
     methods: {
-      modifyDep(){
+      modifyDep() {
         this.editDepartment = true
         this.addVisible = true;
       },

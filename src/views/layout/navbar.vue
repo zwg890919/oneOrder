@@ -1,10 +1,31 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <i class="login-header-logo"></i>
+    <div class="logo">
+      <img src="../../assets/images/login/logo.png" height="60" alt="">
+    </div>
     <div class="left-menu" @click="showAppList">
-      <i class="iconfont icon-apply" style="font-size:16px"></i>
+      <!-- <i class="iconfont icon-apply" style="font-size:16px"></i> -->
       <span>应用中心</span>
       <i class="el-icon-caret-bottom"></i>
+    </div>
+    <div class="right-menu">
+      <ul>
+        <li>
+          <i class="iconfont icon-editscreenfull" style="font-size:20px;vertical-align:middle" @click="toggleScreen"></i>
+        </li>
+        <li>
+          <el-dropdown style="cursor:pointer" trigger="click">
+            <span class="el-dropdown-link">
+              管理员
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>修改密码</el-dropdown-item>
+              <el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </li>
+      </ul>
     </div>
     <transition name="fade-transform" mode="out-in">
       <div class="applist" v-show="appListShow">
@@ -14,30 +35,13 @@
         </div>
       </div>
     </transition>
-    <div class="right-menu">
-      <span>
-        <i class="iconfont icon-editscreenfull" style="font-size:20px" @click="toggleScreen"></i>
-      </span>
-      <div class="right-menu-item">
-        <el-dropdown class="right-menu-item" trigger="click">
-          <div class="avatar-wrapper">
-            <div class="head">
-              <img src="../../assets/images/a0.jpg" width="40" height="40">
-              <i class="el-icon-caret-bottom"></i>
-            </div>
-          </div>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item divided>退出登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-    </div>
   </el-menu>
 </template>
 <script>
   import screenfull from 'screenfull'
   import { mapGetters } from 'vuex'
+  import Cookies from 'js-cookie'
+
   export default {
     data() {
       return {
@@ -68,23 +72,15 @@
       changeApp(index) {
         this.appListShow = false;
         this.$store.dispatch('CHANGE_CURRENTAPP', index);
-        this.$router.push({ name: 'home' })
+      },
+      logout(){
+        Cookies.remove('admin-token','')
       }
     }
   }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
   .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 2000;
-      height: 50px;
-      line-height: 44px;
-      border-radius: 0px !important;
-      border-bottom: 0px;
-      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
       .applist {
           position: fixed;
           top: 60px;
@@ -113,77 +109,19 @@
               }
           }
       }
-      .login-header-logo {
-          float: left;
-          width: 105px;
-          height: 30px;
-          margin: 10px 47px;
-          background: url(../../assets/images/login/logo.png) center center /
-              cover;
-      }
-      & > .iconfont {
-          font-size: 24px;
-          margin: 0px 10px;
-      }
       .left-menu {
           float: left;
           height: 100%;
-          line-height: 50px;
+          line-height: 59px;
           font-size: 16px;
           margin-left: 10px;
           padding: 0px 10px;
           cursor: pointer;
           color: #454547;
-          &:hover {
-              color: #2d8cf0;
-              background: #f2f2f2;
-          }
           i,
           span {
               display: inline-block;
               vertical-align: middle;
-          }
-      }
-      .right-menu {
-          float: right;
-          height: 100%;
-          &:focus {
-              outline: none;
-          }
-          & > span {
-              display: inline-block;
-              padding: 0 12px;
-              vertical-align: middle;
-              cursor: pointer;
-          }
-          .screenfull {
-              height: 20px;
-          }
-          .right-menu-item {
-              position: relative;
-              display: inline-block;
-              vertical-align: middle;
-              height: 50px;
-              // padding: 0 20px;
-              padding-right: 20px;
-              font-size: 12px;
-              cursor: pointer;
-              .avatar-wrapper {
-                  .head {
-                      position: relative;
-                      display: inline-block;
-                      vertical-align: middle;
-                      img {
-                          border-radius: 10px;
-                      }
-                      i {
-                          position: absolute;
-                          right: -20px;
-                          top: 25px;
-                          font-size: 12px;
-                      }
-                  }
-              }
           }
       }
   }

@@ -46,8 +46,9 @@ const user = {
         item.menuCode && codeList.push(item.menuCode)
       })
       commit('SET_FUNROLES', codeList)
+      // return menuList
     },
-    CHANGE_CURRENTAPP({commit,state},appIndex){
+    CHANGE_CURRENTAPP({ commit, state }, appIndex) {
       commit('SET_CURRENTAPP', state.menuRoles[appIndex])
     }
   }

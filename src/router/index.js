@@ -13,6 +13,7 @@ export default new Router({
   routes: [
     { path: '*', redirect: "/404" },
     { path: '/404', component: () => import('@/views/errorPage/404'), hidden: true },
+    { path: '/401', component: () => import('@/views/errorPage/401'), hidden: true },
     { path: "/login", name: "login", component: () => import(`@/views/login`) },
     {
       path: '',
