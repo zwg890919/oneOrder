@@ -20,5 +20,12 @@ export default {
     meta: {
       title: '产品方管理',
     },
+  }, {
+    path: 'bankList',
+    name: 'operate.bankList',
+    component: () => import('@/views/operate/bankList.vue'),
+    meta: {
+      title: '银行信息管理',
+    },
   }]
 }

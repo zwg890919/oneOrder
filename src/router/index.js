@@ -7,10 +7,11 @@ import settingRouter from "./setting";
 
 import applicationRouter from "./application";
 import operateRouter from './operate';
+import workbench from './workbench';
 
 Vue.use(Router)
 
-const addRouters = [productRouter, userRouter, applicationRouter, operateRouter]
+const addRouters = [productRouter, userRouter, applicationRouter, operateRouter, workbench]
 export default new Router({
   routes: [
     { path: '*', redirect: "/404" },
