@@ -13,5 +13,13 @@ export default {
     meta: {
       title: '融资申请列表',
     },
+  }, {
+    path: 'applicationDetail',
+    name: 'application.applicationDetail',
+    component: () => import('@/views/application/applicationDetail.vue'),
+    hidden:true,
+    meta: {
+      title: '融资申请详情',
+    },
   }]
 }

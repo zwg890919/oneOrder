@@ -10,7 +10,7 @@ import operateRouter from './operate';
 
 Vue.use(Router)
 
-const addRouters = [productRouter, userRouter, applicationRouter, operateRouter]
+const addRouters = [productRouter, userRouter, applicationRouter, operateRouter, chargeRouter]
 export default new Router({
   routes: [
     { path: '*', redirect: "/404" },

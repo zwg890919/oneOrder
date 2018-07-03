@@ -235,6 +235,10 @@ code {
   width: 180px;
   border-right: 1px solid #dedede;
 }
+.infoTable.nor-table td:first-child {
+  width: auto;
+  border-right: 0;
+}
 .split-line{
   color:#999;
   text-align:center;
@@ -261,4 +265,7 @@ code {
 }
 .wrapper-option .el-date-editor .el-range-separator{
   width:10%;
+}
+.wrapper-info{
+  margin-bottom:10px;
 }

@@ -20,5 +20,19 @@ export default {
     meta: {
       title: '产品方管理',
     },
+  }, {
+    path: 'bank',
+    name: 'operate.bank',
+    component: () => import('@/views/operate/bank.vue'),
+    meta: {
+      title: '银行信息管理',
+    },
+  }, {
+    path: 'tag',
+    name: 'operate.tag',
+    component: () => import('@/views/operate/tag.vue'),
+    meta: {
+      title: '产品标签管理',
+    },
   }]
 }
