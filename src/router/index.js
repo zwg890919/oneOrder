@@ -11,7 +11,7 @@ import workbench from './workbench';
 
 Vue.use(Router)
 
-const addRouters = [productRouter, userRouter, applicationRouter, operateRouter, workbench]
+const addRouters = [productRouter, userRouter, applicationRouter, operateRouter, chargeRouter,workbench]
 export default new Router({
   routes: [
     { path: '*', redirect: "/404" },

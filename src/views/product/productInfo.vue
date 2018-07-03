@@ -3,6 +3,7 @@
 
     <el-menu class="person-menu" @select="handleSelect" :default-active="activeName" mode="horizontal">
       <el-menu-item index="product.productInfo.index">基本信息</el-menu-item>
+      <el-menu-item index="product.productInfo.apply">借款申请</el-menu-item>
     </el-menu>
     <router-view></router-view>
   </div>

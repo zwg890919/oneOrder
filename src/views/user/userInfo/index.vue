@@ -59,7 +59,7 @@
             </tr>
             <tr>
               <td>渠道</td>
-              <td>颀财<el-button class="table-button"  size="mini" type="primary">修改</el-button></td>
+              <td>颀财<el-button class="table-button"  size="mini" type="primary" @click="dialogVisible = true">修改</el-button></td>
             </tr>
             <tr>
               <td>注册方式</td>
@@ -122,5 +122,37 @@
 	      </table>
 	    </el-card>
 		</el-col>
+    <el-dialog
+		  :visible.sync="dialogVisible"
+      title="修改渠道"
+		  width="500px">
+		  <el-form :model="form" label-width="100px">
+		    <el-form-item label="修改用户">
+		      <span>范冰冰</span>
+		    </el-form-item>
+		    <el-form-item label="原渠道">
+		      <span>西财</span>
+		    </el-form-item>
+        <el-form-item label="新渠道">
+		      <el-select></el-select>
+		    </el-form-item>
+		  </el-form>
+		  <span slot="footer" class="dialog-footer">
+		    <el-button @click="dialogVisible = false">取消渠道关系</el-button>
+		    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+		  </span>
+		</el-dialog>
 	</div>
 </template>
+<script>
+  export default{
+    data(){
+      return {
+        dialogVisible:false
+      }
+    },
+    methods:{
+
+    }
+  }
+</script>
