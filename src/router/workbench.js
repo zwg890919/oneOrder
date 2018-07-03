@@ -13,5 +13,19 @@ export default {
     meta: {
       title: '放款处理',
     },
+  }, {
+    path: 'preliminary',
+    name: 'operate.preliminary',
+    component: () => import('@/views/workbench/preliminary.vue'),
+    meta: {
+      title: '准入初评',
+    },
+  }, {
+    path: 'preliminaryApply',
+    name: 'operate.preliminaryApply',
+    component: () => import('@/views/workbench/preliminaryApply.vue'),
+    meta: {
+      title: '准入初评',
+    },
   }]
 }
