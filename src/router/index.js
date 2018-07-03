@@ -9,6 +9,8 @@ import applicationRouter from "./application";
 import operateRouter from './operate';
 
 Vue.use(Router)
+
+const addRouters = [productRouter, userRouter, applicationRouter, operateRouter]
 export default new Router({
   routes: [
     { path: '*', redirect: "/404" },
@@ -22,15 +24,17 @@ export default new Router({
       children: [{
         path: 'home',
         name: 'home',
-        component: () => import ('@/views/home')
+        component: () => import('@/views/home'),
+        meta: {
+          title: '首页',
+          icon: 'home'
+        },
       }]
     },
-    productRouter,
-    userRouter,
-    chargeRouter,
-    settingRouter,
-    applicationRouter,
-    operateRouter
+    ...addRouters,
+    // chargeRouter,
+    // settingRouter,
+
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
@@ -49,3 +53,7 @@ export default new Router({
     }
   }
 })
+
+export {
+  addRouters
+}

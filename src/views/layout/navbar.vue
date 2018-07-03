@@ -1,27 +1,26 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <div class="logo">
-      <img src="../../assets/images/login/logo.png" height="60" alt="">
+      走一单管理系统
     </div>
-    <div class="left-menu" @click="showAppList">
-      <!-- <i class="iconfont icon-apply" style="font-size:16px"></i> -->
+    <!-- <div class="left-menu" @click="showAppList">
       <span>应用中心</span>
       <i class="el-icon-caret-bottom"></i>
-    </div>
+    </div> -->
     <div class="right-menu">
       <ul>
         <li>
           <i class="iconfont icon-editscreenfull" style="font-size:20px;vertical-align:middle" @click="toggleScreen"></i>
         </li>
         <li>
-          <el-dropdown style="cursor:pointer" trigger="click">
+          <el-dropdown style="cursor:pointer" trigger="click" @command="handleCommand">
             <span class="el-dropdown-link">
               管理员
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>修改密码</el-dropdown-item>
-              <el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
+            <el-dropdown-menu slot="dropdown" >
+              <el-dropdown-item command="changePwd">修改密码</el-dropdown-item>
+              <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </li>
@@ -73,8 +72,12 @@
         this.appListShow = false;
         this.$store.dispatch('CHANGE_CURRENTAPP', index);
       },
-      logout(){
-        Cookies.remove('admin-token','')
+      handleCommand(command) {
+        if (command === 'logout') {
+          Cookies.remove('admin-token', { path: '/' })
+          this.$store.dispatch('delAllViews')
+          this.$router.push({ name: 'login' })
+        }
       }
     }
   }
@@ -117,7 +120,7 @@
           margin-left: 10px;
           padding: 0px 10px;
           cursor: pointer;
-          color: #454547;
+          color: #fff;
           i,
           span {
               display: inline-block;
