@@ -37,6 +37,14 @@ export default {
         title: '产品详情',
         icon: 'productInfo'
       },
+    }, {
+      path: 'apply',
+      name: 'product.productInfo.apply',
+      component: () => import('@/views/product/productInfo/apply.vue'),
+      meta: {
+        title: '借款申请',
+        icon: 'productInfo'
+      },
     }]
   }]
 }

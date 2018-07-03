@@ -18,7 +18,7 @@
           <img src="api/zouyidan_auth/biz/reqVerifyCode" onclick="this.src='api/zouyidan_auth/biz/reqVerifyCode?' + Math.random()">
         </el-col>
       </el-row>
-      <el-button style="width:100%;" type="primary" @click="userLogin">登陆</el-button>
+      <el-button style="width:100%;" type="primary" @click="addrouter">登陆</el-button>
       <p class="login-reg">
         <a>立即注册</a>
         <a>忘记密码？</a>
@@ -66,7 +66,7 @@
       },
       addrouter() {
         this.$store.dispatch('userLogin', this.formInline).then(() => {
-          // this.$router.push({ name: 'home' })
+          this.$router.push({ name: 'home' })
         }).catch(() => {
 
         })
