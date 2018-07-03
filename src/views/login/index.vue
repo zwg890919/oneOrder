@@ -57,12 +57,13 @@
           this.errorMessage = '请输入图形验证码'
           return;
         }
-        const data = await $http.login(this.formInline)
-        if(data.success){
-          this.$router.push({ name: 'home' })
-        }else{
-          this.errorMessage = data.i18nMessage;
-        }
+        this.addrouter()
+        // const data = await $http.login(this.formInline)
+        // if(data.success){
+        //   this.$router.push({ name: 'home' })
+        // }else{
+        //   this.errorMessage = data.i18nMessage;
+        // }
       },
       addrouter() {
         this.$store.dispatch('userLogin', this.formInline).then(() => {

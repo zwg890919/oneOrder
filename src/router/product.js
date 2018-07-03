@@ -1,12 +1,13 @@
 export default {
   path: '/product',
   name: 'product',
+  redirect: 'productList',
   component: () => import('@/views/layout/index'),
-  children: [{
-    path: '',
-    name: 'product',
-    redirect: 'productList',
-  }, {
+  meta: {
+    title: '产品管理',
+    icon: 'addProduct'
+  },
+  children: [ {
     path: 'productList',
     name: 'product.productList',
     component: () => import('@/views/product/productList.vue'),
@@ -18,6 +19,7 @@ export default {
     path: 'addProduct',
     name: 'product.addProduct',
     component: () => import('@/views/product/addProduct.vue'),
+    hidden:true,
     meta: {
       title: '添加产品',
       icon: 'addProduct'
@@ -25,6 +27,7 @@ export default {
   }, {
     path: 'productInfo/:userId',
     component: () => import('@/views/product/productInfo.vue'),
+    hidden:true,
     children: [{
       path: '',
       name: 'product.productInfo',
