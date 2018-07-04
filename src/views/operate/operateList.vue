@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<el-card class="box-card">
-	    <el-breadcrumb separator-class="el-icon-arrow-right">
-			  	<el-breadcrumb-item>运营管理</el-breadcrumb-item>
-			  	<el-breadcrumb-item>渠道管理</el-breadcrumb-item>
-			</el-breadcrumb>
-		</el-card>
+		<div class="wrapper-nav">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 运营管理</el-breadcrumb-item>
+        <el-breadcrumb-item>渠道管理</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
 		<el-card class="wrapper-option">
 			<el-form ref="form" :model="form" label-width="120px" size="small">
 				<el-col :span="21">

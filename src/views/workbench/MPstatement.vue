@@ -3,7 +3,7 @@
         <div class="wrapper-nav">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
-                <el-breadcrumb-item>放款管理</el-breadcrumb-item>
+                <el-breadcrumb-item>MP账户流水跟踪</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <el-card class="wrapper-option">
@@ -11,62 +11,39 @@
                 <el-col :span="21">
                     <el-row>
                         <el-col :span="6">
-                            <el-form-item label="借款主体名称">
+                            <el-form-item label="融资申请编号">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="借款主体编号">
+                            <el-form-item label="产品名称">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="所在省份">
-                                <el-select v-model="form.region" placeholder="请选择省份">
-                                    <el-option label="浙江省" value="shanghai"></el-option>
-                                    <el-option label="安徽省" value="beijing"></el-option>
-                                </el-select>
+                            <el-form-item label="融资主体简称">
+                                <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="所在城市">
-                                <el-select v-model="form.region" placeholder="请选择城市">
-                                    <el-option label="绍兴市" value="shanghai"></el-option>
-                                    <el-option label="杭州市" value="beijing"></el-option>
-                                </el-select>
+                            <el-form-item label="MP帐号">
+                                <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="6">
-                            <el-form-item label="借款编号">
+                            <el-form-item label="流水号">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="业务员名称">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="业务员编号">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="业务员手机">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                    <el-row :gutter="40">
-                        <el-col :span="12">
+                        <el-col :span="9">
                             <el-form-item label="进件时间">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                                 </el-date-picker>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="12">
+                        <el-col :span="9">
                             <el-form-item label="任务截止时间">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                                 </el-date-picker>
@@ -86,55 +63,54 @@
         </el-card>
         <el-card class="wrapper-option">
             <div class="wrapper-button clearfix">
-                <el-button type="primary" size="small">批量导入放款数据</el-button>
+                <el-button type="primary" size="small">批量导入还款数据</el-button>
             </div>
             <el-tabs type="card">
-                <el-tab-pane label="待放款">
-                    <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%" >
+                <el-tab-pane label="待还款">
+                    <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%">
                         <el-table-column label="序号" type="index">
                         </el-table-column>
-                        <el-table-column label="融资申请编号" prop="applyCode">
+                        <el-table-column label="借款主体编号" min-width="150" prop="applyCode">
                         </el-table-column>
-                        <el-table-column label="产品名称" prop="productName">
+                        <el-table-column label="MP帐号" min-width="120" prop="account">
                         </el-table-column>
-                        <el-table-column label="申请时间" width="170" prop="applyTime">
+                        <el-table-column label="融资申请编号" min-width="120" prop="applyCode">
                         </el-table-column>
-                        <el-table-column label="初审通过时间" width="170" prop="passTime">
+                        <el-table-column label="流水日期" min-width="150" prop="applyTime">
                         </el-table-column>
-                        <el-table-column label="授信额度（元）" width="120" prop="limit">
+                        <el-table-column label="流水金额（元）" min-width="140" prop="amount">
                         </el-table-column>
-                        <el-table-column label="借款期限（月）" width="120" prop="duetime">
+                        <el-table-column label="MP收益金额（元" min-width="120" prop="amount">
                         </el-table-column>
-                        <el-table-column label="操作" width="300" align="center">
-                            <template slot-scope="scope">
-                                <el-button type="primary" size="mini" @click="creditOrder">已放款</el-button>
-                                <el-button type="primary" size="mini">资金方拒件</el-button>
-                                <el-button type="primary" size="mini">取消</el-button>
-                            </template>
+                        <el-table-column label="还款状态" min-width="120" prop="status">
                         </el-table-column>
                     </el-table>
                 </el-tab-pane>
-                <el-tab-pane label="已放款">
-                    <el-table ref="multipleTable" :data="tableData4" tooltip-effect="dark" style="width: 100%" >
+                <el-tab-pane label="累计还款">
+                    <el-table ref="multipleTable" :data="tableData4" tooltip-effect="dark" style="width: 100%">
                         <el-table-column label="序号" type="index">
                         </el-table-column>
-                        <el-table-column label="融资申请编号" width="120" prop="applyCode">
+                        <el-table-column label="融资申请编号" min-width="150" prop="applyCode">
                         </el-table-column>
-                        <el-table-column label="产品名称" width="150" prop="productName">
+                        <el-table-column label="产品名称" min-width="180" prop="productName">
                         </el-table-column>
-                        <el-table-column label="申请时间" width="170" prop="applyTime">
+                        <el-table-column label="授信额度（元）" min-width="120" prop="limit">
                         </el-table-column>
-                        <el-table-column label="授信额度（元）" width="120" prop="limit">
+                        <el-table-column label="放款日期" min-width="140" prop="applyTime">
                         </el-table-column>
-                        <el-table-column label="借款期限（月）" width="120" prop="duetime">
+                        <el-table-column label="还款状态" min-width="140" prop="status">
                         </el-table-column>
-                        <el-table-column label="放款时间" width="170" prop="passTime">
+                        <el-table-column label="已还本金（元）" min-width="120" prop="limit">
                         </el-table-column>
-                        <el-table-column label="授信额度（元）" width="120" prop="limit">
+                        <el-table-column label="剩余还款本金（元）" min-width="170" prop="limit">
                         </el-table-column>
-                        <el-table-column label="流水号" width="170" prop="serialNum">
+                        <el-table-column label="MP收益余额还款" min-width="170" prop="limit">
                         </el-table-column>
-                        <el-table-column label="操作员" width="100" prop="operator">
+                        <el-table-column label="每期利息" min-width="120" prop="limit">
+                        </el-table-column>
+                        <el-table-column label="MP账户余额" min-width="120" prop="limit">
+                        </el-table-column>
+                        <el-table-column label="操作员" min-width="120" prop="operator">
                         </el-table-column>
                         <el-table-column label="操作" align="center">
                             <template slot-scope="scope">
@@ -147,15 +123,24 @@
 
         </el-card>
         <el-dialog :visible.sync="creditDialog" width="500px">
-            <el-form :model="form" label-width="80px" size="small" style="width:350px;margin-left:35px;">
-                <el-form-item label="放款金额">
+            <el-form :model="form" label-width="120px" size="small" style="width:380px;margin-left:35px;">
+                <el-form-item label="佣金金额">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
-                <el-form-item label="放款时间">
+                <el-form-item label="收取时间">
                     <el-date-picker v-model="form.name" type="date" placeholder="选择日期">
                     </el-date-picker>
                 </el-form-item>
-                <el-form-item label="流水号">
+                <el-form-item label="是否提前还款">
+                    <el-radio-group v-model="form.resource">
+                        <el-radio label="是"></el-radio>
+                        <el-radio label="否"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="MP账户余额还款">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="MP收益还款">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
             </el-form>
@@ -183,22 +168,22 @@
                     desc: ''
                 },
                 tableData3: [{
-                    applyCode: '123',
-                    productName: '中信银行',
-                    applyTime: '2018-05-12 12:00:00',
-                    passTime: '2018-05-12 12:00:00',
-                    limit: 80000,
-                    duetime: '12个月'
+                    applyCode: 'RZ-18695872813',
+                    applyTime: '2018-05-12',
+                    amount: 80000,
+                    status: '还款中',
+                    repayTimes: 5,
+                    exceedLimit: '是',
+                    account:'zouyidan'
                 }],
                 tableData4: [{
-                    applyCode: '123',
-                    productName: '中信银行',
-                    applyTime: '2018-05-12 12:00:00',
-                    passTime: '2018-05-12 12:00:00',
+                    applyCode: 'RZ-18695872813',
+                    productName: '颀财-房抵贷（山东）',
+                    applyTime: '2018-05-12',
                     limit: 80000,
-                    duetime: '12个月',
-                    serialNum: '20180516425018525',
-                    operator: '张学友'
+                    status: '还款中',
+                    operator: '张学友',
+                    exceedLimit: '是'
                 }],
             }
         },

@@ -1,11 +1,11 @@
 <template>
 	<div>
-    <el-card class="box-card">
-	    <el-breadcrumb separator-class="el-icon-arrow-right">
-			  	<el-breadcrumb-item>融资申请管理</el-breadcrumb-item>
-			  	<el-breadcrumb-item>融资申请详情</el-breadcrumb-item>
-			</el-breadcrumb>
-		</el-card>
+    <div class="wrapper-nav">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 融资申请管理</el-breadcrumb-item>
+        <el-breadcrumb-item>融资申请详情</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
 		<el-col :span="12">
 			<el-card class="wrapper-option">
 				<div slot="header">借款基本信息</div>

@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<el-card class="box-card">
-			<el-breadcrumb separator-class="el-icon-arrow-right">
-			  	<el-breadcrumb-item>用户管理</el-breadcrumb-item>
-			  	<el-breadcrumb-item>新建业务员</el-breadcrumb-item>
-			</el-breadcrumb>
-		</el-card>
+		<div class="wrapper-nav">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 用户管理</el-breadcrumb-item>
+        <el-breadcrumb-item>新建业务员</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
 		<el-card class="wrapper-option">
 			<div slot="header">新建业务员</div>
 			<el-form ref="form" :model="form" label-width="140px" size="small">

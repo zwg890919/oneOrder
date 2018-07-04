@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div style="padding:10px 10px 5px;">
+    <div class="wrapper-nav">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item>
-          <i class="el-icon-menu menuicon" style="margin-right:5px;"></i>工作台</el-breadcrumb-item>
+        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
         <el-breadcrumb-item>初审任务列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>

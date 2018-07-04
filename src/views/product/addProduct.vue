@@ -1,17 +1,16 @@
 <template>
 	<div>
-		<el-card class="box-card">
+		<div class="wrapper-nav">
 			<el-breadcrumb separator-class="el-icon-arrow-right">
-			  	<el-breadcrumb-item>产品管理</el-breadcrumb-item>
-			  	<el-breadcrumb-item>新建产品</el-breadcrumb-item>
+				<el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 产品管理</el-breadcrumb-item>
+				<el-breadcrumb-item>新建产品</el-breadcrumb-item>
 			</el-breadcrumb>
-		</el-card>
+		</div>
 		<el-card class="wrapper-option">
 			<div slot="header">基础信息</div>
 			<el-form ref="form" :model="form" label-width="140px" size="small">
 				<el-col :span="8" :offset="1">
 				   	<h4>产品基础信息</h4>
-					</el-form-item>
 					<el-form-item label="产品方名称">
 				    	<el-select v-model="form.region" placeholder="请选择产品方">
 					    	<el-option label="房抵贷" value="shanghai"></el-option>
@@ -187,25 +186,23 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        radio:'1',
-        checkList:[],
-      }
-    },
-    methods: {
-
-    }
-  }
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: ""
+      },
+      radio: "1",
+      checkList: []
+    };
+  },
+  methods: {}
+};
 </script>
