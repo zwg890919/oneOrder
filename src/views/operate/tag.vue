@@ -3,37 +3,14 @@
 		<el-card class="box-card">
 	    <el-breadcrumb separator-class="el-icon-arrow-right">
 			  	<el-breadcrumb-item>运营管理</el-breadcrumb-item>
-			  	<el-breadcrumb-item>银行信息管理</el-breadcrumb-item>
+			  	<el-breadcrumb-item>标签管理</el-breadcrumb-item>
 			</el-breadcrumb>
-		</el-card>
-		<el-card class="wrapper-option">
-			<el-form ref="form" :model="form" label-width="120px" size="small">
-				<el-col :span="21">
-					<el-row>
-						<el-col :span="6">
-							<el-select v-model="form.name"></el-select>
-						</el-col>
-						<el-col :span="6">
-							<el-form-item label="支付渠道">
-								<el-select v-model="form.name"></el-select>
-							</el-form-item>
-						</el-col>
-					</el-row>
-				</el-col>
-				<el-col  :span="2" :offset="1">
-					<el-col>
-						<el-button style="margin-bottom: 15px;" size="small">查询</el-button>
-						<el-button size="small">重置</el-button>
-					</el-col>
-				</el-col>
-			</el-form>
 		</el-card>
 		<el-card class="wrapper-option">
 			<div class="wrapper-button clearfix">
 				<el-button type="primary" size="small" @click="dialogVisible = true">新增</el-button>
 				<el-button size="small">修改</el-button>
-				<el-button size="small">开启</el-button>
-				<el-button size="small">关闭</el-button>
+				<el-button size="small">删除</el-button>
 			</div>
 			<el-table
 			ref="multipleTable"
@@ -50,20 +27,29 @@
 				  type="index">
 				</el-table-column>
 				<el-table-column
-				  label="银行">
+				  label="创建时间">
 				</el-table-column>
 				<el-table-column
-				  label="状态">
+				  label="标签名称">
+				</el-table-column>
+				<el-table-column
+				  label="标签类型">
+				</el-table-column>
+				<el-table-column
+				  label="更新人">
 				</el-table-column>
 			</el-table>
 		</el-card>
 		<el-dialog
 		  :visible.sync="dialogVisible"
-			title="新增银行信息"
+			title="新增标签"
 		  width="400px">
 		  <el-form :model="form" label-width="80px" size="small">
-		    <el-form-item label="开户银行">
-		    	<el-select v-model="form.name"></el-select>
+				<el-form-item label="标签名称">
+		    	<el-input v-model="form.name"></el-input>
+		    </el-form-item>
+		    <el-form-item label="标签类型">
+		    	<el-select style="width:100%;" v-model="form.name"></el-select>
 		    </el-form-item>
 		  </el-form>
 		  <span slot="footer" class="dialog-footer">

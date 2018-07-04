@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import productRouter from "./product";
 import userRouter from "./user";
-import chargeRouter from "./charge";
-import settingRouter from "./setting";
+// import chargeRouter from "./charge";
+// import settingRouter from "./setting";
 
 import applicationRouter from "./application";
 import operateRouter from './operate';
@@ -11,7 +11,7 @@ import workbench from './workbench';
 
 Vue.use(Router)
 
-const addRouters = [productRouter, userRouter, applicationRouter, operateRouter, chargeRouter,workbench]
+const addRouters = [productRouter, userRouter, applicationRouter, operateRouter, workbench]
 export default new Router({
   routes: [
     { path: '*', redirect: "/404" },
