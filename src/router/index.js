@@ -33,9 +33,7 @@ export default new Router({
       }]
     },
     ...addRouters,
-    // chargeRouter,
-    // settingRouter,
-
+    settingRouter,
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
