@@ -236,7 +236,7 @@
 	    },
 	    goProduct(index, row){
 	    	console.log(row);
-	    	this.$router.push({ name: 'user.userInfo', params: { userId:1223 } })
+	    	this.$router.push({ name: 'user.userInfo.index', params: { userId:1223 } })
 	    }
     }
   }

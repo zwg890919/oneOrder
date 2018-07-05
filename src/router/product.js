@@ -5,7 +5,7 @@ export default {
   component: () => import('@/views/layout/index'),
   meta: {
     title: '产品管理',
-    icon: 'addProduct'
+    icon: 'el-icon-tickets'
   },
   children: [ {
     path: 'productList',

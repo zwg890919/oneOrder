@@ -4,6 +4,7 @@ export default {
     redirect: 'creditList',
     meta: {
         title: '工作台',
+        icon:'el-icon-menu'
     },
     component: () => import('@/views/layout/index'),
     children: [{

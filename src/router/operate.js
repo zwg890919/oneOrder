@@ -4,6 +4,7 @@ export default {
   redirect: 'operateList',
   meta: {
     title: '运营管理',
+    icon: 'el-icon-setting'
   },
   component: () => import('@/views/layout/index'),
   children: [{

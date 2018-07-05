@@ -6,10 +6,10 @@
       <tag-nav></tag-nav>
       <div class="page-container">
         <transition name="fade-transform" mode="out-in">
-          <keep-alive>
+          <!-- <keep-alive> -->
             <!-- :include="cachedViews" -->
             <router-view :key="key"></router-view>
-          </keep-alive>
+           <!-- </keep-alive> -->
         </transition>
       </div>
     </div>

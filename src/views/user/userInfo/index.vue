@@ -45,10 +45,13 @@
               <td>通讯地址</td>
               <td></td>
             </tr>
-            <tr>
-              <td>邮政编码</td>
-              <td></td>
-            </tr>
+			    </tbody>
+			  </table>
+			</el-card>
+      <el-card class="wrapper-option">
+				<div slot="header">用户活跃数据</div>
+				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
             <tr>
               <td>用户类型</td>
               <td>个人</td>
@@ -85,13 +88,9 @@
               <td>最后进件时间</td>
               <td>2017-08-13 17:57:44</td>
             </tr>
-            <tr>
-              <td>累计进件笔数</td>
-              <td>2</td>
-            </tr>
-			    </tbody>
-			  </table>
-			</el-card>
+					</tbody>
+				</table>
+      </el-card>
 		</el-col>
 		<el-col :span="12">
 			<el-card class="wrapper-option">
@@ -99,7 +98,11 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>总进件笔数</td>
+              <td>总计</td>
+              <td>180</td>
+            </tr>
+            <tr>
+              <td>累计进件笔数</td>
               <td>180</td>
             </tr>
             <tr>
@@ -148,7 +151,10 @@
   export default{
     data(){
       return {
-        dialogVisible:false
+        dialogVisible:false,
+        form:{
+          
+        }
       }
     },
     methods:{

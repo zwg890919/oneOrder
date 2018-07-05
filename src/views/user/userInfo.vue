@@ -6,13 +6,6 @@
         <el-breadcrumb-item>用户详情</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-		<el-card class="box-card">
-	    <el-breadcrumb separator-class="el-icon-arrow-right">
-			  <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-			  <el-breadcrumb-item>业务员</el-breadcrumb-item>
-        <el-breadcrumb-item>用户详情</el-breadcrumb-item>
-			</el-breadcrumb>
-		</el-card>
 		<el-menu class="person-menu" @select="handleSelect" :default-active="activeName" mode="horizontal">
   		<el-menu-item index="user.userInfo.index">基本信息</el-menu-item>
       <el-menu-item index="user.userInfo.prdRecord">进件记录</el-menu-item>
@@ -30,6 +23,7 @@
       };
     },
     created() {
+
     },
     methods: {
       handleSelect(key, keyPath) {

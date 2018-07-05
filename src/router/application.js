@@ -5,6 +5,7 @@ export default {
   component: () => import('@/views/layout/index'),
   meta: {
     title: '融资申请管理',
+    icon:'el-icon-edit-outline'
   },
   children: [{
     path: 'applicationList',
