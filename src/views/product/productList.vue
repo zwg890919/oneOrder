@@ -24,25 +24,27 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="所在省份">
-                <el-select v-model="form.region" placeholder="请选择省份">
-                  <el-option label="浙江省" value="shanghai"></el-option>
-                  <el-option label="安徽省" value="beijing"></el-option>
+              <el-form-item label="产品状态">
+                <el-select v-model="form.region">
+                  <el-option label="全部" value="shanghai"></el-option>
+                  <el-option label="是" value="beijing"></el-option>
+                  <el-option label="否" value="beijing"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="所在城市">
-                <el-select v-model="form.region" placeholder="请选择城市">
-                  <el-option label="绍兴市" value="shanghai"></el-option>
-                  <el-option label="杭州市" value="beijing"></el-option>
+              <el-form-item label="产品类型">
+                <el-select v-model="form.region">
+                  <el-option label="全部" value="shanghai"></el-option>
+                  <el-option label="是" value="beijing"></el-option>
+                  <el-option label="否" value="beijing"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="6">
-              <el-form-item label="产品状态">
+              <el-form-item label="融资类型">
                 <el-select v-model="form.region">
                   <el-option label="全部" value="shanghai"></el-option>
                   <el-option label="是" value="beijing"></el-option>
@@ -65,8 +67,9 @@
     <el-card class="wrapper-option">
       <div class="wrapper-button clearfix">
         <el-button @click="addProduct" type="primary" size="small">新建产品</el-button>
-        <el-button @click="releaseProduct" size="small">发布</el-button>
-        <el-button size="small">下架</el-button>
+        <el-button @click="releaseProduct" size="small">发布产品</el-button>
+        <el-button size="small">下架产品</el-button>
+        <el-button size="small">暂停产品</el-button>
       </div>
       <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55">
@@ -79,10 +82,6 @@
         <el-table-column prop="name" label="产品编号" width="150">
         </el-table-column>
         <el-table-column prop="address" label="产品方简称" width="110" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="city" label="城市" width="70" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="province" label="省份" width="70" show-overflow-tooltip>
         </el-table-column>
         <el-table-column prop="fianceType" label="融资类型" width="80" show-overflow-tooltip>
         </el-table-column>
@@ -105,7 +104,6 @@
         <el-table-column label="操作" show-overflow-tooltip>
           <template slot-scope="scope">
             <el-button type="text" size="small">拷贝</el-button>
-            <el-button type="text" size="small">暂停</el-button>
             <el-button type="text" size="small">修改</el-button>
           </template>
         </el-table-column>
@@ -113,18 +111,13 @@
     </el-card>
     <el-dialog :visible.sync="dialogVisible" width="400px">
       <el-form :model="form">
-        <el-form-item label="发布时间">
+        <el-form-item label="生效时间">
           <el-date-picker v-model="value1" type="date" placeholder="选择日期">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="下架时间">
-          <el-date-picker type="date" placeholder="选择日期">
           </el-date-picker>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="dialogVisible = false">发布产品</el-button>
       </span>
     </el-dialog>
   </div>

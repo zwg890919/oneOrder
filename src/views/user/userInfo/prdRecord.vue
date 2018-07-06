@@ -38,7 +38,7 @@
 							    </el-select>
 							</el-form-item>
 						</el-col>
-						<el-col :span="6">
+						<el-col :span="9">
 							<el-form-item label="进件时间">
 								<el-date-picker
 							      type="daterange"
@@ -118,7 +118,7 @@
 				</el-table-column>
 				<el-table-column
 				  prop="address"
-				  label="借款主体编号"
+				  label="联系人手机号码"
 				 	width="170"
 				  show-overflow-tooltip>
 				</el-table-column>
@@ -151,19 +151,6 @@
 				  label="融资申请状态"
 				  width="130"
 				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="email"
-				  label="放款状态"
-				  width="130"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  label="操作"
-				  show-overflow-tooltip>
-				  <template slot-scope="scope">
-		        <el-button type="text" size="small">修改</el-button>
-		      </template>
 				</el-table-column>
 			</el-table>
 		</el-card>

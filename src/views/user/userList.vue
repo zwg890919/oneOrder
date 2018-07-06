@@ -38,15 +38,6 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="是否有进件">
-						    	<el-select v-model="form.region">
-							    	<el-option label="全部" value="shanghai"></el-option>
-							    	<el-option label="是" value="beijing"></el-option>
-							    	<el-option label="否" value="beijing"></el-option>
-							    </el-select>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
 							<el-form-item label="借款申请编号">
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
@@ -58,9 +49,18 @@
 							    </el-select>
 							</el-form-item>
 						</el-col>
+						<el-col :span="6">
+							<el-form-item label="是否有进件">
+						    	<el-select v-model="form.region">
+							    	<el-option label="全部" value="shanghai"></el-option>
+							    	<el-option label="是" value="beijing"></el-option>
+							    	<el-option label="否" value="beijing"></el-option>
+							    </el-select>
+							</el-form-item>
+						</el-col>
 					</el-row>
 					<el-row>
-						<el-col :span="6">
+						<el-col :span="9">
 							<el-form-item label="注册时间">
 									 <el-date-picker
 								      type="daterange"
@@ -142,7 +142,7 @@
 				</el-table-column>
 				<el-table-column
 				  prop="lowAmt"
-				  label="失败进件笔数"
+				  label="累计拒件笔数"
 				  width="120"
 				  show-overflow-tooltip>
 				</el-table-column>

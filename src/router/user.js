@@ -19,6 +19,9 @@ export default {
   }, {
     path: 'addUser',
     name: 'user.addUser',
+    meta: {
+      title: '新建业务员',
+    },
     hidden: true,
     component: () =>
       import('@/views/user/addUser.vue')

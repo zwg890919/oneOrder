@@ -21,7 +21,7 @@ export default {
     component: () => import('@/views/product/addProduct.vue'),
     hidden:true,
     meta: {
-      title: '添加产品',
+      title: '新建产品',
       icon: 'addProduct'
     },
   }, {

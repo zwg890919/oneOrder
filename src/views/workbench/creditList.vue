@@ -61,10 +61,18 @@
                     </el-row>
                     <el-row :gutter="40">
                         <el-col :span="12">
-                            <el-form-item label="进件时间">
+                            <!-- <el-form-item label="进件时间">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                                 </el-date-picker>
-                            </el-form-item>
+                            </el-form-item> -->
+                            <el-form-item label="注册时间">
+									 <el-date-picker
+								      type="daterange"
+								      range-separator="至"
+								      start-placeholder="开始日期"
+								      end-placeholder="结束日期">
+								    </el-date-picker>
+							</el-form-item>
                         </el-col>
                         <el-col :span="12">
                             <el-form-item label="任务截止时间">

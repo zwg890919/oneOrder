@@ -11,11 +11,6 @@
 				<el-col :span="21">
 					<el-row>
 						<el-col :span="6">
-							<el-form-item label="产品名称">
-						    	<el-input v-model="form.name"></el-input>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
 							<el-form-item label="产品方简称">
 						    	<el-select v-model="form.region" placeholder="请选择产品类型">
 							    	<el-option label="房抵贷" value="shanghai"></el-option>
@@ -24,52 +19,31 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="所在省份">
-						    	<el-select v-model="form.region" placeholder="请选择省份">
-							    	<el-option label="浙江省" value="shanghai"></el-option>
-							    	<el-option label="安徽省" value="beijing"></el-option>
-							    </el-select>
+							<el-form-item label="产品名称">
+						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="所在城市">
-						    	<el-select v-model="form.region" placeholder="请选择城市">
-							    	<el-option label="绍兴市" value="shanghai"></el-option>
-							    	<el-option label="杭州市" value="beijing"></el-option>
+							<el-form-item label="产品类型">
+						    	<el-select v-model="form.region" placeholder="请选择产品类型">
+							    	<el-option label="房抵贷" value="shanghai"></el-option>
+							    	<el-option label="公积金贷" value="beijing"></el-option>
 							    </el-select>
 							</el-form-item>
 						</el-col>
-					</el-row>
-					<el-row>
 						<el-col :span="6">
 							<el-form-item label="产品状态">
-						    	<el-select v-model="form.region">
-							    	<el-option label="全部" value="shanghai"></el-option>
-							    	<el-option label="是" value="beijing"></el-option>
-							    	<el-option label="否" value="beijing"></el-option>
+						    	<el-select v-model="form.region" placeholder="请选择产品类型">
+							    	<el-option label="房抵贷" value="shanghai"></el-option>
+							    	<el-option label="公积金贷" value="beijing"></el-option>
 							    </el-select>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
-							<el-form-item label="借款人姓名">
-						    	<el-input v-model="form.name"></el-input>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
-							<el-form-item label="借款人手机号码">
-						    	<el-input v-model="form.name"></el-input>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
-							<el-form-item label="业务员姓名">
-						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 					</el-row>
 					<el-row>
 						<el-col :span="6">
 							<el-form-item label="业务员姓名">
-						    	<el-input v-model="form.name"></el-input>
+						    <el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
@@ -78,18 +52,18 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="产品类型">
-						    	<el-select v-model="form.name"></el-select>
+							<el-form-item label="借款主体">
+						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="融资申请状态">
-						    	<el-select v-model="form.name"></el-select>
+							<el-form-item label="联系人手机号码">
+						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 					</el-row>
 					<el-row>
-						<el-col :span="6">
+						<el-col :span="9">
 							<el-form-item label="进件时间">
 									 <el-date-picker
 								      type="daterange"
@@ -99,7 +73,7 @@
 								    </el-date-picker>
 							</el-form-item>
 						</el-col>
-						<el-col :span="6">
+						<el-col :span="9">
 							<el-form-item label="放款时间">
 									 <el-date-picker
 								      type="daterange"
@@ -107,6 +81,11 @@
 								      start-placeholder="开始日期"
 								      end-placeholder="结束日期">
 								    </el-date-picker>
+							</el-form-item>
+						</el-col>
+						<el-col :span="6">
+							<el-form-item label="融资申请状态">
+						    	<el-select v-model="form.name"></el-select>
 							</el-form-item>
 						</el-col>
 					</el-row>
@@ -122,6 +101,9 @@
 			</el-form>
 		</el-card>
 		<el-card class="wrapper-option">
+			<div class="wrapper-button clearfix">
+        <el-button type="primary" size="small">批量导入还款计划</el-button>
+      </div>
 			<el-table
 			ref="multipleTable"
 			:data="tableData3"
@@ -143,13 +125,13 @@
 				</el-table-column>
 				<el-table-column
 				  prop="name"
-				  label="姓名"
-				  width="70">
+				  label="借款主体"
+				  width="80">
 				</el-table-column>
 				<el-table-column
 				  prop="address"
-				  label="借款人编号"
-				 	width="110"
+				  label="联系人手机号码"
+				 	width="120"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
@@ -203,12 +185,6 @@
 				<el-table-column
 				  prop="shz"
 				  label="融资申请状态"
-				  width="120"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="ljfk"
-				  label="放款状态"
 				  width="120"
 				  show-overflow-tooltip>
 				</el-table-column>

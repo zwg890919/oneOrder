@@ -101,17 +101,7 @@
 				    	<el-select v-model="form.region" placeholder="请选择还款方式">
 					    </el-select>
 					</el-form-item>
-					<el-form-item label="费率">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="">
-				    	<el-button type="primary">+添加费率</el-button>
-					</el-form-item>
-					<el-form-item label="费用类型">
-				    	<el-select v-model="form.region" placeholder="请选择费用类型">
-					    </el-select>
-					</el-form-item>
-					<el-form-item label="费用区间">
+					<el-form-item label="费用">
 						<el-row>
 							<el-col :span="11">
 								<el-input placeholder="最低费率" v-model="form.name"></el-input>
@@ -124,8 +114,27 @@
 							</el-col>
 						</el-row>
 					</el-form-item>
+					<el-form-item label="费用金额">
+				    	<el-input v-model="form.name"></el-input>
+					</el-form-item>
 					<el-form-item label="">
-				    	<el-button type="primary">+添加其他费率</el-button>
+				    	<el-button type="primary">+添加费率</el-button>
+					</el-form-item>
+					<el-form-item label="费用类型">
+				    	<el-select v-model="form.region" placeholder="请选择费用类型">
+					    </el-select>
+					</el-form-item>
+					<el-form-item label="费率">
+				    	<el-input v-model="form.name"></el-input>
+					</el-form-item>
+					<el-form-item label="费用金额">
+				    	<el-input v-model="form.name"></el-input>
+					</el-form-item>
+					<el-form-item label="收费规则">
+				    	<el-input v-model="form.name"></el-input>
+					</el-form-item>
+					<el-form-item label="">
+				    	<el-button type="primary">+添加费率</el-button>
 					</el-form-item>
 					<h4>费用说明</h4>
 					<el-form-item label="费用说明">
@@ -137,7 +146,7 @@
 					</el-form-item>
 				</el-col>
 				<el-col :span="8" :offset="2">
-					<h4>准入条件</h4>
+					<h4>所需条件</h4>
 					<el-form-item label="标题">
 						<el-input v-model="form.name"></el-input>
 					</el-form-item>
@@ -147,8 +156,14 @@
 					<el-form-item label="">
 				    	<el-button type="primary">+添加准入条件</el-button>
 					</el-form-item>
-					<h4>产品简介</h4>
+					<h4>申请资料</h4>
+					<el-form-item label="资料内容">
+						<el-input v-model="form.name"></el-input>
 					</el-form-item>
+					<el-form-item label="">
+				    	<el-button type="primary">+添加申请资料</el-button>
+					</el-form-item>
+					<h4>产品简介</h4>
 					<el-form-item label="适用人群">
 				    	<el-input v-model="form.name"></el-input>
 					</el-form-item>

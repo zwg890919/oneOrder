@@ -5,28 +5,28 @@
 				<el-col :span="21">
 					<el-row>
 						<el-col :span="6">
-							<el-form-item label="融资申请编号">
+							<el-form-item label="业务员姓名">
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
             <el-col :span="6">
-							<el-form-item label="借款人姓名">
+							<el-form-item label="业务员手机号码">
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="借款人手机号码">
+							<el-form-item label="借款主体">
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="业务员姓名">
+							<el-form-item label="联系人手机号码">
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
 					</el-row>
 					<el-row>
-            <el-col :span="6">
+            <el-col :span="9">
 							<el-form-item label="进件时间">
 								<el-date-picker
 							      type="daterange"
@@ -36,22 +36,20 @@
 							    </el-date-picker>
 							</el-form-item>
 						</el-col>
+						<el-col :span="9">
+							<el-form-item label="放款时间">
+								<el-date-picker
+							      type="daterange"
+							      range-separator="至"
+							      start-placeholder="开始日期"
+							      end-placeholder="结束日期">
+							    </el-date-picker>
+							</el-form-item>
+						</el-col>
 						<el-col :span="6">
-							<el-form-item label="申请状态">
-						    	<el-select v-model="form.region">
+							<el-form-item label="融资申请状态">
+						    	<el-select>
 							    </el-select>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
-							<el-form-item label="业务员手机号码">
-						    	<el-input>
-							    </el-input>
-							</el-form-item>
-						</el-col>
-						<el-col :span="6">
-							<el-form-item label="服务商编号">
-						    	<el-input>
-							    </el-input>
 							</el-form-item>
 						</el-col>
 					</el-row>
@@ -119,12 +117,12 @@
 				</el-table-column>
 				<el-table-column
 				  prop="name"
-				  label="姓名"
+				  label="借款主体"
 				  width="110">
 				</el-table-column>
 				<el-table-column
 				  prop="address"
-				  label="借款人编号"
+				  label="联系人手机号码"
 				 	width="170"
 				  show-overflow-tooltip>
 				</el-table-column>
@@ -166,17 +164,23 @@
 				</el-table-column>
         <el-table-column
 				  prop="email"
-				  label="融资申请状态"
+				  label="申请期限"
 				  width="130"
 				  show-overflow-tooltip>
 				</el-table-column>
         <el-table-column
 				  prop="email"
-				  label="放款状态"
+				  label="申请期限单位"
 				  width="130"
 				  show-overflow-tooltip>
 				</el-table-column>
         <el-table-column
+				  prop="email"
+				  label="融资申请状态"
+				  width="130"
+				  show-overflow-tooltip>
+				</el-table-column>
+				<el-table-column
 				  prop="email"
 				  label="备注"
 				  width="130"

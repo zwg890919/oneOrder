@@ -10,7 +10,7 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="预留手机号">
+							<el-form-item label="预留手机号码">
 						    	<el-input v-model="form.name"></el-input>
 							</el-form-item>
 						</el-col>
@@ -26,7 +26,7 @@
 						</el-col>
 					</el-row>
 					<el-row>
-						<el-col :span="6">
+						<el-col :span="9">
 							<el-form-item label="绑卡时间">
 								<el-date-picker
 							      type="daterange"
@@ -82,12 +82,7 @@
 				</el-table-column>
 				<el-table-column
 				  prop="fianceType"
-				  label="绑定状态"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="productType"
-				  label="解绑时间"
+				  label="绑卡结果"
 				  show-overflow-tooltip>
 				</el-table-column>
 			</el-table>

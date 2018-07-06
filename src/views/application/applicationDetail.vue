@@ -16,20 +16,48 @@
               <td>FD00000001</td>
             </tr>
             <tr>
-              <td>客户名称</td>
+              <td>借款主体名称</td>
               <td>北京海淀区零度酒吧</td>
             </tr>
             <tr>
-              <td>借款主体证件号码</td>
               <td>社会统一信用代码</td>
+              <td></td>
             </tr>
             <tr>
               <td>联系人手机号码</td>
               <td>18695872813</td>
             </tr>
             <tr>
-              <td>借款主体编号</td>
-              <td>JK_18695872813<el-button class="table-button"  size="mini" type="primary">查看详情</el-button></td>
+              <td>进件时间</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>申请金额（单位）</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>申请期限（单位）</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>融资申请状态</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>放款时间</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>产品名称</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>产品方简称</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>产品状态</td>
+              <td></td>
             </tr>
             <tr>
               <td>渠道方</td>
@@ -49,46 +77,6 @@
             </tr>
             <tr>
               <td>业务员编号</td>
-              <td><el-button class="table-button"  size="mini" type="primary">查看详情</el-button></td>
-            </tr>
-            <tr>
-              <td>产品名称</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>产品编号</td>
-              <td><el-button class="table-button"  size="mini" type="primary">查看详情</el-button></td>
-            </tr>
-            <tr>
-              <td>产品方简称</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>产品状态</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>进件时间</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>申请金额（元）</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>申请期限（月）</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>借款申请状态</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>放款状态</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>放款时间</td>
               <td></td>
             </tr>
 			    </tbody>
@@ -96,6 +84,15 @@
 			</el-card>
 			<el-card class="wrapper-option">
 				<div slot="header">借款申请表信息-线下面签</div>
+        <div class="wrapper-info">
+          复审结果：审核不通过
+        </div>
+        <div class="wrapper-info">
+          提交次数：1
+        </div>
+        <div class="wrapper-info">
+          备注：审核不通过，不予通过
+        </div>
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
@@ -135,8 +132,12 @@
               <td><el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
             </tr>
             <tr>
-              <td>MP与酒吧双方协议</td>
+              <td>MP与商户舞台升级计划协议</td>
               <td><el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
+            </tr>
+            <tr>
+              <td>商户MP账号</td>
+              <td></td>
             </tr>
             <tr>
               <td>三方居间服务协议</td>
@@ -170,7 +171,10 @@
 				</table>
 			</el-card>
       <el-card class="wrapper-option">
-				<div slot="header">借款申请-审核放款</div>
+				<div slot="header">借款申请-放款处理</div>
+        <div class="wrapper-info">
+          是否预警：是
+        </div>
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
@@ -190,11 +194,45 @@
               <td></td>
             </tr>
             <tr>
-              <td>走易单佣金结算日期</td>
+              <td>流水号</td>
               <td></td>
             </tr>
             <tr>
-              <td>走易单佣金结算金额（元）</td>
+              <td>操作人</td>
+              <td></td>
+            </tr>
+					</tbody>
+				</table>
+      </el-card>
+      <el-card class="wrapper-option">
+				<div slot="header">借款申请-分佣管理</div>
+        <div class="wrapper-info">
+          是否预警：是
+        </div>
+				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+            <tr>
+              <td>分佣日期</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>佣金金额（元）</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>分佣比例</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>账户</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>流水号</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>操作人</td>
               <td></td>
             </tr>
 					</tbody>
@@ -203,10 +241,13 @@
       <el-card class="wrapper-option">
 				<div slot="header">借款申请-贷后跟踪</div>
         <div class="wrapper-info">
-          状态：已提交
+          是否预警：是
         </div>
         <div class="wrapper-info">
-          备注：沟通时间，未如期安装原因
+          贷后结果：已提交
+        </div>
+        <div class="wrapper-info">
+          提交次数：1
         </div>
         <div class="wrapper-info">
           备注：审核不通过，不予通过
@@ -214,11 +255,27 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>安装照片</td>
+              <td>屏幕安装处照片</td>
               <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
             </tr>
             <tr>
-              <td>上传日期</td>
+              <td>前台照片</td>
+              <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
+            </tr>
+            <tr>
+              <td>大堂照片</td>
+              <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
+            </tr>
+            <tr>
+              <td>吧台照片</td>
+              <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
+            </tr>
+            <tr>
+              <td>其他照片</td>
+              <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
+            </tr>
+            <tr>
+              <td>上传时间</td>
               <td></td>
             </tr>
 					</tbody>
@@ -229,10 +286,10 @@
 			<el-card class="wrapper-option">
 				<div slot="header">借款申请表信息-进件</div>
         <div class="wrapper-info">
-          进件状态：审核不通过
+          进件结果：审核不通过
         </div>
         <div class="wrapper-info">
-          是否初次提交：是
+          提交次数：1
         </div>
         <div class="wrapper-info">
           备注：审核不通过，不予通过
@@ -240,11 +297,7 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>客户名称</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>客户简称</td>
+              <td>借款主体简称</td>
               <td></td>
             </tr>
             <tr>
@@ -264,7 +317,7 @@
               <td></td>
             </tr>
             <tr>
-              <td>酒吧性质</td>
+              <td>分期类型</td>
               <td></td>
             </tr>
             <tr>
@@ -340,10 +393,6 @@
               <td></td>
             </tr>
             <tr>
-              <td>法定代表人</td>
-              <td></td>
-            </tr>
-            <tr>
               <td>注册资本</td>
               <td></td>
             </tr>
@@ -356,7 +405,7 @@
               <td></td>
             </tr>
             <tr>
-              <td>统一社会信用代码</td>
+              <td>经营范围</td>
               <td></td>
             </tr>
             <tr>
@@ -408,10 +457,6 @@
               <td></td>
             </tr>
             <tr>
-              <td>租金与租约是否一致</td>
-              <td></td>
-            </tr>
-            <tr>
               <td>酒吧实景照片</td>
               <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
             </tr>
@@ -431,7 +476,7 @@
               <td></td>
             </tr>
             <tr>
-              <td>MP账户余额（元）</td>
+              <td>MP商户余额（元）</td>
               <td></td>
             </tr>
             <tr>
@@ -443,7 +488,7 @@
               <td></td>
             </tr>
             <tr>
-              <td>MP账户余额累计还款金额(元)</td>
+              <td>商户MP账户余额累计还款金额(元)</td>
               <td></td>
             </tr>
             <tr>
@@ -454,8 +499,16 @@
               <td>是否提前还款</td>
               <td></td>
             </tr>
+            <tr>
+              <td>还款结清日期</td>
+              <td></td>
+            </tr>
 					</tbody>
 				</table>
+      </el-card>
+      <el-card class="wrapper-option">
+				<div slot="header">还款计划</div>
+        <el-button type="primary" size="mini" style="margin-bottom:10px;">更新还款计划</el-button>
         <table class="infoTable nor-table" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>

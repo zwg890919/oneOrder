@@ -61,6 +61,10 @@
               <td>2017-08-13 17:57:44</td>
             </tr>
             <tr>
+              <td>注册来源</td>
+              <td>走易单</td>
+            </tr>
+            <tr>
               <td>渠道</td>
               <td>颀财<el-button class="table-button"  size="mini" type="primary" @click="dialogVisible = true">修改</el-button></td>
             </tr>
@@ -102,19 +106,19 @@
               <td>180</td>
             </tr>
             <tr>
-              <td>累计进件笔数</td>
+              <td>累计进件笔数（笔）</td>
               <td>180</td>
             </tr>
             <tr>
-              <td>审核中笔数</td>
+              <td>审核中笔数（笔）</td>
               <td>15</td>
             </tr>
             <tr>
-              <td>已放款笔数</td>
+              <td>已放款笔数（笔）</td>
               <td>200</td>
             </tr>
             <tr>
-              <td>失败进件笔数</td>
+              <td>失败进件笔数（笔）</td>
               <td>10</td>
             </tr>
             <tr>
