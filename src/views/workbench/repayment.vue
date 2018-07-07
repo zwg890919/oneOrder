@@ -21,7 +21,7 @@
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="放款状态">
+                            <el-form-item label="还款状态">
                                 <el-select v-model="form.region" placeholder="请选择省份">
                                     <el-option label="请选择" value="1"></el-option>
                                     <el-option label="还款中" value="2"></el-option>
@@ -42,13 +42,13 @@
                     </el-row>
                     <el-row>
                         <el-col :span="9">
-                            <el-form-item label="进件时间">
+                            <el-form-item label="还款日期">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                                 </el-date-picker>
                             </el-form-item>
                         </el-col>
                         <el-col :span="9">
-                            <el-form-item label="任务截止时间">
+                            <el-form-item label="放款日期">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                                 </el-date-picker>
                             </el-form-item>
@@ -76,7 +76,7 @@
                         </el-table-column>
                         <el-table-column label="还款时间" min-width="150" prop="applyTime">
                         </el-table-column>
-                        <el-table-column label="还款金额" min-width="120" prop="amount">
+                        <el-table-column label="还款金额（元）" min-width="120" prop="amount">
                         </el-table-column>
                         <el-table-column label="还款状态" min-width="120" prop="status">
                         </el-table-column>
@@ -123,6 +123,8 @@
                         <el-table-column label="MP收益余额" min-width="120" prop="limit">
                         </el-table-column>
                         <el-table-column label="是否提前还款" min-width="120" prop="exceedLimit">
+                        </el-table-column>
+                        <el-table-column label="操作人" min-width="120" prop="exceedLimit">
                         </el-table-column>
                     </el-table>
                 </el-tab-pane>

@@ -8,7 +8,7 @@
     </div>
 		<el-col :span="12">
 			<el-card class="wrapper-option">
-				<div slot="header">基本信息</div>
+				<div slot="header">初评详情</div>
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
@@ -16,7 +16,7 @@
               <td>DH_18695872813</td>
             </tr>
             <tr>
-              <td>借款人编号</td>
+              <td>借款主体</td>
               <td>JK-18695872813</td>
             </tr>
             <tr>
@@ -24,7 +24,7 @@
               <td>颀财-房抵贷（山东）</td>
             </tr>
             <tr>
-              <td>任务接收时间</td>
+              <td>下发时间</td>
               <td>2017-08-13 17:57:44</td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
               <td>张庭</td>
             </tr>
             <tr>
-              <td>处理时间</td>
+              <td>提交时间</td>
               <td></td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
 			  </table>
 			</el-card>
       <el-card class="wrapper-option">
-				<div slot="header">录入客户审核</div>
+				<div slot="header">客户录入审核</div>
 				<table class="infoTable nor-table" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
@@ -70,34 +70,41 @@
             </tr>
             <tr>
               <td>2</td>
+              <td>社会统一信用代码</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>3</td>
               <td>客户简称</td>
               <td>王珞丹</td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <td>3</td>
+              <td>4</td>
               <td>营业地址</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <td>4</td>
+              <td>5</td>
               <td>联系人姓名</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <td>5</td>
+              <td>6</td>
               <td>联系人手机号码</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <td>6</td>
+              <td>7</td>
               <td>联系人与借款主体的关系</td>
               <td></td>
               <td>
@@ -105,35 +112,35 @@
               <td></td>
             </tr>
             <tr>
-              <td>7</td>
-              <td>酒吧性质</td>
-              <td>计算信用卡使用率=已使用额度/信用卡总额度</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
               <td>8</td>
-              <td>酒吧每屏账号</td>
+              <td>分期类型</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>9</td>
-              <td>酒吧近3个月每屏交易均额</td>
+              <td>酒吧每屏账号</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>10</td>
-              <td>同类型酒吧MP账号一</td>
+              <td>酒吧近3个月每屏交易均额</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>11</td>
+              <td>同类型酒吧MP账号一</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>12</td>
               <td>资质是否一致</td>
               <td></td>
               <td>
@@ -141,21 +148,21 @@
               <td></td>
             </tr>
             <tr>
-              <td>12</td>
-              <td>近3个月每屏交易均额</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
               <td>13</td>
-              <td>同类型酒吧MP账号二</td>
+              <td>近3个月每屏交易均额</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>14</td>
+              <td>同类型酒吧MP账号二</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>15</td>
               <td>资质是否一致</td>
               <td></td>
               <td>
@@ -163,105 +170,105 @@
               <td></td>
             </tr>
             <tr>
-              <td>15</td>
-              <td>近3个月每屏交易均额</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
               <td>16</td>
-              <td>同类型酒吧MP账号三</td>
+              <td>近3个月每屏交易均额</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>17</td>
-              <td>资质是否一致</td>
+              <td>同类型酒吧MP账号三</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>18</td>
-              <td>近3个月每屏交易均额</td>
+              <td>资质是否一致</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>19</td>
-              <td>实际经营年限</td>
+              <td>近3个月每屏交易均额</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>20</td>
-              <td>营业面积</td>
+              <td>实际经营年限</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>21</td>
-              <td>酒吧座位数</td>
+              <td>营业面积</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>22</td>
-              <td>日均人流量</td>
+              <td>酒吧座位数</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>23</td>
-              <td>客单价</td>
+              <td>日均人流量</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>24</td>
-              <td>上座率</td>
+              <td>客单价</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>25</td>
-              <td>翻台率</td>
+              <td>上座率</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>26</td>
-              <td>年销售额</td>
+              <td>翻台率</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>27</td>
-              <td>资产总额</td>
+              <td>年销售额</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>28</td>
-              <td>负债总额</td>
+              <td>资产总额</td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <td>29</td>
+              <td>负债总额</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>30</td>
               <td>以上酒吧资质是否符合要求</td>
               <td></td>
               <td>

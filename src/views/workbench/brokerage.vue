@@ -11,35 +11,29 @@
                 <el-col :span="21">
                     <el-row>
                         <el-col :span="6">
-                            <el-form-item label="借款主体名称">
+                            <el-form-item label="借款主体">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="借款主体编号">
+                            <el-form-item label="联系人手机号码">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="所在省份">
-                                <el-select v-model="form.region" placeholder="请选择省份">
-                                    <el-option label="浙江省" value="shanghai"></el-option>
-                                    <el-option label="安徽省" value="beijing"></el-option>
-                                </el-select>
+                            <el-form-item label="产品名称">
+                                <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="所在城市">
-                                <el-select v-model="form.region" placeholder="请选择城市">
-                                    <el-option label="绍兴市" value="shanghai"></el-option>
-                                    <el-option label="杭州市" value="beijing"></el-option>
-                                </el-select>
+                            <el-form-item label="是否预警">
+                                <el-select v-model="form.name"></el-select>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="6">
-                            <el-form-item label="借款编号">
+                            <el-form-item label="融资申请编号">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
@@ -49,22 +43,12 @@
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
-                            <el-form-item label="业务员编号">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="业务员手机">
+                            <el-form-item label="业务员手机号码">
                                 <el-input v-model="form.name"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row >
-                        <el-col :span="6">
-                            <el-form-item label="产品名称">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
                         <el-col :span="9">
                             <el-form-item label="进件时间">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
@@ -102,7 +86,7 @@
                         </el-table-column>
                         <el-table-column label="产品名称" prop="productName">
                         </el-table-column>
-                        <el-table-column label="放款时间"  prop="applyTime">
+                        <el-table-column label="放款日期"  prop="applyTime">
                         </el-table-column>
                         <el-table-column label="授信额度（元）" prop="limit">
                         </el-table-column>
@@ -110,9 +94,11 @@
                         </el-table-column>
                         <el-table-column label="佣金额度（元）" prop="limit">
                         </el-table-column>
+                        <el-table-column label="是否预警">
+                        </el-table-column>
                         <el-table-column label="操作" align="center">
                             <template slot-scope="scope">
-                                <el-button type="primary" size="mini" @click="creditOrder">收取佣金</el-button>
+                                <el-button type="primary" size="mini" @click="creditOrder">收取分佣</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -129,11 +115,11 @@
                         </el-table-column>
                         <el-table-column label="放款日期" width="140" prop="applyTime">
                         </el-table-column>
-                        <el-table-column label="收取日期" width="140" prop="applyTime">
+                        <el-table-column label="分佣日期" width="140" prop="applyTime">
                         </el-table-column>
                         <el-table-column label="佣金额度（元）" width="120" prop="limit">
                         </el-table-column>
-                        <el-table-column label="实收额度（元）" width="120" prop="limit">
+                        <el-table-column label="实收金额（元）" width="120" prop="limit">
                         </el-table-column>
                         <el-table-column label="流水号" width="170" prop="serialNum">
                         </el-table-column>

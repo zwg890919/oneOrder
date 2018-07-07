@@ -33,18 +33,12 @@
                     </el-row>
                     <el-row>
                         <el-col :span="6">
-                            <el-form-item label="流水号">
-                                <el-input v-model="form.name"></el-input>
+                            <el-form-item label="还款状态">
+                                <el-select v-model="form.name"></el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :span="9">
-                            <el-form-item label="进件时间">
-                                <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
-                                </el-date-picker>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="9">
-                            <el-form-item label="任务截止时间">
+                            <el-form-item label="流水日期">
                                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                                 </el-date-picker>
                             </el-form-item>
@@ -66,59 +60,24 @@
                 <el-button type="primary" size="small">批量导入还款数据</el-button>
             </div>
             <el-tabs type="card">
-                <el-tab-pane label="待还款">
-                    <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%">
-                        <el-table-column label="序号" type="index">
-                        </el-table-column>
-                        <el-table-column label="借款主体编号" min-width="150" prop="applyCode">
-                        </el-table-column>
-                        <el-table-column label="MP帐号" min-width="120" prop="account">
-                        </el-table-column>
-                        <el-table-column label="融资申请编号" min-width="120" prop="applyCode">
-                        </el-table-column>
-                        <el-table-column label="流水日期" min-width="150" prop="applyTime">
-                        </el-table-column>
-                        <el-table-column label="流水金额（元）" min-width="140" prop="amount">
-                        </el-table-column>
-                        <el-table-column label="MP收益金额（元" min-width="120" prop="amount">
-                        </el-table-column>
-                        <el-table-column label="还款状态" min-width="120" prop="status">
-                        </el-table-column>
-                    </el-table>
-                </el-tab-pane>
-                <el-tab-pane label="累计还款">
-                    <el-table ref="multipleTable" :data="tableData4" tooltip-effect="dark" style="width: 100%">
-                        <el-table-column label="序号" type="index">
-                        </el-table-column>
-                        <el-table-column label="融资申请编号" min-width="150" prop="applyCode">
-                        </el-table-column>
-                        <el-table-column label="产品名称" min-width="180" prop="productName">
-                        </el-table-column>
-                        <el-table-column label="授信额度（元）" min-width="120" prop="limit">
-                        </el-table-column>
-                        <el-table-column label="放款日期" min-width="140" prop="applyTime">
-                        </el-table-column>
-                        <el-table-column label="还款状态" min-width="140" prop="status">
-                        </el-table-column>
-                        <el-table-column label="已还本金（元）" min-width="120" prop="limit">
-                        </el-table-column>
-                        <el-table-column label="剩余还款本金（元）" min-width="170" prop="limit">
-                        </el-table-column>
-                        <el-table-column label="MP收益余额还款" min-width="170" prop="limit">
-                        </el-table-column>
-                        <el-table-column label="每期利息" min-width="120" prop="limit">
-                        </el-table-column>
-                        <el-table-column label="MP账户余额" min-width="120" prop="limit">
-                        </el-table-column>
-                        <el-table-column label="操作员" min-width="120" prop="operator">
-                        </el-table-column>
-                        <el-table-column label="操作" align="center">
-                            <template slot-scope="scope">
-                                <el-button type="primary" size="mini">修改</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </el-tab-pane>
+                <el-table ref="multipleTable" :data="tableData3" tooltip-effect="dark" style="width: 100%">
+                    <el-table-column label="序号" type="index">
+                    </el-table-column>
+                    <el-table-column label="借款主体编号" min-width="150" prop="applyCode">
+                    </el-table-column>
+                    <el-table-column label="MP帐号" min-width="120" prop="account">
+                    </el-table-column>
+                    <el-table-column label="融资申请编号" min-width="120" prop="applyCode">
+                    </el-table-column>
+                    <el-table-column label="流水日期" min-width="150" prop="applyTime">
+                    </el-table-column>
+                    <el-table-column label="MP商户收益（元）" min-width="140" prop="amount">
+                    </el-table-column>
+                    <el-table-column label="MP收益金额（元）" min-width="120" prop="amount">
+                    </el-table-column>
+                    <el-table-column label="还款状态" min-width="120" prop="status">
+                    </el-table-column>
+                </el-table>
             </el-tabs>
 
         </el-card>

@@ -3,43 +3,37 @@
     <div class="wrapper-nav">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
-        <el-breadcrumb-item>初审任务列表</el-breadcrumb-item>
+        <el-breadcrumb-item>复审任务列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <el-card class="wrapper-option">
-      <el-form ref="form" :model="form" label-width="100px" size="small">
+      <el-form ref="form" :model="form" label-width="120px" size="small">
         <el-col :span="21">
           <el-row>
             <el-col :span="6">
-              <el-form-item label="借款主体名称">
+              <el-form-item label="借款主体">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="借款主体编号">
+              <el-form-item label="联系人手机号码">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="所在省份">
-                <el-select v-model="form.region" placeholder="请选择省份">
-                  <el-option label="浙江省" value="shanghai"></el-option>
-                  <el-option label="安徽省" value="beijing"></el-option>
-                </el-select>
+              <el-form-item label="产品名称">
+                <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="所在城市">
-                <el-select v-model="form.region" placeholder="请选择城市">
-                  <el-option label="绍兴市" value="shanghai"></el-option>
-                  <el-option label="杭州市" value="beijing"></el-option>
-                </el-select>
+              <el-form-item label="复审任务编号">
+                <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="6">
-              <el-form-item label="借款申请编号">
+              <el-form-item label="融资申请编号">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
@@ -49,34 +43,23 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="业务员编号">
+              <el-form-item label="业务员手机号码">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="6">
-              <el-form-item label="业务员手机">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
+
           </el-row>
           <el-row :gutter="40">
-            <el-col :span="12">
-              <el-form-item label="进件时间">
+            <el-col :span="9">
+              <el-form-item label="下发时间">
                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
-              <el-form-item label="任务截止时间">
+            <el-col :span="9">
+              <el-form-item label="截止时间">
                 <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
                 </el-date-picker>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="6">
-              <el-form-item label="产品名称">
-                <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -92,23 +75,30 @@
       </el-form>
     </el-card>
     <el-card class="wrapper-option">
+      <div class="wrapper-button clearfix">
+        <el-button type="primary" size="small">批量导入商户MP账号</el-button>
+      </div>
       <el-tabs type="card">
         <el-tab-pane label="待处理">
           <el-table ref="multipleTable" :data="tableData3" :span-method="objectSpanMethod" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column label="序号" type="index">
             </el-table-column>
-            <el-table-column label="初审订单编号" width="150" prop="applyCode">
-            </el-table-column>
             <el-table-column label="融资申请编号" width="180" prop="productName">
             </el-table-column>
-            <el-table-column label="产品名称" width="150" prop="applyTime">
+            <el-table-column label="复审任务编号" width="150" prop="applyCode">
             </el-table-column>
-            <el-table-column label="任务接收时间" width="150" prop="passTime">
+            <el-table-column label="是否首次复审" width="150" prop="applyTime">
             </el-table-column>
-            <el-table-column label="任务截止时间" width="120" prop="limit">
+            <el-table-column label="产品名称" width="150" prop="passTime">
             </el-table-column>
-            <el-table-column label="累计时长" width="120" prop="duetime">
-            </el-table-column>     
+            <el-table-column label="借款主体" width="120" prop="limit">
+            </el-table-column>
+            <el-table-column label="下发时间" width="120" prop="duetime">
+            </el-table-column>  
+            <el-table-column label="截止时间" width="120" prop="duetime">
+            </el-table-column> 
+            <el-table-column label="累计时间" width="120" prop="duetime">
+            </el-table-column>  
             <el-table-column label="操作" width="300" align="center">
                 <template slot-scope="scope">
                     <el-button type="primary" size="mini">处理</el-button>
@@ -120,20 +110,24 @@
           <el-table ref="multipleTable" :data="tableData3" :span-method="objectSpanMethod" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column label="序号" type="index">
             </el-table-column>
-            <el-table-column label="初审订单编号" width="150" prop="applyCode">
-            </el-table-column>
             <el-table-column label="融资申请编号" width="180" prop="productName">
+            </el-table-column>
+            <el-table-column label="复审任务编号" width="150" prop="applyCode">
             </el-table-column>
             <el-table-column label="产品名称" width="150" prop="applyTime">
             </el-table-column>
-            <el-table-column label="初审结果" width="150" prop="passTime">
+            <el-table-column label="借款主体" width="150" prop="passTime">
             </el-table-column>
-            <el-table-column label="审核人员" width="120" prop="limit">
+            <el-table-column label="复审结果" width="120" prop="limit">
+            </el-table-column>
+            <el-table-column label="截止时间" width="120" prop="duetime">
+            </el-table-column>   
+            <el-table-column label="提交时间" width="120" prop="duetime">
+            </el-table-column>     
+            <el-table-column label="操作员" width="120" prop="duetime">
             </el-table-column>
             <el-table-column label="累计时长" width="120" prop="duetime">
-            </el-table-column>   
-            <el-table-column label="初审评价" width="120" prop="duetime">
-            </el-table-column>               
+            </el-table-column>          
             <el-table-column label="操作" width="300" align="center">
                 <template slot-scope="scope">
                     <el-button type="primary" size="mini">修改</el-button>
