@@ -25,7 +25,16 @@ export default {
       icon: 'addProduct'
     },
   }, {
-    path: 'productInfo/:userId',
+    path: 'modifyProduct/:productId/:type',
+    name: 'product.modifyProduct',
+    component: () => import('@/views/product/modifyProduct.vue'),
+    hidden:true,
+    meta: {
+      title: '修改产品',
+      icon: 'addProduct'
+    },
+  },{
+    path: 'productInfo/:productId',
     component: () => import('@/views/product/productInfo.vue'),
     hidden:true,
     children: [{

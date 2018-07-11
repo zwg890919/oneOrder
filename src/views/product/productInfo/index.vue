@@ -221,11 +221,12 @@ export default{
   },
   created(){
     this.getProductDetail();
+    console.log(this.$route)
   },
   methods:{
     async getProductDetail(){
       const data = await $http.productDetail({
-        id:this.$route.params.userId
+        id:this.$route.params.productId
       })
       if(data.success){
         this.product = data.body;

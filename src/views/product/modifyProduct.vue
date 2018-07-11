@@ -3,7 +3,7 @@
 		<div class="wrapper-nav">
 			<el-breadcrumb separator-class="el-icon-arrow-right">
 				<el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 产品管理</el-breadcrumb-item>
-				<el-breadcrumb-item>新建产品</el-breadcrumb-item>
+				<el-breadcrumb-item>{{bread}}产品</el-breadcrumb-item>
 			</el-breadcrumb>
 		</div>
 		<el-card class="wrapper-option">
@@ -266,13 +266,24 @@ export default {
 				ifPayBackEarly:[
 					{ required: true, message: '请选择是支持提前还款', trigger: 'change' }
 				],
+				bread:'修改'
 			}
     };
 	},
 	created(){
 		this.getCostType();
+		this.getRouteInfo();
 	},
   methods: {
+		async getRouteInfo(){
+			this.bread = this.$route.params.type == 'modify' ? '修改' : '拷贝';
+			const data = await $http.productDetail({
+        id:this.$route.params.productId
+      })
+      if(data.success){
+        this.form = data.body;
+      }
+		},
 		addApply(){
 			this.form.productDoc.push({
 				title:''
@@ -322,16 +333,19 @@ export default {
 		submitForm(formName) {
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
-					alert('submit!');
-					this.addProduct();
+					this.subProduct();
 				} else {
 					return false;
 				}
 			});
 		},
-		async addProduct(){
-			console.log(this.form.productLabel)
-			const data = await $http.productAdd(this.form)
+		async subProduct(){
+			let data;
+			if(this.$route.params.type == 'modify'){
+				data = await $http.productUpdate(this.form)
+			}else{
+				data = await $http.productAdd(this.form)
+			}
 			if(data.success){
 				this.$notify({
           title: '成功',

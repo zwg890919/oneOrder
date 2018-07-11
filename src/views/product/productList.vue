@@ -11,18 +11,18 @@
         <el-col :span="21">
           <el-row>
             <el-col :span="6">
-              <el-form-item label="产品名称">
+              <el-form-item label="产品名称" prop="productName">
                 <el-input v-model="form.productName"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="产品方简称">
+              <el-form-item label="产品方简称" prop="productOwnId">
                 <el-select v-model="form.productOwnId" placeholder="请选择产品类型">
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="产品状态">
+              <el-form-item label="产品状态" prop="status">
                 <el-select v-model="form.status">
                   <el-option label="未发布" value="1"></el-option>
                   <el-option label="已发布" value="2"></el-option>
@@ -32,7 +32,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="产品类型??">
+              <el-form-item label="产品类型??" prop="status">
                 <el-select v-model="form.status">
                   <el-option label="全部" value="shanghai"></el-option>
                   <el-option label="是" value="beijing"></el-option>
@@ -42,7 +42,7 @@
             </el-col>
           </el-row>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" prop="status">
               <el-form-item label="融资类型??">
                 <el-select  v-model="form.status">
                   <el-option label="全部" value="shanghai"></el-option>
@@ -55,10 +55,10 @@
         </el-col>
         <el-col :span="2" :offset="1">
           <el-col>
-            <el-button style="margin-bottom: 15px;" size="small">查询</el-button>
+            <el-button style="margin-bottom: 15px;" size="small" @click="getProductList">查询</el-button>
           </el-col>
           <el-col>
-            <el-button size="small">重置</el-button>
+            <el-button size="small" @click="resetForm">重置</el-button>
           </el-col>
         </el-col>
       </el-form>
@@ -102,8 +102,8 @@
         </el-table-column>
         <el-table-column label="操作" show-overflow-tooltip>
           <template slot-scope="scope">
-            <el-button type="text" size="small">拷贝</el-button>
-            <el-button type="text" size="small">修改</el-button>
+            <el-button type="text" size="small" @click="copyProduct(scope.$index, scope.row)">拷贝</el-button>
+            <el-button type="text" size="small" @click="modifyProduct(scope.$index, scope.row)">修改</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -154,6 +154,16 @@
       this.getProductList();
     },
     methods: {
+      resetForm() {
+        this.$refs['form'].resetFields();
+        this.getProductList();
+      },
+      copyProduct(index,row){
+        this.$router.push({ name: 'product.modifyProduct', params: { productId: row.id, type:'copy' } })
+      },
+      modifyProduct(index,row){
+        this.$router.push({ name: 'product.modifyProduct', params: { productId: row.id, type:'modify' } })
+      },
       async subStatus(){
         const data = await $http.productChangeStatus(this.statusForm)
         if(data.success){
@@ -162,11 +172,6 @@
             title: '提示',
             message: '操作成功'
           });
-        }else{
-          this.$notify.error({
-            title: '错误',
-            message: data.errMsg
-          });
         }
       },
       pageChange(page){
@@ -174,6 +179,7 @@
         this.getProductList();
       },
       async getProductList(){
+        console.log(this.form)
         const data = await $http.productList(this.form)
         if(data.success){
           this.list = data.body.list;
@@ -185,7 +191,8 @@
       },
       addProduct() {
         this.$router.push({
-          path: '/product/addProduct'
+          name: 'product.addProduct',
+          params: { type: 'add' }
         });
       },
       handleSelectionChange(val) {
@@ -220,7 +227,7 @@
         }
       },
       goProduct(index, row) {
-        this.$router.push({ name: 'product.productInfo', params: { userId: row.id } })
+        this.$router.push({ name: 'product.productInfo', params: { productId: row.id } })
       }
     }
   }
