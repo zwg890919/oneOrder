@@ -26,6 +26,15 @@ export default {
     component: () =>
       import('@/views/user/addUser.vue')
   }, {
+    path: 'modifyUser/:userId',
+    name: 'user.modifyUser',
+    meta: {
+      title: '修改业务员',
+    },
+    hidden: true,
+    component: () =>
+      import('@/views/user/modifyUser.vue')
+  }, {
     path: 'userInfo/:userId',
     hidden: true,
     meta: {

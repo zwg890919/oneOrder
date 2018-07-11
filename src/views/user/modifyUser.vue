@@ -3,7 +3,7 @@
 		<div class="wrapper-nav">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 用户管理</el-breadcrumb-item>
-        <el-breadcrumb-item>新建业务员</el-breadcrumb-item>
+        <el-breadcrumb-item>修改业务员</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
 		<el-card class="wrapper-option">
@@ -78,8 +78,19 @@
 					],
 				}
       }
-    },
+		},
+		created(){
+			this.getSalesman();
+		},
     methods: {
+			async getSalesman(){
+				const data = await $http.salesmanBaseinfo({
+					salesmanId:this.$route.params.userId
+				})
+				if(data.success){
+					this.form = data.datas.result;
+				}
+			},
 			submitForm(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
