@@ -18,23 +18,22 @@
             <el-col :span="6">
               <el-form-item label="产品方简称">
                 <el-select v-model="form.productOwnId" placeholder="请选择产品类型">
-                  <el-option label="房抵贷" value="shanghai"></el-option>
-                  <el-option label="公积金贷" value="beijing"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="6">
               <el-form-item label="产品状态">
-                <el-select v-model="form.region">
-                  <el-option label="全部" value="shanghai"></el-option>
-                  <el-option label="是" value="beijing"></el-option>
-                  <el-option label="否" value="beijing"></el-option>
+                <el-select v-model="form.status">
+                  <el-option label="未发布" value="1"></el-option>
+                  <el-option label="已发布" value="2"></el-option>
+                  <el-option label="已下架" value="3"></el-option>
+                  <el-option label="已暂停" value="4"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="产品类型">
-                <el-select v-model="form.region">
+              <el-form-item label="产品类型??">
+                <el-select v-model="form.status">
                   <el-option label="全部" value="shanghai"></el-option>
                   <el-option label="是" value="beijing"></el-option>
                   <el-option label="否" value="beijing"></el-option>
@@ -44,11 +43,11 @@
           </el-row>
           <el-row>
             <el-col :span="6">
-              <el-form-item label="融资类型">
-                <el-select v-model="form.region">
+              <el-form-item label="融资类型??">
+                <el-select  v-model="form.status">
                   <el-option label="全部" value="shanghai"></el-option>
-                  <el-option label="是" value="beijing"></el-option>
-                  <el-option label="否" value="beijing"></el-option>
+                  <el-option label="抵押" value="beijing"></el-option>
+                  <el-option label="信贷" value="beijing"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -67,11 +66,11 @@
     <el-card class="wrapper-option">
       <div class="wrapper-button clearfix">
         <el-button @click="addProduct" type="primary" size="small">新建产品</el-button>
-        <el-button @click="releaseProduct" size="small">发布产品</el-button>
-        <el-button size="small">下架产品</el-button>
-        <el-button size="small">暂停产品</el-button>
+        <el-button @click="changeProductStatus(1)" size="small">发布产品</el-button>
+        <el-button @click="changeProductStatus(3)" size="small">下架产品</el-button>
+        <el-button @click="changeProductStatus(2)" size="small">暂停产品</el-button>
       </div>
-      <el-table ref="multipleTable" :data="proList" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+      <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55">
         </el-table-column>
         <el-table-column label="产品名称" width="120">
@@ -79,27 +78,27 @@
             <a class="link-color" @click="goProduct(scope.$index, scope.row)">{{ scope.row.productName }}</a>
           </template>
         </el-table-column>
-        <el-table-column prop="productCode" label="产品编号" width="150">
+        <el-table-column prop="" label="产品编号?" width="150">
         </el-table-column>
-        <el-table-column prop="aliasName" label="产品方简称" width="110" show-overflow-tooltip>
+        <el-table-column prop="" label="产品方简称?" width="110" show-overflow-tooltip>
         </el-table-column>
         <el-table-column prop="financeType" label="融资类型" width="80" show-overflow-tooltip>
         </el-table-column>
         <el-table-column prop="productType" label="产品类型" width="80" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="minAlppyTime" label="最低申请金额" width="120" show-overflow-tooltip>
+        <el-table-column prop="minAlppy" label="最低申请金额" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="maxApplyTime" label="最高申请金额" width="120" show-overflow-tooltip>
+        <el-table-column prop="maxApply" label="最高申请金额" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="lowAndHigh" label="借款期限区间???" width="110" show-overflow-tooltip>
+        <el-table-column prop="" label="借款期限区间???" width="110" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="ljsq" label="累计申请笔数???" width="120" show-overflow-tooltip>
+        <el-table-column prop="" label="累计申请笔数???" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="shz0" label="审核中笔数???" width="120" show-overflow-tooltip>
+        <el-table-column prop="" label="审核中笔数???" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="ljfk" label="累计放款笔数???" width="120" show-overflow-tooltip>
+        <el-table-column prop="" label="累计放款笔数???" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="status" label="产品状态" width="80" show-overflow-tooltip>
+        <el-table-column prop="" label="产品状态??" width="80" show-overflow-tooltip>
         </el-table-column>
         <el-table-column label="操作" show-overflow-tooltip>
           <template slot-scope="scope">
@@ -108,16 +107,21 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        layout="prev, pager, next"
+        :total="total"
+        @current-change="pageChange">
+      </el-pagination>
     </el-card>
-    <el-dialog :visible.sync="dialogVisible" width="400px">
+    <el-dialog :visible.sync="dialogVisible" width="400px" :title="title">
       <el-form :model="form">
         <el-form-item label="生效时间">
-          <el-date-picker v-model="value1" type="date" placeholder="选择日期">
+          <el-date-picker value-format="timestamp" v-model="statusForm.times" type="datetime" placeholder="选择日期">
           </el-date-picker>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">发布产品</el-button>
+        <el-button type="primary" @click="subStatus">{{title}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -126,58 +130,57 @@
   export default {
     data() {
       return {
-        value1: '',
-        value2: '',
         dialogVisible: false,
         form: {
+          currentPage:1,
+          pageSize:10,
           productName:'',
           productOwnId:'',
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          status:''
         },
-        tableData3: [{
-          product: '颀财房抵贷-01',
-          name: 'CP201745121452',
-          address: '颀财',
-          city: '杭州',
-          province: '浙江',
-          fianceType: '抵押',
-          productType: '房抵贷',
-          lowAmt: '8,000.00',
-          highAmt: '20,000,000.00',
-          lowAndHigh: '24-36月',
-          ljsq: '200',
-          shz: '50',
-          ljfk: '100',
-          productStatus: '发布中',
-          operate: ''
-        }],
+        statusForm: {
+          id:'',
+          status:'',
+          times:''
+        },
         multipleSelection: [],
-        proPage:{},
-        proList:[]
+        list:[],
+        total:0,
+        titleArr:['','发布产品','暂停产品','下架产品'],
+        title:''
       }
     },
     created(){
       this.getProductList();
     },
     methods: {
-      async getProductList(){
-        const data = await $http.productList()
+      async subStatus(){
+        const data = await $http.productChangeStatus(this.statusForm)
         if(data.success){
-          this.proPage = data.datas.proPage;
-          this.proList = data.datas.proPage.lit;
-          console.log(this.proList);
+          this.dialogVisible = false;
+          this.$notify.success({
+            title: '提示',
+            message: '操作成功'
+          });
         }else{
           this.$notify.error({
             title: '错误',
-            message: data.message
+            message: data.errMsg
           });
+        }
+      },
+      pageChange(page){
+        this.form.currentPage = page;
+        this.getProductList();
+      },
+      async getProductList(){
+        const data = await $http.productList(this.form)
+        if(data.success){
+          this.list = data.body.list;
+          this.total = data.body.parameter.totalCount;
+          this.list[0].id = 1;
+          this.list[0].productName = '产品1'
+          console.log(this.list)
         }
       },
       addProduct() {
@@ -187,11 +190,20 @@
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
+        console.log(this.multipleSelection)
       },
-      releaseProduct() {
-        if (this.multipleSelection.length > 0) {
+      changeProductStatus(type) {
+        if (this.multipleSelection.length === 1) {
+          this.title = this.titleArr[type];
+          this.statusForm.status = type;
+          this.statusForm.id = this.multipleSelection[0].id;
           this.dialogVisible = true;
-        } else {
+        } else if(this.multipleSelection.length > 1) {
+          this.$message({
+            message: '只能操作一个产品',
+            type: 'warning'
+          });
+        }else{
           this.$message({
             message: '请至少选择一个产品',
             type: 'warning'
@@ -208,8 +220,7 @@
         }
       },
       goProduct(index, row) {
-        console.log(row);
-        this.$router.push({ name: 'product.productInfo', params: { userId: 1223 } })
+        this.$router.push({ name: 'product.productInfo', params: { userId: row.id } })
       }
     }
   }
