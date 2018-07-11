@@ -1,208 +1,189 @@
 <template>
-  <div>
-    <div class="wrapper-nav">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
-        <el-breadcrumb-item>准入初评</el-breadcrumb-item>
-      </el-breadcrumb>
+    <div>
+        <div class="wrapper-nav">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item>
+                    <i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
+                <el-breadcrumb-item>准入初评</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <search-group :init-data="conditionData" @search="changePage(1)" ref="searchForm"></search-group>
+        <el-card class="wrapper-option">
+            <el-tabs type="card" @tab-click="changeStatus">
+                <el-tab-pane label="待处理" name="0">
+                    <el-table ref="multipleTable" :data="tableData" v-loading="loading" tooltip-effect="dark" style="width: 100%">
+                        <el-table-column label="序号" type="index">
+                        </el-table-column>
+                        <el-table-column label="融资申请编号" min-width="150" prop="t.orderCode">
+                        </el-table-column>
+                        <el-table-column label="初评任务编号" min-width="180" prop="taskCode">
+                        </el-table-column>
+                        <el-table-column label="是否首次初评" min-width="150" prop="applyTime">
+                        </el-table-column>
+                        <el-table-column label="产品名称" min-width="150" prop="productName">
+                        </el-table-column>
+                        <el-table-column label="借款主体" min-width="120" prop="customerName">
+                        </el-table-column>
+                        <el-table-column label="下发时间" min-width="120" prop="arrivedTime">
+                        </el-table-column>
+                        <el-table-column label="截止时间" min-width="120" prop="termTime">
+                        </el-table-column>
+                        <el-table-column label="累计时长" min-width="120" prop="operateTimes">
+                            <template slot-scope="scope">
+                                测试
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" align="center">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="mini">处理</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="text-center pd10">
+                        <el-pagination v-if="searchForm.totalCount" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.currentPage" :page-sizes="[20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="searchForm.totalCount">
+                        </el-pagination>
+                    </div>
+                </el-tab-pane>
+                <el-tab-pane label="已处理" name="1">
+                    <el-table ref="multipleTable" :data="tableData" v-loading="loading" tooltip-effect="dark" style="width: 100%">
+                        <el-table-column label="序号" type="index">
+                        </el-table-column>
+                        <el-table-column label="融资申请编号" min-width="150" prop="t.orderCode">
+                        </el-table-column>
+                        <el-table-column label="初评任务编号" min-width="150" prop="taskCode">
+                        </el-table-column>
+                        <el-table-column label="产品名称" min-width="180" prop="productName">
+                        </el-table-column>
+                        <el-table-column label="借款主体" min-width="150" prop="customerName">
+                        </el-table-column>
+                        <el-table-column label="审核结果" min-width="150" prop="auditList.auditRes">
+                        </el-table-column>
+                        <el-table-column label="截止时间" min-width="120" prop="termTime">
+                        </el-table-column>
+                        <el-table-column label="提交时间" min-width="120" prop="operateTime">
+                        </el-table-column>
+                        <el-table-column label="操作员" min-width="120" prop="operateName">
+                        </el-table-column>
+                        <el-table-column label="累计时长" min-width="120" prop="operateTimes">
+                        </el-table-column>
+                        <el-table-column label="操作" align="center">
+                            <template slot-scope="scope">
+                                <el-button type="primary" size="mini">修改</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="text-center pd10">
+                        <el-pagination v-if="searchForm.totalCount" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.currentPage" :page-sizes="[20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="searchForm.totalCount">
+                        </el-pagination>
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </el-card>
     </div>
-    <el-card class="wrapper-option">
-      <el-form ref="form" :model="form" label-width="130px" size="small">
-        <el-col :span="21">
-          <el-row>
-            <el-col :span="6">
-              <el-form-item label="借款主体">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item label="联系人手机号码">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item label="产品名称">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item label="准入初评任务编号">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="6">
-              <el-form-item label="借款申请编号">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item label="业务员名称">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item label="业务员手机号码">
-                <el-input v-model="form.name"></el-input>
-              </el-form-item>
-            </el-col>
-
-          </el-row>
-          <el-row :gutter="40">
-            <el-col :span="9">
-              <el-form-item label="下发时间">
-                <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
-                </el-date-picker>
-              </el-form-item>
-            </el-col>
-            <el-col :span="9">
-              <el-form-item label="截止时间">
-                <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
-                </el-date-picker>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-col>
-        <el-col :span="2" :offset="1">
-          <el-col>
-            <el-button style="margin-bottom: 15px;" size="small">查询</el-button>
-          </el-col>
-          <el-col>
-            <el-button size="small">重置</el-button>
-          </el-col>
-        </el-col>
-      </el-form>
-    </el-card>
-    <el-card class="wrapper-option">
-      <el-tabs type="card">
-        <el-tab-pane label="待处理">
-          <el-table ref="multipleTable" :data="tableData3" :span-method="objectSpanMethod" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-            <el-table-column label="序号" type="index">
-            </el-table-column>
-            <el-table-column label="融资申请编号" width="150" prop="applyCode">
-            </el-table-column>
-            <el-table-column label="初评任务编号" width="180" prop="productName">
-            </el-table-column>
-            <el-table-column label="是否首次初评" width="150" prop="applyTime">
-            </el-table-column>
-            <el-table-column label="产品名称" width="150" prop="passTime">
-            </el-table-column>
-            <el-table-column label="借款主体" width="120" prop="limit">
-            </el-table-column>
-            <el-table-column label="下发时间" width="120" prop="duetime">
-            </el-table-column>
-            <el-table-column label="截止时间" width="120" prop="duetime">
-            </el-table-column>        
-            <el-table-column label="累计时长" width="120" prop="duetime">
-            </el-table-column>      
-            <el-table-column label="操作" width="300" align="center">
-                <template slot-scope="scope">
-                    <el-button type="primary" size="mini">处理</el-button>
-                </template>
-            </el-table-column>
-          </el-table>
-        </el-tab-pane>
-        <el-tab-pane label="已处理">
-          <el-table ref="multipleTable" :data="tableData3" :span-method="objectSpanMethod" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-            <el-table-column label="序号" type="index">
-            </el-table-column>
-            <el-table-column label="融资申请编号" width="150" prop="applyCode">
-            </el-table-column>
-            <el-table-column label="初评任务编号" width="150" prop="applyCode">
-            </el-table-column>
-            <el-table-column label="产品名称" width="180" prop="productName">
-            </el-table-column>
-            <el-table-column label="借款主体" width="150" prop="applyTime">
-            </el-table-column>
-            <el-table-column label="审核结果" width="150" prop="passTime">
-            </el-table-column>
-            <el-table-column label="截止时间" width="120" prop="limit">
-            </el-table-column>
-            <el-table-column label="提交时间" width="120" prop="duetime">
-            </el-table-column>
-            <el-table-column label="操作员" width="120" prop="duetime">
-            </el-table-column>
-            <el-table-column label="累计时长" width="120" prop="duetime">
-            </el-table-column>                   
-            <el-table-column label="操作" width="300" align="center">
-                <template slot-scope="scope">
-                    <el-button type="primary" size="mini">修改</el-button>
-                </template>
-            </el-table-column>
-          </el-table>
-        </el-tab-pane>
-      </el-tabs>
-
-    </el-card>
-    <el-dialog :visible.sync="addBank" width="400px">
-      <el-form :model="form" label-width="80px" size="small">
-        <el-form-item label="渠道名称">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="渠道参数">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="addBank = false">取 消</el-button>
-        <el-button type="primary" @click="addBank = false">确 定</el-button>
-      </span>
-    </el-dialog>
-  </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        addBank: false,
-        value6: '',
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+    export default {
+        data() {
+            return {
+                tableData: [],
+                searchForm:{
+                     pagesize: 20,
+                    currentPage: 1,
+                    nodeType:0,
+                    taskStatus:0
+                },
+                loading: true,
+                searchMore: false
+            }
         },
-        tableData3: [{
-          applyCode: 'RZ-18695872813',
-          productName: '中信银行',
-          status: '已开启'
-        }],
-        multipleSelection: []
-      }
-    },
-    methods: {
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
-      },
-      showAddBank() {
-        this.addBank = true
-      },
-      removeBank() {
-        this.$message({
-          message: '删除银行',
-          type: 'warning'
-        });
-      },
-      objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-        if (columnIndex === 0) {
-          if (rowIndex % 2 === 0) {
-            return {
-              rowspan: 2,
-              colspan: 1
-            };
-          } else {
-            return {
-              rowspan: 0,
-              colspan: 0
-            };
-          }
+        computed: {
+            conditionData() {
+                return [
+                    {
+                        key: 'customerName',
+                        label: '借款主体',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'taskCode',
+                        label: '准入初评任务编号',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'customerCode',
+                        label: '借款申请编号',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'customerPhone',
+                        label: '联系人手机号码',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'productName',
+                        label: '产品名称',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: ['releaseTimeStart', 'releaseTimeEnd'],
+                        label: '下发时间',
+                        type: 'date',
+                        value: '',
+                        isShort: true
+                    }, {
+                        key: ['endTimeStart', 'endTimeEnd'],
+                        label: '截止时间',
+                        type: 'date',
+                        value: '',
+                        isShort: false
+                    }, {
+                        key: 'userName',
+                        label: '业务员名称',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'userPhone',
+                        label: '业务员手机号码',
+                        type: 'text',
+                        value: '',
+                    }
+                ]
+            }
+        },
+        components: {
+            'search-group': () => import('@/components/SearchGroup')
+        },
+        mounted() {
+            this.getPerliminary()
+        },
+        methods: {
+            async getPerliminary() {
+                const form = Object.assign(
+                    {},
+                    this.searchForm,
+                    this.$refs.searchForm ? this.$refs.searchForm.getFormData() : {}
+                );
+
+                const data = await $http.backuplist(form)
+                console.log(data)
+                if (data.success) {
+                    this.loading = false;
+                    this.tableData = data.body.list;
+                    this.searchForm = data.body.parameter;
+                }
+            },
+            changeStatus(tab) {
+                this.searchForm.taskStatus = tab.name;
+                this.changePage(1)
+            },
+            changePage(page) {
+                this.searchForm.currentPage = page;
+                this.getPerliminary();
+            },
+            changePageSize(pageSize) {
+                this.searchForm.pageSize = pageSize;
+                this.changePage(1);
+            },
         }
-      }
     }
-  }
 </script>

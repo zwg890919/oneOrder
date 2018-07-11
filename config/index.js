@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         "/api": {
-            target: "http://192.168.3.13:8888",
+            target: "http://192.168.34.26:8888/",
             changeOrigin: true,
             pathRewrite: {
                 "^/api": "/"
@@ -28,7 +28,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

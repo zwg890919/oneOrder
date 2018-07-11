@@ -39,7 +39,6 @@
     computed: {
     },
     created() {
-      console.log(this.addRouters)
     },
     methods: {
       hasChildren(children) {

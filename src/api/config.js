@@ -1,3 +1,5 @@
+import workbench from './httpList/workbench'
+
 export default {
   api: '/api/',
   timeout: 300000,
@@ -9,4 +11,5 @@ export default {
   login: { type: 'post', url: 'user/dologin' },
   userInfo: { type: 'get', url: 'user/userInfo' },
   productList: { type: 'post', url: 'product/list' },  // 产品列表
+  ...workbench
 };
