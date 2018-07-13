@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <div class="logo">
-      走一单管理系统
+      走易单管理系统
     </div>
     <!-- <div class="left-menu" @click="showAppList">
       <span>应用中心</span>

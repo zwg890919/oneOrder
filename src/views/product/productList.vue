@@ -217,15 +217,6 @@
           });
         }
       },
-      removeProduct() {
-        if (this.multipleSelection.length > 0) {
-        } else {
-          this.$message({
-            message: '请至少选择一个产品',
-            type: 'warning'
-          });
-        }
-      },
       goProduct(index, row) {
         this.$router.push({ name: 'product.productInfo', params: { productId: row.id } })
       }

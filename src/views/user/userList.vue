@@ -103,7 +103,7 @@
 				  width="150"
 				  >
 				  <template slot-scope="scope">
-		        <a class="link-color" @click="goProduct(scope.$index, scope.row)">{{ scope.row.salesmanCode }}</a>
+		        <a class="link-color" @click="goUser(scope.$index, scope.row)">{{ scope.row.salesmanCode }}</a>
 		      </template>
 				</el-table-column>
 				<el-table-column
@@ -221,6 +221,8 @@
 				const data = await $http.salesmanList(this.form)
         if(data.success){
 					this.list = data.datas.result;
+					this.list[0].salesmanCode = '123';
+					this.list[0].id = 1;
 					this.total = data.datas.pagebar.total;
         }
 			},
@@ -258,18 +260,8 @@
           });
         }
 			},
-	    removeProduct() {
-	    	if(this.multipleSelection.length > 0){
-      	}else{
-      		this.$message({
-	          message: '请至少选择一个产品',
-	          type: 'warning'
-	        });
-      	}
-	    },
-	    goProduct(index, row){
-	    	console.log(row);
-	    	this.$router.push({ name: 'user.userInfo.index', params: { userId:1223 } })
+	    goUser(index, row){
+	    	this.$router.push({ name: 'user.userInfo.index', params: { userId:row.id } })
 			},
 			modifyUser(index, row){
 				row.id = 1;

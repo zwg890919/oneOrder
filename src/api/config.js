@@ -19,5 +19,13 @@ export default {
   salesmanList: { type: 'get', url: 'salesman/list' },  // 业务员列表
   salesmanInitPassowrd: { type: 'post', url: 'salesman/initpassword' },  // 初始化密码
   salesmanConfirmadd: { type: 'post', url: 'salesman/confirmadd' },  // 新增用户
+  salesmanConfirmupdate: { type: 'post', url: 'salesman/comfirmupdate' },  // 修改用户
   salesmanBaseinfo: { type: 'get', url: 'salesman/baseinfo' },  // 业务员基本信息
+  salesmanCancelchannel: { type: 'post', url: 'salesman/cancelchannel' },  // 取消渠道关系
+  salesmanConfirmchannelupdate: { type: 'post', url: 'salesman/confirmchannelupdate' },  // 更新渠道关系
+  salesmanGetloanapplications: { type: 'get', url: 'salesman/getloanapplications' },  // 业务员进件记录
+  salesmanCards: { type: 'get', url: 'salesman/cards' },  // 业务员银行卡列表
+  /********** 运营管理 **********/
+  basicChannelList: { type: 'get', url: 'basic/channelList' },  // 渠道列表
+  basicProductSideList: { type: 'get', url: 'basic/productSideList' },  // 产品方列表
 };

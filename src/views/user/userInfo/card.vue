@@ -5,23 +5,23 @@
 				<el-col :span="21">
 					<el-row>
 						<el-col :span="6">
-							<el-form-item label="绑定状态">
-						    	<el-select v-model="form.name"></el-select>
+							<el-form-item label="绑定状态" prop="bindStatus">
+						    	<el-select v-model="form.bindStatus"></el-select>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="预留手机号码">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="预留手机号码" prop="phoneNo">
+						    	<el-input v-model="form.phoneNo"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="开户银行">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="开户银行" prop="bankCode">
+						    	<el-input v-model="form.bankCode"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="银行卡号">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="银行卡号" prop="cardNo">
+						    	<el-input v-model="form.cardNo"></el-input>
 							</el-form-item>
 						</el-col>
 					</el-row>
@@ -29,6 +29,7 @@
 						<el-col :span="9">
 							<el-form-item label="绑卡时间">
 								<el-date-picker
+										v-model="timeRange"
 							      type="daterange"
 							      range-separator="至"
 							      start-placeholder="开始日期"
@@ -40,10 +41,10 @@
 				</el-col>
 				<el-col  :span="2" :offset="1">
 					<el-col>
-						<el-button style="margin-bottom: 15px;" size="small">查询</el-button>
+						<el-button style="margin-bottom: 15px;" size="small" @click="getCard">查询</el-button>
 					</el-col>
 					<el-col>
-						<el-button size="small">重置</el-button>
+						<el-button size="small" @click="resetForm">重置</el-button>
 					</el-col>
 				</el-col>
 			</el-form>
@@ -51,10 +52,10 @@
 		<el-card class="wrapper-option">
 			<el-table
 			ref="multipleTable"
-			:data="tableData3"
+			:data="list"
 			tooltip-effect="dark"
 			style="width: 100%"
-			@selection-change="handleSelectionChange">
+				>
 				<el-table-column
 				  label="序号"
 				  type="index"
@@ -86,6 +87,11 @@
 				  show-overflow-tooltip>
 				</el-table-column>
 			</el-table>
+			<el-pagination
+        layout="prev, pager, next"
+        :total="total"
+        @current-change="pageChange">
+      </el-pagination>
 		</el-card>
 	</div>
 </template>
@@ -93,60 +99,38 @@
   export default {
     data() {
       return {
+				timeRange:[],
         form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+					salesmanId:'',
+          bindCardStartDate: '',
+          bindCardEndDate: '',
+          bindStatus: '',
+          phoneNo: '',
+          bankCode: '',
+          cardNo: '',
         },
-        tableData3: [{
-          product: '2017-02-06 18:43:21',
-          name: '6217680965478906',
-          address: '建设银行',
-          city:'颀财房抵贷01',
-          province:'2017-08-13 17:57:44',
-          fianceType:'绑定',
-          productType:'2017-02-06 18:43:21',
-        }],
-        multipleSelection: []
+				multipleSelection: [],
+				list:[],
+				total:0
       }
     },
     methods: {
-      addUser() {
-      	this.$router.push({
-      		path:'/user/addUser'
-      	});
+			resetForm() {
+        this.$refs['form'].resetFields();
+        this.getCard();
+			},
+			pageChange(page){
+        this.form.currentPage = page;
+        this.getCard();
       },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
-      },
-      initPassword() {
-      	if(this.multipleSelection.length > 0){
-      		alert('ok');
-      	}else{
-      		this.$message({
-	          message: '请至少选择一个用户',
-	          type: 'warning'
-	        });
-      	}
-	    },
-	    removeProduct() {
-	    	if(this.multipleSelection.length > 0){
-      	}else{
-      		this.$message({
-	          message: '请至少选择一个产品',
-	          type: 'warning'
-	        });
-      	}
-	    },
-	    goProduct(index, row){
-	    	console.log(row);
-	    	this.$router.push({ name: 'user.userInfo', params: { userId:1223 } })
-	    }
+			async getCard(){
+				const data = await $http.salesmanCards(this.form)
+        if(data.success){
+					this.list = data.datas.result;
+					// this.total = data.datas.pagebar.total;
+					this.total = 0;
+        }
+			},
     }
   }
 </script>

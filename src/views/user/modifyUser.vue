@@ -94,14 +94,14 @@
 			submitForm(formName) {
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						this.addUser();
+						this.modifyUser();
 					} else {
 						return false;
 					}
 				});
 			},
-			async addUser(){
-				const data = await $http.salesmanConfirmadd(this.form)
+			async modifyUser(){
+				const data = await $http.salesmanConfirmupdate(this.form)
 				if(data.success){
 					this.$notify({
 						title: '成功',

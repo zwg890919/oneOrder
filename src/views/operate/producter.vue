@@ -50,7 +50,7 @@
 			</div>
 			<el-table
 			ref="multipleTable"
-			:data="tableData3"
+			:data="list"
 			tooltip-effect="dark"
 			style="width: 100%"
 			@selection-change="handleSelectionChange">
@@ -65,30 +65,31 @@
 				<el-table-column
 				  label="产品方简称">
 				  <template slot-scope="scope">
-		        <a class="link-color" @click="goProduct(scope.$index, scope.row)">{{ scope.row.product }}</a>
+		        <a class="link-color" @click="goProduct(scope.$index, scope.row)">{{ scope.row.productOwnShortName  }}</a>
 		      </template>
 				</el-table-column>
 				<el-table-column
-				  prop="产品方全称"
-				  label="姓名">
+					label="产品方全称"
+				  prop="productSideName"
+				>
 				</el-table-column>
 				<el-table-column
-				  prop="address"
+				  prop="fryPay"
 				  label="是否受托支付"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
-				  prop="city"
+				  prop="payAccount"
 				  label="受托支付账户"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
-				  prop="province"
+				  prop="updateBy"
 				  label="更新人"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
-				  prop="fianceType"
+				  prop="updateTime"
 				  label="更新时间"
 				  show-overflow-tooltip>
 				</el-table-column>
@@ -137,10 +138,21 @@
           desc: ''
         },
         tableData3: [],
-        multipleSelection: []
+				multipleSelection: [],
+				list:[]
       }
-    },
+		},
+		created(){
+			this.getList();
+		},
     methods: {
+			async getList(){
+        console.log(this.form)
+        const data = await $http.basicProductSideList(this.form)
+        if(data.success){
+					this.list = data.body.list;
+        }
+      },
       addProduct() {
       	this.$router.push({
       		path:'/product/addProduct'

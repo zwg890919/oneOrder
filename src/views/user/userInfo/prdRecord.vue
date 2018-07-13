@@ -5,42 +5,43 @@
 				<el-col :span="21">
 					<el-row>
 						<el-col :span="6">
-							<el-form-item label="产品名称">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="产品名称" prop="productName">
+						    	<el-input v-model="form.productName"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="融资申请编号">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="融资申请编号" prop="orderCode">
+						    	<el-input v-model="form.orderCode"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="借款主体">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="借款主体" prop="loaneeName">
+						    	<el-input v-model="form.loaneeName"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="借款主体手机号码">
-						    	<el-input v-model="form.name"></el-input>
+							<el-form-item label="借款主体手机号码" prop="loaneePhoneNo">
+						    	<el-input v-model="form.loaneePhoneNo"></el-input>
 							</el-form-item>
 						</el-col>
 					</el-row>
 					<el-row>
 						<el-col :span="6">
-							<el-form-item label="产品类型">
-						    	<el-select v-model="form.region">
+							<el-form-item label="产品类型" prop="productType">
+						    	<el-select v-model="form.productType">
 							    </el-select>
 							</el-form-item>
 						</el-col>
 						<el-col :span="6">
-							<el-form-item label="融资申请状态">
-						    	<el-select v-model="form.region">
+							<el-form-item label="融资申请状态" prop="loanStatus">
+						    	<el-select v-model="form.loanStatus">
 							    </el-select>
 							</el-form-item>
 						</el-col>
 						<el-col :span="9">
-							<el-form-item label="进件时间">
+							<el-form-item label="进件时间" prop="timeRange">
 								<el-date-picker
+										v-model="timeRange"
 							      type="daterange"
 							      range-separator="至"
 							      start-placeholder="开始日期"
@@ -52,10 +53,10 @@
 				</el-col>
 				<el-col  :span="2" :offset="1">
 					<el-col>
-						<el-button style="margin-bottom: 15px;" size="small">查询</el-button>
+						<el-button style="margin-bottom: 15px;" size="small" @click="getList">查询</el-button>
 					</el-col>
 					<el-col>
-						<el-button size="small">重置</el-button>
+						<el-button size="small" @click="resetForm">重置</el-button>
 					</el-col>
 				</el-col>
 			</el-form>
@@ -94,10 +95,10 @@
 		<el-card class="wrapper-option">
 			<el-table
 			ref="multipleTable"
-			:data="tableData3"
+			:data="list"
 			tooltip-effect="dark"
 			style="width: 100%"
-			@selection-change="handleSelectionChange">
+			>
 				<el-table-column
 				  label="序号"
 				  type="index"
@@ -105,7 +106,7 @@
 				</el-table-column>
 				<el-table-column
 				  label="融资申请编号"
-				  width="150"
+
 				  >
 				  <template slot-scope="scope">
 		        <a class="link-color" @click="goProduct(scope.$index, scope.row)">{{ scope.row.product }}</a>
@@ -114,45 +115,44 @@
 				<el-table-column
 				  prop="name"
 				  label="借款主体"
-				  width="110">
+				 >
 				</el-table-column>
 				<el-table-column
 				  prop="address"
 				  label="联系人手机号码"
-				 	width="170"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
 				  prop="city"
 				  label="产品名称"
-				  width="180"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
 				  prop="province"
 				  label="进件时间"
-				  width="180"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
 				  prop="fianceType"
 				  label="申请金额(万元)"
-				  width="130"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
 				  prop="productType"
 				  label="申请期限(月)"
-				  width="110"
 				  show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column
 				  prop="lowAmt"
 				  label="融资申请状态"
-				  width="130"
 				  show-overflow-tooltip>
 				</el-table-column>
 			</el-table>
+			<el-pagination
+        layout="prev, pager, next"
+        :total="total"
+        @current-change="pageChange">
+      </el-pagination>
 		</el-card>
 	</div>
 </template>
@@ -160,61 +160,46 @@
   export default {
     data() {
       return {
+				timeRange:[],
         form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+					timeRange:'',
+					salesmanId:'',
+					productName:'1',
+					orderCode:'2',
+					loaneeName:'11',
+          productType: '',
+          loanStatus: '',
+          loaneePhoneNo: '',
+          orderBeginDate: '',
+          orderEndDate: '',
+					currentPage:1,
+					pageSize:10,
         },
-        tableData3: [{
-          product: 'FD00000001',
-          name: '范冰冰',
-          address: 'DI-18695872813',
-          city:'颀财房抵贷01',
-          province:'2017-08-13 17:57:44',
-          fianceType:'20.00',
-          productType:'0',
-          lowAmt:'等待下户',
-          highAmt:'等待下户',
-          lowAndHigh:'等待下户',
-          qudao:'无',
-          email:'未启动'
-        }],
-        multipleSelection: []
+				list:[],
+				total:0
       }
-    },
+		},
+		created(){
+			this.form.salesmanId = this.$route.params.userId;
+			this.getList();
+		},
     methods: {
-      addUser() {
-      	this.$router.push({
-      		path:'/user/addUser'
-      	});
+			resetForm() {
+        this.$refs['form'].resetFields();
+        this.getList();
+			},
+			pageChange(page){
+        this.form.currentPage = page;
+        this.getList();
       },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
+			async getList(){
+        const data = await $http.salesmanGetloanapplications(this.form)
+        if(data.success){
+					this.list = data.datas.result;
+					// this.total = data.datas.pagebar.total;
+					this.total = 0;
+        }
       },
-      initPassword() {
-      	if(this.multipleSelection.length > 0){
-      		alert('ok');
-      	}else{
-      		this.$message({
-	          message: '请至少选择一个用户',
-	          type: 'warning'
-	        });
-      	}
-	    },
-	    removeProduct() {
-	    	if(this.multipleSelection.length > 0){
-      	}else{
-      		this.$message({
-	          message: '请至少选择一个产品',
-	          type: 'warning'
-	        });
-      	}
-	    },
 	    goProduct(index, row){
 	    	console.log(row);
 	    	this.$router.push({ name: 'user.userInfo', params: { userId:1223 } })

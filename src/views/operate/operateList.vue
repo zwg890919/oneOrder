@@ -49,7 +49,7 @@
 			</div>
 			<el-table
 			ref="multipleTable"
-			:data="tableData3"
+			:data="list"
 			tooltip-effect="dark"
 			style="width: 100%"
 			@selection-change="handleSelectionChange">
@@ -119,20 +119,22 @@
       	value2: '',
       	dialogVisible: false,
         form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
         },
         tableData3: [],
-        multipleSelection: []
+				multipleSelection: [],
+				list:[]
       }
-    },
+		},
+		created(){
+			this.getChannelList();
+		},
     methods: {
+			async getChannelList(){
+        const data = await $http.basicChannelList(this.form)
+        if(data.success){
+					this.list = data.datas.result;
+        }
+      },
       addProduct() {
       	this.$router.push({
       		path:'/product/addProduct'

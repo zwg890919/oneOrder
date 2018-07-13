@@ -7,43 +7,43 @@
 					<tbody>
             <tr>
               <td>用户编号</td>
-              <td>DJ_18695872813</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
               <td>用户姓名</td>
-              <td>古天乐</td>
+              <td>{{user.salesmanName}}</td>
             </tr>
             <tr>
               <td>手机号码</td>
-              <td>18695872813</td>
+              <td>{{user.phoneNo}}</td>
             </tr>
             <tr>
               <td>身份证号</td>
-              <td>410102198803190236</td>
+              <td>{{user.idNo}}</td>
             </tr>
             <tr>
               <td>性别</td>
-              <td>男</td>
+              <td>{{user.gender}}</td>
             </tr>
             <tr>
-              <td>年龄</td>
-              <td>29</td>
+              <td>年龄???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
-              <td>手机号码归属地</td>
-              <td>河南省郑州市</td>
+              <td>手机号码归属地???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
               <td>职业</td>
-              <td></td>
+              <td>{{user.profession}}</td>
             </tr>
             <tr>
               <td>电子邮箱</td>
-              <td></td>
+              <td>{{user.email}}</td>
             </tr>
             <tr>
               <td>通讯地址</td>
-              <td></td>
+              <td>{{user.contactAddress}}</td>
             </tr>
 			    </tbody>
 			  </table>
@@ -53,44 +53,44 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>用户类型</td>
-              <td>个人</td>
+              <td>用户类型???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
               <td>注册时间</td>
-              <td>2017-08-13 17:57:44</td>
+              <td>{{user.registerDate}}</td>
             </tr>
             <tr>
-              <td>注册来源</td>
-              <td>走易单</td>
+              <td>注册来源???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
               <td>渠道</td>
-              <td>颀财<el-button class="table-button"  size="mini" type="primary" @click="dialogVisible = true">修改</el-button></td>
+              <td>{{user.channelName}}<el-button class="table-button"  size="mini" type="primary" @click="dialogVisible = true">修改</el-button></td>
             </tr>
             <tr>
-              <td>注册方式</td>
-              <td>后台创建</td>
+              <td>注册方式???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
-              <td>版本</td>
-              <td>1.5.0</td>
+              <td>版本???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
-              <td>平台</td>
-              <td>Android</td>
+              <td>平台???</td>
+              <td>{{user.salesmanCode}}</td>
             </tr>
             <tr>
               <td>备注</td>
-              <td></td>
+              <td>{{user.memo}}</td>
             </tr>
             <tr>
               <td>最后登录时间</td>
-              <td>2017-08-13 17:57:44</td>
+              <td>{{user.lastLoginTime}}</td>
             </tr>
             <tr>
               <td>最后进件时间</td>
-              <td>2017-08-13 17:57:44</td>
+              <td>{{user.lastApplyLoanTime}}</td>
             </tr>
 					</tbody>
 				</table>
@@ -102,28 +102,28 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>总计</td>
-              <td>180</td>
+              <td>总计???</td>
+              <td></td>
             </tr>
             <tr>
               <td>累计进件笔数（笔）</td>
-              <td>180</td>
+              <td>{{user.sumLoanAppCount}}</td>
             </tr>
             <tr>
               <td>审核中笔数（笔）</td>
-              <td>15</td>
+              <td>{{user.sumInProgressCount}}</td>
             </tr>
             <tr>
               <td>已放款笔数（笔）</td>
-              <td>200</td>
+              <td>{{user.sumReleaseCount}}</td>
             </tr>
             <tr>
               <td>失败进件笔数（笔）</td>
-              <td>10</td>
+              <td>{{user.sumFailLoanCount}}</td>
             </tr>
             <tr>
               <td>累计放款金额（元）</td>
-              <td>10.00</td>
+              <td>{{user.sumReleaseAmount}}</td>
             </tr>
 	        </tbody>
 	      </table>
@@ -133,20 +133,20 @@
 		  :visible.sync="dialogVisible"
       title="修改渠道"
 		  width="500px">
-		  <el-form :model="form" label-width="100px">
+		  <el-form label-width="100px">
 		    <el-form-item label="修改用户">
-		      <span>范冰冰</span>
+		      <span>{{user.salesmanName}}</span>
 		    </el-form-item>
 		    <el-form-item label="原渠道">
-		      <span>西财</span>
+		      <span>{{user.channelName}}</span>
 		    </el-form-item>
         <el-form-item label="新渠道">
-		      <el-select></el-select>
+		      <el-select v-model="channelId"></el-select>
 		    </el-form-item>
 		  </el-form>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="dialogVisible = false">取消渠道关系</el-button>
-		    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+		    <el-button @click="cancelChannel">取消渠道关系</el-button>
+		    <el-button type="primary" @click="updateChannel">确 定</el-button>
 		  </span>
 		</el-dialog>
 	</div>
@@ -155,14 +155,50 @@
   export default{
     data(){
       return {
+        channelId:'',
         dialogVisible:false,
-        form:{
-          
-        }
+        user:{},
       }
     },
+    created(){
+			this.getSalesman();
+		},
     methods:{
-
+      async cancelChannel(){
+        const data = await $http.salesmanCancelchannel({
+          salesmanId:this.user.id,
+          channelId:this.user.channelId
+        })
+        if(data.success){
+          this.dialogVisible = false;
+          this.$notify.success({
+            title: '提示',
+            message: '操作成功'
+          });
+        }
+      },
+      async updateChannel(){
+        const data = await $http.salesmanConfirmchannelupdate({
+          salesmanId:this.user.id,
+          channelId:this.user.channelId,
+          newChannelId:this.channelId
+        })
+        if(data.success){
+          this.dialogVisible = false;
+          this.$notify.success({
+            title: '提示',
+            message: '操作成功'
+          });
+        }
+      },
+      async getSalesman(){
+				const data = await $http.salesmanBaseinfo({
+					salesmanId:this.$route.params.userId
+				})
+				if(data.success){
+					this.user = data.datas.result;
+				}
+			},
     }
   }
 </script>
