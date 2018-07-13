@@ -17,7 +17,7 @@ import '@/styles/index.scss'
 
 import store from '@/store'
 import './permission'
-import './mock'
+// import './mock'
 
 Vue.config.productionTip = false
 

@@ -19,20 +19,20 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      if (store.getters.menuRoles.length === 0) {
-        store.dispatch('getUserRole')
-      }
-      let menuList = [];
-      eachAllChild({
-        childrens: store.getters.menuRoles
-      }, (item, index) => {
-        item.menuHref && menuList.push(item.menuHref)
-      })
-      if (menuList.indexOf(to.name)) {
+    //   if (store.getters.menuRoles.length === 0) {
+    //     store.dispatch('getUserRole')
+    //   }
+    //   let menuList = [];
+    //   eachAllChild({
+    //     childrens: store.getters.menuRoles
+    //   }, (item, index) => {
+    //     item.menuHref && menuList.push(item.menuHref)
+    //   })
+    //   if (menuList.indexOf(to.name)) {
         next()
-      } else {
-        next({ path: "/error/401", replace: true })
-      }
+    //   } else {
+    //     next({ path: "/error/401", replace: true })
+    //   }
     }
   } else {
     // 目标链接是否在白名单内
