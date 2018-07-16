@@ -6,73 +6,8 @@
                 <el-breadcrumb-item>分佣管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <el-card class="wrapper-option">
-            <el-form ref="form" :model="form" label-width="120px" size="small">
-                <el-col :span="21">
-                    <el-row>
-                        <el-col :span="6">
-                            <el-form-item label="借款主体">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="联系人手机号码">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="产品名称">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="是否预警">
-                                <el-select v-model="form.name"></el-select>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="6">
-                            <el-form-item label="融资申请编号">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="业务员名称">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label="业务员手机号码">
-                                <el-input v-model="form.name"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="9">
-                            <el-form-item label="进件时间">
-                                <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
-                                </el-date-picker>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="9">
-                            <el-form-item label="任务截止时间">
-                                <el-date-picker v-model="value6" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
-                                </el-date-picker>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                </el-col>
-                <el-col :span="2" :offset="1">
-                    <el-col>
-                        <el-button style="margin-bottom: 15px;" size="small">查询</el-button>
-                    </el-col>
-                    <el-col>
-                        <el-button size="small">重置</el-button>
-                    </el-col>
-                </el-col>
-            </el-form>
-        </el-card>
+        <search-group :init-data="conditionData" @search="changePage(1)" ref="searchForm"></search-group>
+
         <el-card class="wrapper-option">
             <div class="wrapper-button clearfix">
                 <el-button type="primary" size="small">批量导入分佣数据</el-button>
@@ -193,9 +128,94 @@
                 }],
             }
         },
+        computed: {
+            conditionData() {
+                return [
+                    {
+                        key: 'customerName',
+                        label: '借款主体',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'customerCode',
+                        label: '融资申请编号',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'productName',
+                        label: '产品名称',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'ifwaring',
+                        label: '是否预警',
+                        type: 'select',
+                        value: '',
+                        option:[{
+                            id:'1',
+                            label:'全部',
+                            value:'0'
+                        },{
+                            id:'2',
+                            label:'是',
+                            value:'1'
+                        },{
+                            id:'3',
+                            label:'否',
+                            value:'2'
+                        }]
+                    }, {
+                        key: 'customerPhone',
+                        label: '联系人手机号码',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'userName',
+                        label: '业务员名称',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: 'userPhone',
+                        label: '业务员手机号码',
+                        type: 'text',
+                        value: '',
+                    }, {
+                        key: ['releaseTimeStart', 'releaseTimeEnd'],
+                        label: '下发时间',
+                        type: 'date',
+                        value: '',
+                        isShort: true
+                    }, {
+                        key: ['endTimeStart', 'endTimeEnd'],
+                        label: '放款时间',
+                        type: 'date',
+                        value: '',
+                        isShort: false
+                    }
+                ]
+            }
+        },
+        components: {
+            'search-group': () => import('@/components/SearchGroup')
+        },
         methods: {
             creditOrder() {
                 this.creditDialog = true
+            },
+            async getBrokerList(){
+                // const data = await $http.
+            },
+            changeStatus(tab) {
+                this.searchForm.taskStatus = tab.name;
+                this.changePage(1)
+            },
+            changePage(page) {
+                this.searchForm.currentPage = page;
+                this.getCreditList();
+            },
+            changePageSize(pageSize) {
+                this.searchForm.pageSize = pageSize;
+                this.changePage(1);
             },
         }
     }

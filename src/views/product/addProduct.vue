@@ -213,6 +213,9 @@
 export default {
   data() {
     return {
+        templateList:[{
+            name:'a',
+        },{},{}],
       form: {
 				productSideId:'',
 				productName:'',

@@ -18,7 +18,7 @@
                         </el-table-column>
                         <el-table-column label="初评任务编号" min-width="180" prop="taskCode">
                         </el-table-column>
-                        <el-table-column label="是否首次初评" min-width="150" prop="applyTime">
+                        <el-table-column label="是否首次初评" min-width="150" prop="ifFirst">
                         </el-table-column>
                         <el-table-column label="产品名称" min-width="150" prop="productName">
                         </el-table-column>
@@ -29,13 +29,10 @@
                         <el-table-column label="截止时间" min-width="120" prop="termTime">
                         </el-table-column>
                         <el-table-column label="累计时长" min-width="120" prop="operateTimes">
-                            <template slot-scope="scope">
-                                测试
-                            </template>
                         </el-table-column>
                         <el-table-column label="操作" align="center">
                             <template slot-scope="scope">
-                                <el-button type="primary" size="mini">处理</el-button>
+                                <el-button type="primary" size="mini" @click="goDispose(scope.row)">处理</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -85,15 +82,16 @@
     export default {
         data() {
             return {
-                tableData: [],
+                tableData: [{
+                    id:'11'
+                }],
                 searchForm:{
-                     pagesize: 20,
+                    pagesize: 20,
                     currentPage: 1,
                     nodeType:0,
                     taskStatus:0
                 },
-                loading: true,
-                searchMore: false
+                loading: false,
             }
         },
         computed: {
@@ -151,7 +149,7 @@
             }
         },
         components: {
-            'search-group': () => import('@/components/SearchGroup')
+            'search-group': () => import('@/components/SearchGroup'),
         },
         mounted() {
             this.getPerliminary()
@@ -163,9 +161,7 @@
                     this.searchForm,
                     this.$refs.searchForm ? this.$refs.searchForm.getFormData() : {}
                 );
-
                 const data = await $http.backuplist(form)
-                console.log(data)
                 if (data.success) {
                     this.loading = false;
                     this.tableData = data.body.list;
@@ -184,6 +180,9 @@
                 this.searchForm.pageSize = pageSize;
                 this.changePage(1);
             },
+            goDispose(row){
+                this.$router.push({ path: 'preliminaryApply', query: { taskId: row.id }})
+            }
         }
     }
 </script>

@@ -1,546 +1,577 @@
 <template>
-	<div>
-    <div class="wrapper-nav">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
-        <el-breadcrumb-item>初评处理</el-breadcrumb-item>
-      </el-breadcrumb>
+    <div id="preliminaryApply">
+        <div class="wrapper-nav">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item>
+                    <i class="el-icon-menu menuicon"></i> 工作台</el-breadcrumb-item>
+                <el-breadcrumb-item>初评处理</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <el-col :span="24">
+            <el-card class="wrapper-option">
+                <div slot="header">基本信息</div>
+                <table class="infoTable line-table" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td>借款申请编号</td>
+                            <td>借款主体名称</td>
+                            <td>产品名称</td>
+                            <td>下发时间</td>
+
+                        </tr>
+                        <tr>
+                            <td>DH_18695872813</td>
+                            <td>JK-18695872813</td>
+                            <td>颀财-房抵贷（山东）</td>
+                            <td>2017-08-13 17:57:44</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </el-card>
+            <el-card class="wrapper-option">
+                <div slot="header">录入客户审核</div>
+                <table class="infoTable nor-table data-table" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td>序号</td>
+                            <td>审核项目</td>
+                            <td>审核内容</td>
+                            <td>审核结果</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>客户名称</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>社会统一信用代码</td>
+                            <td>王珞丹</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>客户简称</td>
+                            <td>王珞丹</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>营业地址</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>联系人姓名</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>联系人手机号码</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>联系人与借款主体的关系</td>
+                            <td>
+                                酒吧实际控制人
+                            </td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>分期类型</td>
+                            <td>值域：屏幕置换（A），旧场改造（B），新场装修（C）</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>酒吧每屏账号</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>酒吧近3个月每屏交易均额</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>同类型酒吧MP账号一</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>资质是否一致</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>近3个月每屏交易均额</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>同类型酒吧MP账号二</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>资质是否一致</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>近3个月每屏交易均额</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>同类型酒吧MP账号三</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>资质是否一致</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>近3个月每屏交易均额</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>实际经营年限</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>营业面积</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>酒吧座位数</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>日均人流量</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>客单价</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>上座率</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>翻台率</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>年销售额</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>资产总额</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>负债总额</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>以上酒吧资质是否符合要求</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </el-card>
+        </el-col>
+        <el-col :span="24">
+            <el-card class="wrapper-option">
+                <div slot="header">客户照片信息审核</div>
+                <table class="infoTable nor-table data-table" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td>序号</td>
+                            <td>审核项目</td>
+                            <td>审核内容</td>
+                            <td>审核结果</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>营业执照照片</td>
+                            <td>已上传
+                                <el-button class="table-button" size="mini" type="primary">预览</el-button>
+                            </td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>名称</td>
+                            <td>北京海淀区零度酒吧</td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>类型</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>住所</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>法定代表人</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>注册资本</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>成立日期</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>营业期限</td>
+                            <td></td>
+                            <td>
+                                <el-time-picker size="mini" is-range range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" placeholder="选择时间范围">
+                                </el-time-picker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>经营范围</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>统一社会信用代码</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>法人加盖公章的身份证正面照</td>
+                            <td>未上传</td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>法人加盖公章的身份证正面照</td>
+                            <td>已上传
+                                <el-button class="table-button" size="mini" type="primary">预览</el-button>
+                            </td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>法人姓名</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>法人身份证号</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>有效期限</td>
+                            <td></td>
+                            <td>
+                                <el-time-picker size="mini" is-range range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" placeholder="选择时间范围">
+                                </el-time-picker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>消防许可证</td>
+                            <td>未上传</td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>特殊行业经营许可证</td>
+                            <td>未上传</td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>房屋租赁合同</td>
+                            <td>未上传</td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>是否为酒吧经营地址租赁合同</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>有效期限</td>
+                            <td></td>
+                            <td>
+                                <el-time-picker size="mini" is-range range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" placeholder="选择时间范围">
+                                </el-time-picker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>最近一期房屋交租凭证</td>
+                            <td>未上传</td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>凭证日期</td>
+                            <td></td>
+                            <td>
+                                <el-input size="mini"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>租金与租约是否一致</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>酒吧实景照片</td>
+                            <td></td>
+                            <td>
+                                <el-radio-group v-model="radio2">
+                                    <el-radio :label="3">是</el-radio>
+                                    <el-radio :label="6">否</el-radio>
+                                </el-radio-group>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </el-card>
+            <el-card class="wrapper-option">
+                <div slot="header">审核结果</div>
+                <el-form ref="form" :model="form" label-width="140px" size="small">
+                    <el-col :span="16">
+                        <el-form-item label="审核结果">
+                            <el-select v-model="form.name"></el-select>
+                        </el-form-item>
+                        <el-form-item label="授信额度">
+                            <el-input v-model="form.name"></el-input>
+                            <span>申请额度：50000</span>
+                        </el-form-item>
+                        <el-form-item label="备注">
+                            <el-input type="textarea" :rows="4" v-model="form.name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="">
+                            <el-button type="primary" style="width: 100%;" @click="submitApply">添加</el-button>
+                        </el-form-item>
+                    </el-col>
+                </el-form>
+            </el-card>
+        </el-col>
     </div>
-		<el-col :span="12">
-			<el-card class="wrapper-option">
-				<div slot="header">基本信息</div>
-				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
-					<tbody>
-            <tr>
-              <td>借款申请编号</td>
-              <td>DH_18695872813</td>
-            </tr>
-            <tr>
-              <td>借款主体名称</td>
-              <td>JK-18695872813</td>
-            </tr>
-            <tr>
-              <td>产品名称</td>
-              <td>颀财-房抵贷（山东）</td>
-            </tr>
-            <tr>
-              <td>下发时间</td>
-              <td>2017-08-13 17:57:44</td>
-            </tr>
-			    </tbody>
-			  </table>
-			</el-card>
-      <el-card class="wrapper-option">
-				<div slot="header">录入客户审核</div>
-				<table class="infoTable nor-table" cellspacing="0" cellpadding="0" border="0">
-					<tbody>
-            <tr>
-              <td>序号</td>
-              <td>审核项目</td>
-              <td>审核内容</td>
-              <td>审核结果</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>客户名称</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>社会统一信用代码</td>
-              <td>王珞丹</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>客户简称</td>
-              <td>王珞丹</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>营业地址</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>联系人姓名</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>联系人手机号码</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>联系人与借款主体的关系</td>
-              <td>
-                酒吧实际控制人
-              </td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>分期类型</td>
-              <td>值域：屏幕置换（A），旧场改造（B），新场装修（C）</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>酒吧每屏账号</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>酒吧近3个月每屏交易均额</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>11</td>
-              <td>同类型酒吧MP账号一</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>12</td>
-              <td>资质是否一致</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>13</td>
-              <td>近3个月每屏交易均额</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>14</td>
-              <td>同类型酒吧MP账号二</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>15</td>
-              <td>资质是否一致</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>16</td>
-              <td>近3个月每屏交易均额</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>17</td>
-              <td>同类型酒吧MP账号三</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>18</td>
-              <td>资质是否一致</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>19</td>
-              <td>近3个月每屏交易均额</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>20</td>
-              <td>实际经营年限</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>21</td>
-              <td>营业面积</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>22</td>
-              <td>酒吧座位数</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>23</td>
-              <td>日均人流量</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>24</td>
-              <td>客单价</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>25</td>
-              <td>上座率</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>26</td>
-              <td>翻台率</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>27</td>
-              <td>年销售额</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>28</td>
-              <td>资产总额</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>29</td>
-              <td>负债总额</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>30</td>
-              <td>以上酒吧资质是否符合要求</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-			    </tbody>
-			  </table>
-			</el-card>
-		</el-col>
-		<el-col :span="12">
-      <el-card class="wrapper-option">
-				<div slot="header">客户照片信息审核</div>
-				<table class="infoTable nor-table" cellspacing="0" cellpadding="0" border="0">
-					<tbody>
-            <tr>
-              <td>序号</td>
-              <td>审核项目</td>
-              <td>审核内容</td>
-              <td>审核结果</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>营业执照照片</td>
-              <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>名称</td>
-              <td>北京海淀区零度酒吧</td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>类型</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>住所</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>法定代表人</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>注册资本</td>
-              <td></td>
-              <td>
-                <el-input size="mini"></el-input>
-              </td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>成立日期</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>营业期限</td>
-              <td></td>
-              <td>
-                <el-time-picker
-                  size="mini"
-                  is-range
-                  range-separator="至"
-                  start-placeholder="开始时间"
-                  end-placeholder="结束时间"
-                  placeholder="选择时间范围">
-                </el-time-picker>
-              </td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>经营范围</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>统一社会信用代码</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>11</td>
-              <td>法人加盖公章的身份证正面照</td>
-              <td>未上传</td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>12</td>
-              <td>法人加盖公章的身份证正面照</td>
-              <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>13</td>
-              <td>法人姓名</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>14</td>
-              <td>法人身份证号</td>
-              <td></td>
-              <td>
-                <el-input size="mini"></el-input>
-              </td>
-            </tr>
-            <tr>
-              <td>15</td>
-              <td>有效期限</td>
-              <td></td>
-              <td>
-                <el-time-picker
-                  size="mini"
-                  is-range
-                  range-separator="至"
-                  start-placeholder="开始时间"
-                  end-placeholder="结束时间"
-                  placeholder="选择时间范围">
-                </el-time-picker>
-              </td>
-            </tr>
-            <tr>
-              <td>16</td>
-              <td>消防许可证</td>
-              <td>未上传</td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>17</td>
-              <td>特殊行业经营许可证</td>
-              <td>未上传</td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>18</td>
-              <td>房屋租赁合同</td>
-              <td>未上传</td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>19</td>
-              <td>是否为酒吧经营地址租赁合同</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>20</td>
-              <td>有效期限</td>
-              <td></td>
-              <td>
-                <el-time-picker
-                  size="mini"
-                  is-range
-                  range-separator="至"
-                  start-placeholder="开始时间"
-                  end-placeholder="结束时间"
-                  placeholder="选择时间范围">
-                </el-time-picker>
-              </td>
-            </tr>
-            <tr>
-              <td>21</td>
-              <td>最近一期房屋交租凭证</td>
-              <td>未上传</td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>22</td>
-              <td>凭证日期</td>
-              <td></td>
-              <td><el-input size="mini"></el-input></td>
-            </tr>
-            <tr>
-              <td>23</td>
-              <td>租金与租约是否一致</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-            <tr>
-              <td>24</td>
-              <td>酒吧实景照片</td>
-              <td></td>
-              <td>
-                <el-radio-group v-model="radio2">
-                  <el-radio :label="3">是</el-radio>
-                  <el-radio :label="6">否</el-radio>
-                </el-radio-group>
-              </td>
-            </tr>
-			    </tbody>
-			  </table>
-			</el-card>
-      <el-card class="wrapper-option">
-				<div slot="header">审核结果</div>
-        <el-form ref="form" :model="form" label-width="140px" size="small">
-          <el-col :span="16">
-            <el-form-item label="审核结果">
-                <el-select v-model="form.name"></el-select>
-            </el-form-item>
-            <el-form-item label="授信额度">
-                <el-input v-model="form.name"></el-input>
-                <span>申请额度：50000</span>
-            </el-form-item>
-            <el-form-item label="备注">
-                <el-input type="textarea" :rows="4" v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="">
-              <el-button type="primary" style="width: 100%;">添加</el-button>
-            </el-form-item>
-          </el-col>
-        </el-form>
-      </el-card>
-		</el-col>
-	</div>
 </template>
 <script>
-  export default{
-    data(){
-      return {
-        dialogVisible:false,
-        radio2:3,
-        form:{
+    export default {
+        data() {
+            return {
+                dialogVisible: false,
+                radio2: 3,
+                form: {
 
+                },
+                taskId: this.$route.query.taskId
+            }
+        },
+        mounted() {
+            this.getDetail();
+        },
+        methods: {
+            async getDetail() {
+                const data = await $http.initialDetailBefore({taskId:this.taskId})
+                console.log(data)
+            },
+            async submitApply(){
+                this.$store.dispatch('delVisitedViews', this.$route)
+                this.$router.replace({path:'preliminary'})
+            }
         }
-      }
-    },
-    methods:{
-
     }
-  }
 </script>
+<style lang="scss" scoped>
+    #preliminaryApply {
+        .table-button {
+            float: none;
+            margin-right: 0;
+            margin-left: 20px;
+        }
+        .data-table{
+            td:last-child{
+                width: 360px;
+            }
+        }
+    }
+</style>
