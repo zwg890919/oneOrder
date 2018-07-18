@@ -1,6 +1,6 @@
 <template>
     <el-card class="wrapper-option">
-        <el-form ref="form" label-width="130px" size="small">
+        <el-form ref="form" label-width="120px" size="small">
             <el-row :gutter="20" v-if="!searchMore" class="simple-form">
                 <el-col :span="6" v-for="(item,index) in data" :key="index" v-if="index<=2 && item.type != 'date'">
                     <el-form-item :label="item.label">
@@ -11,16 +11,16 @@
                         </el-select>
                     </el-form-item>
                 </el-col>
-                <el-col :span="9" v-for="(item,index) in data" :key="index" v-if="index<=2 && item.type == 'date'">
+                <el-col :span="6" v-for="(item,index) in data" :key="index" v-if="index<=2 && item.type == 'date'">
                     <el-form-item :label="item.label">
-                        <el-date-picker v-model="item.value" :type="item.datetype" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                        <el-date-picker v-model="item.value" :type="item.datetype" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期">
                         </el-date-picker>
                     </el-form-item>
                 </el-col>
                 <el-col :span="4" :offset="2">
-                    <el-button type="text" @click="searchMore=true">高级筛选</el-button>
+                    <el-button type="text" @click="searchMore=true" v-if="data.length > 3">高级筛选</el-button>
                     <el-button style="margin-left: 15px;" type="primary" size="small" @click="search">查询</el-button>
-                    <el-button style="margin-left: 15px;" size="small">重置</el-button>
+                    <el-button style="margin-left: 15px;" size="small" @click="resetForm">重置</el-button>
                 </el-col>
             </el-row>
             <el-row :gutter="20" v-else>
@@ -35,21 +35,21 @@
                 </el-col>
                 <el-col :span="9" v-for="(item,index) in data" :key="index" v-if="item.type == 'date'">
                     <el-form-item :label="item.label">
-                        <el-date-picker v-model="item.value" :type="item.isShort ? 'daterange' : 'datetimerange'" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+                        <el-date-picker v-model="item.value" :type="item.datetype" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期">
                         </el-date-picker>
                     </el-form-item>
                 </el-col>
                 <el-col :span="4" :offset="20">
                     <el-button type="text" @click="searchMore=false">简单筛选</el-button>
                     <el-button style="margin-left: 15px;" type="primary" size="small" @click="search">查询</el-button>
-                    <el-button style="margin-left: 15px;" size="small">重置</el-button>
+                    <el-button style="margin-left: 15px;" size="small" @click="resetForm">重置</el-button>
                 </el-col>
             </el-row>
         </el-form>
     </el-card>
 </template>
 <script>
-    import { copy,getTimeStr } from '@/utils'
+    import { copy, getTimeStr } from '@/utils'
     export default {
         data() {
             return {
@@ -92,6 +92,13 @@
                     }
                 })
                 return formData;
+            },
+            resetForm() {
+                this.data.forEach((item, index) => {
+                    item.value = ""
+                    this.$set(this.data, index, item)
+                })
+                this.$emit('search')
             },
         }
     }

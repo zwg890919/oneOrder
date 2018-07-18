@@ -36,12 +36,12 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(
   response => {
-    if (!response.data.success){
-      OneApp.$notify.error({
-        title: '错误',
-        message: response.data.i18nMessage
-      });
-    }
+    // if (!response.data.success){
+    //   OneApp.$notify.error({
+    //     title: '错误',
+    //     message: response.data.i18nMessage
+    //   });
+    // }
     return response;
   },
   error => {
