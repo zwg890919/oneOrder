@@ -11,22 +11,23 @@
 			<el-form ref="form" :model="form" label-width="140px" :rules="rules" size="small">
 				<el-col :span="8" :offset="1">
 				   	<h4>产品基础信息</h4>
-					<el-form-item label="产品方简称??" prop="productSideId">
+					<el-form-item label="产品方简称" prop="productSideId">
 				    	<el-select v-model="form.productSideId" placeholder="请选择产品方">
+								<el-option v-for="(x, index) in productSideList" :key="index" :label="x.productOwnShortName" :value="x.id"></el-option>
 					    </el-select>
 					</el-form-item>
 					<el-form-item label="产品名称">
 				    	<el-input v-model="form.productName"></el-input>
 					</el-form-item>
-					<el-form-item label="产品别名？？？">
-				    	<el-input v-model="form.name"></el-input>
+					<el-form-item label="产品别名">
+				    	<el-input v-model="form.aliasName"></el-input>
 					</el-form-item>
 					<el-form-item label="融资类型" prop="financeType">
-				    	<el-radio v-model="form.financeType" label="0">抵押</el-radio>
-  						<el-radio v-model="form.financeType" label="1">信贷</el-radio>
+				    	<el-radio v-model="form.financeType" label="1">抵押</el-radio>
+  						<el-radio v-model="form.financeType" label="2">信贷</el-radio>
 					</el-form-item>
 					<el-form-item label="产品类型" prop="productType">
-				    	<el-radio v-model="form.productType" v-for="(x, index) in productType" :key="index" :label="x.key">{{x.value}}</el-radio>
+				    	<el-radio v-model="form.productType" v-for="(x, index) in productType" :key="index" :label="x.label">{{x.value}}</el-radio>
 					</el-form-item>
 					<el-form-item label="最低申请金额(元)">
 				    	<el-input v-model="form.minApply"></el-input>
@@ -49,98 +50,99 @@
 					<el-form-item label="最高期限(月)">
 				    	<el-input v-model="form.maxApplyTime"></el-input>
 					</el-form-item>
-					<el-form-item label="累加期限(月)????">
-				    	<el-input></el-input>
+					<el-form-item label="累加期限(月)">
+				    	<el-input v-model="form.sumApplyTime"></el-input>
 					</el-form-item>
 					<el-form-item label="是否托管" prop="ifTrustees">
-				    	<el-radio v-model="form.ifTrustees" label="0">是</el-radio>
-  						<el-radio v-model="form.ifTrustees" label="1">否</el-radio>
+				    	<el-radio v-model="form.ifTrustees" label="1">是</el-radio>
+  						<el-radio v-model="form.ifTrustees" label="2">否</el-radio>
 					</el-form-item>
 					<el-form-item label="渠道码???">
 				    	<el-input v-model="form.name"></el-input>
 					</el-form-item>
 					<el-form-item label="产品特色标签">
 				    	<el-checkbox-group v-model="form.productLabel">
-						    <el-checkbox v-for="(x, index) in special" :key="index" :label="x.key">{{x.value}}</el-checkbox>
+						    <el-checkbox v-for="(x, index) in special" :key="index" :label="x.dictValue">{{x.dictLabel}}</el-checkbox>
 						</el-checkbox-group>
 					</el-form-item>
 					<el-form-item label="活动标签">
 				    	<el-checkbox-group v-model="form.activitiLabel">
-						    <el-checkbox v-for="(x, index) in activiti" :key="index" :label="x.key">{{x.value}}</el-checkbox>
+						    <el-checkbox v-for="(x, index) in activiti" :key="index" :label="x.dictValue">{{x.dictLabel}}</el-checkbox>
 						</el-checkbox-group>
 					</el-form-item>
 					<el-form-item label="是否支持提前还款" prop="ifPayBackEarly">
-				    	<el-radio v-model="form.ifPayBackEarly" label="0">是</el-radio>
-  						<el-radio v-model="form.ifPayBackEarly" label="1">否</el-radio>
+				    	<el-radio v-model="form.ifPayBackEarly" label="1">是</el-radio>
+  						<el-radio v-model="form.ifPayBackEarly" label="2">否</el-radio>
 					</el-form-item>
 					<h4>支持的地区</h4>
 					<el-form-item label="省份">
-				    	<el-select v-model="form.supportProvince" placeholder="请选择省份">
-					    </el-select>
+						<el-select v-model="form.supportProvince" placeholder="请选择省份" @change="provinceChange">
+							<el-option v-for="(x, index) in provinceList" :key="index" :label="x.areaName" :value="x.areaId"></el-option>
+						</el-select>
 					</el-form-item>
 					<el-form-item label="城市">
-				    	<el-select v-model="form.supportCity" placeholder="请选择城市">
-					    </el-select>
+						<el-select v-model="form.supportCity" placeholder="请选择城市">
+							<el-option v-for="(x, index) in cityList" :key="index" :label="x.areaName" :value="x.areaId"></el-option>
+						</el-select>
 					</el-form-item>
 					<h4>产品利率</h4>
 					<div v-for="(x, index) in form.productRateDtoList" :key="index">
 						<el-form-item label="费用类型">
-				    	<el-select  v-model="x.productRateType" placeholder="请选择费用类型" @change="productRateTypeChange">
-								<el-option v-for="(x, index) in costType" :key="index" :label="x.value" :value="x.key"></el-option>
+				    	<el-select  v-model="x.productRateType" placeholder="请选择费用类型">
+								<el-option v-for="(x, index) in costType" :key="index" :value="x.dictValue" :label="x.dictName"></el-option>
 					    </el-select>
 						</el-form-item>
-						<el-form-item label="期限" v-show="x.show == 1">
-				    	<el-input v-model="form.name"></el-input>
-						</el-form-item>
-						<el-form-item label="期限2" v-show="x.show == 2">
-				    	<el-input v-model="form.name"></el-input>
-						</el-form-item>
+						<div v-show="x.productRateType == 1">
+							<el-form-item label="期限">
+									<el-input v-model="form.productRateTerm"></el-input>
+							</el-form-item>
+							<el-form-item label="还款方式">
+									<el-select v-model="form.repayMode" placeholder="请选择还款方式">
+									</el-select>
+							</el-form-item>
+							<el-form-item label="费率">
+								<el-row>
+									<el-col :span="11">
+										<el-input placeholder="最低费率" v-model="form.minRate"></el-input>
+									</el-col>
+									<el-col :span="2" class="split-line">
+										~
+									</el-col>
+									<el-col :span="11">
+										<el-input placeholder="最高费率" v-model="form.maxRate"></el-input>
+									</el-col>
+								</el-row>
+							</el-form-item>
+							<el-form-item label="费用金额">
+								<el-input v-model="form.fixedMoney"></el-input>
+							</el-form-item>
+							<el-form-item label="收费规则">
+								<el-input v-model="form.chargeRole"></el-input>
+							</el-form-item>
+						</div>
+						<div v-show="x.productRateType == 2">
+							<el-form-item label="费用类型">
+								<el-select v-model="form.region" placeholder="请选择费用类型">
+								</el-select>
+							</el-form-item>
+							<el-form-item label="费率">
+								<el-input v-model="form.minRate"></el-input>
+							</el-form-item>
+							<el-form-item label="费用金额">
+								<el-input v-model="form.fixedMoney"></el-input>
+							</el-form-item>
+							<el-form-item label="收费规则">
+								<el-input v-model="form.chargeRole"></el-input>
+							</el-form-item>
+						</div>
 					</div>
-					<!-- <el-form-item label="期限">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="还款方式">
-				    	<el-select v-model="form.region" placeholder="请选择还款方式">
-					    </el-select>
-					</el-form-item>
-					<el-form-item label="费用">
-						<el-row>
-							<el-col :span="11">
-								<el-input placeholder="最低费率" v-model="form.name"></el-input>
-							</el-col>
-							<el-col :span="2" class="split-line">
-								~
-							</el-col>
-							<el-col :span="11">
-								<el-input placeholder="最高费率" v-model="form.name"></el-input>
-							</el-col>
-						</el-row>
-					</el-form-item>
-					<el-form-item label="费用金额">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="">
-				    	<el-button type="primary">+添加费率</el-button>
-					</el-form-item> -->
-					<!-- <el-form-item label="费用类型">
-				    	<el-select v-model="form.region" placeholder="请选择费用类型">
-					    </el-select>
-					</el-form-item>
-					<el-form-item label="费率">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="费用金额">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item>
-					<el-form-item label="收费规则">
-				    	<el-input v-model="form.name"></el-input>
-					</el-form-item> -->
 					<el-form-item label="">
 				    	<el-button type="primary" @click="addProductRateDtoList">+添加费率</el-button>
 					</el-form-item>
 					<h4>费用说明</h4>
-					<el-form-item label="费用说明???">
+					<el-form-item label="费用说明">
 				    	<el-input
+								v-model="form.description"
 							  type="textarea"
 							  :rows="4"
 							  placeholder="请输入内容">
@@ -210,17 +212,22 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-        templateList:[{
-            name:'a',
-        },{},{}],
+			provinceList:[],
+			cityList:[],
+			productSideList:[],
       form: {
+				description:'',
+				sumApplyTime:'',
 				productSideId:'',
+				productSideName:'',
 				productName:'',
-				financeType:'',
-				productType:'',
+				aliasName:'',
+				financeType:'1',
+				productType:'1',
 				minApply:'',
 				maxApply:'',
 				sumApply:'',
@@ -228,17 +235,19 @@ export default {
 				mortgageRate:'',
 				minApplyTime:'',
 				maxApplyTime:'',
-				ifTrustees:'',
+				ifTrustees:'1',
 				productLabel:[],
+				productLabelName:[],
 				activitiLabel:[],
-				ifPayBackEarly:'0',
+				activitiLabelName:[],
+				ifPayBackEarly:'1',
 				supportProvince:'',
 				supportCity:'',
 				productDoc:[{
 					title:''
 				}],
 				productRateDtoList:[{
-					productRateType:'',
+					productRateType:''
 				}],
 				productCond:[{
 					title:'',
@@ -252,7 +261,10 @@ export default {
 			costType:[],
 			special:[],
 			activiti:[],
-			productType:[],
+			productType:[{
+				label:'1',
+				value:'企业经营贷款'
+			}],
 			rules: {
 				productSideId: [
 					{ required: true, message: '请选择产品方', trigger: 'change' },
@@ -272,69 +284,122 @@ export default {
 			}
     };
 	},
+	computed: {
+
+	},
 	created(){
-		this.getCostType();
+		this.getProductSide();
+		this.getCity();
+		this.setDictionary();
 	},
   methods: {
+		/* 获取数字字典 */
+		setDictionary(){
+			if(sessionStorage.special && sessionStorage.activiti && sessionStorage.cost_type){
+				this.special = JSON.parse(sessionStorage.special);
+				this.activiti = JSON.parse(sessionStorage.activiti);
+				this.costType = JSON.parse(sessionStorage.cost_type)
+			}
+		},
+		/* 获取省份城市信息	*/
+		getCity(){
+			axios.get('/static/cities.json').then((res) => {
+				if(res.data.success){
+					this.provinceList = res.data.datas;
+				}
+			})
+		},
+		/* 获取城市信息	*/
+		provinceChange(value){
+			for(let x in this.provinceList){
+				if(this.provinceList[x].areaId == value){
+					this.cityList = this.provinceList[x].cities;
+				}
+			}
+		},
+		/* 获取产品方信息	*/
+		async getProductSide(){
+			const data = await $http.basicProductSideListAll();
+			if(data.success){
+				this.productSideList = data.datas.body;
+			}
+		},
+		/* 添加申请资料 */
 		addApply(){
 			this.form.productDoc.push({
 				title:''
 			});
 		},
+		/* 添加常见问题 */
 		addQues(){
 			this.form.productQuestionDTOList.push({
 				questionl:'',
 				answer:''
 			});
 		},
+		/* 添加所需条件 */
 		addProductCond(){
 			this.form.productCond.push({
 				title:'',
 				condition:''
 			})
 		},
-		productRateTypeChange(val){
-		},
+		/* 添加产品利率 */
 		addProductRateDtoList(){
 			this.form.productRateDtoList.push({
 				productRateType:''
 			})
 		},
-		// 获取费用类型,产品特色标签，活动标签
-		async getCostType(){
-			const data = await $http.basicDictionary({
-				type:'costType'
-			});
-			if(data.success){
-				data.body = [{
-					key:1,
-					value:'a'
-				},{
-					key:2,
-					value:'b'
-				},{
-					key:3,
-					value:'c'
-				}]
-				this.costType = data.body;
-				this.special = data.body;
-				this.activiti = data.body;
-				this.productType = data.body;
-			}
-		},
+		/* 提交表单 */
 		submitForm(formName) {
-			this.$refs[formName].validate((valid) => {
-				if (valid) {
-					alert('submit!');
-					this.addProduct();
-				} else {
-					return false;
-				}
-			});
+			this.addProduct();
+			// this.$refs[formName].validate((valid) => {
+			// 	if (valid) {
+			// 		this.addProduct();
+			// 	} else {
+			// 		return false;
+			// 	}
+			// });
 		},
+		/* 获取labelName */
+		getLabelName(){
+			for(let x in this.form.productLabel){
+				for(let y in this.special){
+					if(this.form.productLabel[x] == this.special[y].dictValue){
+						this.form.productLabelName.push(this.special[y].dictLabel);
+					}
+				}
+			}
+			for(let x in this.form.activitiLabel){
+				for(let y in this.special){
+					if(this.form.activitiLabel[x] == this.special[y].dictValue){
+						this.form.activitiLabelName.push(this.special[y].dictLabel);
+					}
+				}
+			}
+			for(let x in this.form.activitiLabel){
+				for(let y in this.special){
+					if(this.form.activitiLabel[x] == this.special[y].dictValue){
+						this.form.activitiLabelName.push(this.special[y].dictLabel);
+					}
+				}
+			}
+			for(let x in this.form.productSideList){
+				if(this.form.productSideList[x].id = this.form.productSideId){
+					this.form.productSideName = this.form.productSideList[x].productSideName;
+				}
+			}
+			this.form.productLabel =  this.form.productLabel.join(',');
+			this.form.productLabelName =  this.form.productLabelName.join(',');
+			this.form.activitiLabel = this.form.activitiLabel.join(',');
+			this.form.activitiLabelName =  this.form.activitiLabelName.join(',');
+		},
+		/* 新增产品 */
 		async addProduct(){
-			console.log(this.form.productLabel)
+			this.getLabelName();
 			const data = await $http.productAdd(this.form)
+			this.form.productLabel = [];
+			this.form.activitiLabel = [];
 			if(data.success){
 				this.$notify({
           title: '成功',
@@ -342,7 +407,7 @@ export default {
 					type: 'success',
 					duration: 1000,
 					onClose: () => {
-						this.$router.push({ name: 'product.productList' })
+						// this.$router.push({ name: 'product.productList' })
 					}
         });
 			}

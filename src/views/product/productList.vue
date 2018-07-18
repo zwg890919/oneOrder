@@ -66,9 +66,9 @@
     <el-card class="wrapper-option">
       <div class="wrapper-button clearfix">
         <el-button @click="addProduct" type="primary" size="small">新建产品</el-button>
-        <el-button @click="changeProductStatus(1)" size="small">发布产品</el-button>
-        <el-button @click="changeProductStatus(3)" size="small">下架产品</el-button>
-        <el-button @click="changeProductStatus(2)" size="small">暂停产品</el-button>
+        <el-button @click="changeProductStatus(2)" size="small">发布产品</el-button>
+        <el-button @click="changeProductStatus(4)" size="small">下架产品</el-button>
+        <el-button @click="changeProductStatus(3)" size="small">暂停产品</el-button>
       </div>
       <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55">
@@ -78,7 +78,7 @@
             <a class="link-color" @click="goProduct(scope.$index, scope.row)">{{ scope.row.productName }}</a>
           </template>
         </el-table-column>
-        <el-table-column prop="" label="产品编号?" width="150">
+        <el-table-column prop="productCode" label="产品编号" width="200">
         </el-table-column>
         <el-table-column prop="" label="产品方简称?" width="110" show-overflow-tooltip>
         </el-table-column>
@@ -146,7 +146,7 @@
         multipleSelection: [],
         list:[],
         total:0,
-        titleArr:['','发布产品','暂停产品','下架产品'],
+        titleArr:['','','发布产品','暂停产品','下架产品'],
         title:''
       }
     },
@@ -165,6 +165,7 @@
         this.$router.push({ name: 'product.modifyProduct', params: { productId: row.id, type:'modify' } })
       },
       async subStatus(){
+        this.statusForm.times = this.GMTToStr(this.statusForm.times);
         const data = await $http.productChangeStatus(this.statusForm)
         if(data.success){
           this.dialogVisible = false;
@@ -182,11 +183,8 @@
         console.log(this.form)
         const data = await $http.productList(this.form)
         if(data.success){
-          this.list = data.body.list;
-          this.total = data.body.parameter.totalCount;
-          this.list[0].id = 1;
-          this.list[0].productName = '产品1'
-          console.log(this.list)
+          this.list = data.datas.list;
+          this.total = data.datas.total;
         }
       },
       addProduct() {

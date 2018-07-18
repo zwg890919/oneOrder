@@ -46,7 +46,13 @@ export default {
   post(url, data, userdefined_head) {
     let headers = Object.assign({}, config.headers, userdefined_head);
     // data = qs.stringify(data)
-
+    console.log(data);
+    for(let x in data){
+      if(Array.isArray(data[x]) && data[x].length === 0){
+        data[x] = '';
+      }
+    }
+    console.log(data);
     return axios({
       method: 'post',
       url: config.api + url,

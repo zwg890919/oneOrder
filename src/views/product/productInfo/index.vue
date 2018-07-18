@@ -6,16 +6,16 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>产品编号?</td>
-              <td></td>
+              <td>产品编号</td>
+              <td>{{product.productCode}}</td>
             </tr>
             <tr>
               <td>产品名称</td>
               <td>{{product.productName}}</td>
             </tr>
             <tr>
-              <td>产品别名??</td>
-              <td></td>
+              <td>产品别名</td>
+              <td>{{product.aliasName}}</td>
             </tr>
             <tr>
               <td>产品方名称</td>
@@ -221,7 +221,6 @@ export default{
   },
   created(){
     this.getProductDetail();
-    console.log(this.$route)
   },
   methods:{
     async getProductDetail(){
@@ -229,7 +228,7 @@ export default{
         id:this.$route.params.productId
       })
       if(data.success){
-        this.product = data.body;
+        this.product = data.datas;
       }
     },
   },
