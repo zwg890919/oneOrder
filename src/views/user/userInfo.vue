@@ -1,44 +1,44 @@
 <template>
-	<div>
-    <div class="wrapper-nav">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 用户管理</el-breadcrumb-item>
-        <el-breadcrumb-item>用户详情</el-breadcrumb-item>
-      </el-breadcrumb>
+    <div>
+        <div class="wrapper-nav">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item>
+                    <i class="el-icon-menu menuicon"></i> 用户管理</el-breadcrumb-item>
+                <el-breadcrumb-item>用户详情</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <el-menu class="person-menu" @select="handleSelect" :default-active="activeName" mode="horizontal">
+            <el-menu-item index="user.userInfo.index">基本信息</el-menu-item>
+            <el-menu-item index="user.userInfo.prdRecord">进件记录</el-menu-item>
+            <el-menu-item index="user.userInfo.card">银行卡</el-menu-item>
+        </el-menu>
+        <router-view></router-view>
     </div>
-		<el-menu class="person-menu" @select="handleSelect" :default-active="activeName" mode="horizontal">
-  		<el-menu-item index="user.userInfo.index">基本信息</el-menu-item>
-      <el-menu-item index="user.userInfo.prdRecord">进件记录</el-menu-item>
-      <el-menu-item index="user.userInfo.card">银行卡</el-menu-item>
-		</el-menu>
-  	<router-view></router-view>
-	</div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        activeName: this.$route.name,
-      };
-    },
-    created() {
+    export default {
+        data() {
+            return {
+                activeName: this.$route.name,
+            };
+        },
+        created() {
 
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        this.$router.push({ name: key })
-      }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                this.$router.push({ name: key })
+            }
+        }
     }
-  }
 </script>
 <style lang="scss">
-.person-menu {
-	margin:10px;
-	li{
-    height: 50px !important;
-    line-height: 50px !important;
-	}
-}
-
+    .person-menu {
+        margin: 10px;
+        li {
+            height: 50px !important;
+            line-height: 50px !important;
+        }
+    }
 </style>

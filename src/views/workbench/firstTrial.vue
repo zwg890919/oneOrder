@@ -130,13 +130,13 @@
                         label: '下发时间',
                         type: 'date',
                         value: '',
-                        isShort: true
+                        datetype: 'daterange'
                     }, {
                         key: ['endTimeStart', 'endTimeEnd'],
                         label: '截止时间',
                         type: 'date',
                         value: '',
-                        isShort: false
+                        datetype: 'daterange'
                     }, {
                         key: 'userName',
                         label: '业务员名称',

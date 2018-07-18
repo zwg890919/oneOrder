@@ -104,7 +104,7 @@
                         value: '',
                     }, {
                         key: 'taskCode',
-                        label: '准入初评任务编号',
+                        label: '初评任务编号',
                         type: 'text',
                         value: '',
                     }, {
@@ -127,13 +127,13 @@
                         label: '下发时间',
                         type: 'date',
                         value: '',
-                        isShort: true
+                        datetype: 'daterange'
                     }, {
                         key: ['endTimeStart', 'endTimeEnd'],
                         label: '截止时间',
                         type: 'date',
                         value: '',
-                        isShort: false
+                        datetype: 'daterange'
                     }, {
                         key: 'userName',
                         label: '业务员名称',

@@ -185,13 +185,13 @@
                         label: '下发时间',
                         type: 'date',
                         value: '',
-                        isShort: true
+                        datetype: 'daterange'
                     }, {
                         key: ['endTimeStart', 'endTimeEnd'],
                         label: '放款时间',
                         type: 'date',
                         value: '',
-                        isShort: false
+                        datetype: 'daterange'
                     }
                 ]
             }
