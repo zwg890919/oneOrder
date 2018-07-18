@@ -31,4 +31,7 @@ export default {
   /********** 运营管理 **********/
   basicChannelList: { type: 'get', url: 'basic/channelList' },  // 渠道列表
   basicProductSideList: { type: 'get', url: 'basic/productSideList' },  // 产品方列表
+  basicProductSideAdd: { type: 'post', url: 'basic/productSideAdd' },  // 新增产品方
+  basicProductSideUpdate: { type: 'post', url: 'basic/productSideUpdate' },  // 更新产品方
+  basicProductSideDelete: { type: 'delete', url: 'basic/productSideDelete' },  // 删除产品方
 };

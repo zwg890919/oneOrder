@@ -23,23 +23,23 @@
             </tr>
             <tr>
               <td>融资类型</td>
-              <td>{{product.financeType}}</td>
+              <td>{{product.financeType | transFinanceType}}</td>
             </tr>
             <tr>
               <td>产品类型</td>
-              <td>{{product.productType}}</td>
+              <td>{{product.productType | transProductType}}</td>
             </tr>
             <tr>
               <td>最低申请金额（元）</td>
-              <td>{{product.minApply}}</td>
+              <td>{{product.minApply | currency}}</td>
             </tr>
             <tr>
               <td>最高申请金额（元）</td>
-              <td>{{product.maxApply}}</td>
+              <td>{{product.maxApply | currency}}</td>
             </tr>
             <tr>
               <td>累加金额（元）</td>
-              <td>{{product.sumApply}}</td>
+              <td>{{product.sumApply | currency}}</td>
             </tr>
             <tr>
               <td>还款方式?</td>
@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <td>最高进件额度</td>
-              <td>{{product.maxSold}}</td>
+              <td>{{product.maxSold | currency}}</td>
             </tr>
             <tr>
               <td>最高抵押率（成）</td>
@@ -62,12 +62,12 @@
               <td>{{product.maxApplyTime}}</td>
             </tr>
             <tr>
-              <td>累加期限（月）?</td>
-              <td></td>
+              <td>累加期限（月）</td>
+              <td>{{product.sumApplyTime}}</td>
             </tr>
             <tr>
               <td>是否托管</td>
-              <td>{{product.ifTrustees}}</td>
+              <td>{{product.ifTrustees | transIfTrustees}}</td>
             </tr>
             <tr>
               <td>代理方编码?</td>
@@ -75,23 +75,23 @@
             </tr>
             <tr>
               <td>活动标签</td>
-              <td>{{product.activitiLabel}}</td>
+              <td>{{product.activitiLabelName}}</td>
             </tr>
             <tr>
               <td>产品特色标签</td>
-              <td>{{product.productLabel}}</td>
+              <td>{{product.productLabelName}}</td>
             </tr>
             <tr>
               <td>是否支持提前还款</td>
-              <td>{{product.ifPayBackEarly}}</td>
+              <td>{{product.ifPayBackEarly | transIfPayBackEarly}}</td>
             </tr>
             <tr>
               <td>支持的城市</td>
-              <td>{{product.supportCity}}</td>
+              <td>{{product.supportCity | transCity(product.supportProvince)}}</td>
             </tr>
             <tr>
               <td>支持的省份</td>
-              <td>{{product.supportProvince}}</td>
+              <td>{{product.supportProvince | transProvince}}</td>
             </tr>
 			    </tbody>
 			  </table>
@@ -206,23 +206,27 @@
 	      </table>
 	    </el-card>
 	    <el-card class="wrapper-option">
-				<div slot="header">费用说明??</div>
-				<div>几种费用有什么区别 1、利息：按剩余本金计算，随每月剩余本金变少减少 2、费用：按贷款全额计算，不随剩余本金变化而减少 3、一次性：按贷款全额计算，在放款时一次性收取 举例：贷款1万12个月 分期还款 1%月利息（共600元），1%月费用（共1200元），1%一次性（共100元），总利息共计1900元</div>
+				<div slot="header">费用说明</div>
+        <div>{{product.description}}</div>
 	    </el-card>
 		</el-col>
 	</div>
 </template>
 <script>
+import axios from 'axios'
 export default{
   data(){
     return {
-      product:{}
+      product:{},
+      provinceList:[]
     }
   },
   created(){
     this.getProductDetail();
+    this.getCity();
   },
   methods:{
+     /* 获取产品详情	*/
     async getProductDetail(){
       const data = await $http.productDetail({
         id:this.$route.params.productId
@@ -231,6 +235,15 @@ export default{
         this.product = data.datas;
       }
     },
+    /* 获取省份城市信息	*/
+		getCity(){
+			axios.get('/static/cities.json').then((res) => {
+				if(res.data.success){
+          this.provinceList = res.data.datas;
+          console.log(this.provinceList);
+				}
+			})
+		},
   },
   
 

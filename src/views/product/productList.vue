@@ -17,7 +17,8 @@
             </el-col>
             <el-col :span="6">
               <el-form-item label="产品方简称" prop="productOwnId">
-                <el-select v-model="form.productOwnId" placeholder="请选择产品类型">
+                <el-select v-model="form.productOwnId" placeholder="请选择产品方">
+                  <el-option v-for="(x, index) in productSideList" :key="index" :label="x.productOwnShortName" :value="x.id"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -26,28 +27,27 @@
                 <el-select v-model="form.status">
                   <el-option label="未发布" value="1"></el-option>
                   <el-option label="已发布" value="2"></el-option>
-                  <el-option label="已下架" value="3"></el-option>
-                  <el-option label="已暂停" value="4"></el-option>
+                  <el-option label="已下架" value="4"></el-option>
+                  <el-option label="已暂停" value="3"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="产品类型??" prop="status">
+              <el-form-item label="产品类型" prop="status">
                 <el-select v-model="form.status">
-                  <el-option label="全部" value="shanghai"></el-option>
-                  <el-option label="是" value="beijing"></el-option>
-                  <el-option label="否" value="beijing"></el-option>
+                  <el-option label="全部" value="0"></el-option>
+                  <el-option label="企业经营贷款" value="1"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
-            <el-col :span="6" prop="status">
-              <el-form-item label="融资类型??">
+            <el-col :span="6" prop="financeType">
+              <el-form-item label="融资类型">
                 <el-select  v-model="form.status">
-                  <el-option label="全部" value="shanghai"></el-option>
-                  <el-option label="抵押" value="beijing"></el-option>
-                  <el-option label="信贷" value="beijing"></el-option>
+                  <el-option label="全部" value="0"></el-option>
+                  <el-option label="抵押" value="1"></el-option>
+                  <el-option label="信贷" value="2"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -147,13 +147,22 @@
         list:[],
         total:0,
         titleArr:['','','发布产品','暂停产品','下架产品'],
-        title:''
+        title:'',
+        productSideList:[]
       }
     },
     created(){
+      this.getProductSide();
       this.getProductList();
     },
     methods: {
+      /* 获取产品方信息	*/
+      async getProductSide(){
+        const data = await $http.basicProductSideListAll();
+        if(data.success){
+          this.productSideList = data.datas;
+        }
+      },
       resetForm() {
         this.$refs['form'].resetFields();
         this.getProductList();

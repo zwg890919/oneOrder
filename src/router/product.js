@@ -27,7 +27,7 @@ export default {
   }, {
     path: 'modifyProduct/:productId/:type',
     name: 'product.modifyProduct',
-    component: () => import('@/views/product/modifyProduct.vue'),
+    component: () => import('@/views/product/addProduct.vue'),
     hidden:true,
     meta: {
       title: '修改产品',

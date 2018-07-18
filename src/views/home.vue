@@ -71,11 +71,10 @@ export default {
   methods: {
    	// 数据字典
 		async getDic(){
-			this.$store
-        .dispatch("getDictionary")
-        .then(() => {
-        })
-        .catch(() => {});
+      if(!localStorage.activiti){
+        this.$store.dispatch("getDictionary");
+        this.$store.dispatch("getProvinceList");
+      }
 		},
   }
 };

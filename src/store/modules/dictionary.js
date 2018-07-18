@@ -1,3 +1,4 @@
+import axios from 'axios'
 const dictionary = {
   state: {
     dictionary: {},
@@ -5,13 +6,17 @@ const dictionary = {
   mutations: {
     SET_DIC: (state, data) => {
       // 活动标签
-      sessionStorage.setItem('activiti',JSON.stringify(data.activiti));
+      localStorage.setItem('activiti',JSON.stringify(data.activiti));
       // 费用类型
-      sessionStorage.setItem('cost_type',JSON.stringify(data.cost_type));
+      localStorage.setItem('cost_type',JSON.stringify(data.cost_type));
       // 还款方式
-      sessionStorage.setItem('repay_mode',JSON.stringify(data.repay_mode));
+      localStorage.setItem('repay_mode',JSON.stringify(data.repay_mode));
       // 产品特色标签
-      sessionStorage.setItem('special',JSON.stringify(data.activiti));
+      localStorage.setItem('special',JSON.stringify(data.activiti));
+    },
+    SET_PRO: (state, data) => {
+      // 省市信息
+      localStorage.setItem('provinceList',JSON.stringify(data));
     },
   },
   actions: {
@@ -20,6 +25,13 @@ const dictionary = {
       if(data.success){
         commit('SET_DIC',data.datas);
       }
+    },
+    getProvinceList({ commit }) {
+      axios.get('/static/cities.json').then((res) => {
+				if(res.data.success){
+          commit('SET_PRO',res.data.datas);
+				}
+			})
     }
   }
 }

@@ -3,7 +3,7 @@
 		<div class="wrapper-nav">
 			<el-breadcrumb separator-class="el-icon-arrow-right">
 				<el-breadcrumb-item><i class="el-icon-menu menuicon"></i> 产品管理</el-breadcrumb-item>
-				<el-breadcrumb-item>新建产品</el-breadcrumb-item>
+				<el-breadcrumb-item>{{bread}}产品</el-breadcrumb-item>
 			</el-breadcrumb>
 		</div>
 		<el-card class="wrapper-option">
@@ -203,7 +203,7 @@
 				    	<el-button type="primary" @click="addQues">+添加其他问题</el-button>
 					</el-form-item>
 					<el-form-item label="">
-						<el-button type="primary" style="width: 100%;" @click="submitForm('form')">创建产品</el-button>
+						<el-button type="primary" style="width: 100%;" @click="submitForm('form')">{{bread}}产品</el-button>
 					</el-form-item>
 				</el-col>
 			</el-form>
@@ -212,7 +212,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -265,6 +264,7 @@ export default {
 				label:'1',
 				value:'企业经营贷款'
 			}],
+			bread:'新建',
 			rules: {
 				productSideId: [
 					{ required: true, message: '请选择产品方', trigger: 'change' },
@@ -288,26 +288,34 @@ export default {
 
 	},
 	created(){
+		this.getRouteInfo();
 		this.getProductSide();
 		this.getCity();
 		this.setDictionary();
 	},
   methods: {
+		async getRouteInfo(){
+			if(this.$route.params.type == 'modify' || this.$route.params.type == 'copy'){
+				this.bread = this.$route.params.type == 'modify' ? '修改' : '拷贝';
+				const data = await $http.productDetail({
+					id:this.$route.params.productId
+				})
+				if(data.success){
+					this.form = data.datas;
+				}
+			}
+		},
 		/* 获取数字字典 */
 		setDictionary(){
-			if(sessionStorage.special && sessionStorage.activiti && sessionStorage.cost_type){
-				this.special = JSON.parse(sessionStorage.special);
-				this.activiti = JSON.parse(sessionStorage.activiti);
-				this.costType = JSON.parse(sessionStorage.cost_type)
+			if(localStorage.special && localStorage.activiti && localStorage.cost_type){
+				this.special = JSON.parse(localStorage.special);
+				this.activiti = JSON.parse(localStorage.activiti);
+				this.costType = JSON.parse(localStorage.cost_type)
 			}
 		},
 		/* 获取省份城市信息	*/
 		getCity(){
-			axios.get('/static/cities.json').then((res) => {
-				if(res.data.success){
-					this.provinceList = res.data.datas;
-				}
-			})
+			this.provinceList = JSON.parse(localStorage.provinceList);
 		},
 		/* 获取城市信息	*/
 		provinceChange(value){
@@ -321,7 +329,7 @@ export default {
 		async getProductSide(){
 			const data = await $http.basicProductSideListAll();
 			if(data.success){
-				this.productSideList = data.datas.body;
+				this.productSideList = data.datas;
 			}
 		},
 		/* 添加申请资料 */
@@ -352,14 +360,13 @@ export default {
 		},
 		/* 提交表单 */
 		submitForm(formName) {
-			this.addProduct();
-			// this.$refs[formName].validate((valid) => {
-			// 	if (valid) {
-			// 		this.addProduct();
-			// 	} else {
-			// 		return false;
-			// 	}
-			// });
+			this.$refs[formName].validate((valid) => {
+				if (valid) {
+					this.addProduct();
+				} else {
+					return false;
+				}
+			});
 		},
 		/* 获取labelName */
 		getLabelName(){
@@ -397,7 +404,15 @@ export default {
 		/* 新增产品 */
 		async addProduct(){
 			this.getLabelName();
-			const data = await $http.productAdd(this.form)
+			let data;
+			// 修改
+			if(this.$route.params.type == 'modify'){
+				data = await $http.productUpdate(this.form)
+			// 拷贝或新增
+			}else{
+				data = await $http.productAdd(this.form)
+			}
+			// const data = await $http.productAdd(this.form)
 			this.form.productLabel = [];
 			this.form.activitiLabel = [];
 			if(data.success){

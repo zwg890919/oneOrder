@@ -201,7 +201,7 @@
 				    	<el-button type="primary" @click="addQues">+添加其他问题</el-button>
 					</el-form-item>
 					<el-form-item label="">
-						<el-button type="primary" style="width: 100%;" @click="submitForm('form')">创建产品</el-button>
+						<el-button type="primary" style="width: 100%;" @click="submitForm('form')">{{bread}}产品</el-button>
 					</el-form-item>
 				</el-col>
 			</el-form>

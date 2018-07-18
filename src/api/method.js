@@ -87,8 +87,6 @@ export default {
  */
   delete(url, data, userdefined_head) {
     let headers = Object.assign({}, config.headers, userdefined_head);
-
-    data = qs.stringify(data)
     return axios({
       method: 'delete',
       url: config.api + url,
