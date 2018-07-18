@@ -10,7 +10,7 @@ import axios from 'axios'
 import proxy from './api';
 import * as filterList from './assets/js/filter'
 import Vue2Filters from 'vue2-filters'
-
+import util from '@/assets/js/utils'
 import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss'
@@ -23,7 +23,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI, { size: 'medium', zIndex: 3000 });
 Vue.use(Vue2Filters)
-
+Vue.use(util);
 Object.keys(filterList).forEach(key => {
   Vue.filter(key, filterList[key])
 });

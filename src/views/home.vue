@@ -58,9 +58,29 @@
     </el-row>
   </div>
 </template>
-<style lang="scss" scoped>
-  .home-container {
+<script>
+export default {
+  data() {
+    return {
+     
+    };
+  },
+  created() {
+    this.getDic();
+  },
+  methods: {
+   	// 数据字典
+		async getDic(){
+			this.$store
+        .dispatch("getDictionary")
+        .then(() => {
+        })
+        .catch(() => {});
+		},
   }
+};
+</script>
+<style lang="scss" scoped>
   .user-info {
       display: -ms-flexbox;
       display: flex;

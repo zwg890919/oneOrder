@@ -52,9 +52,9 @@
 						<el-col :span="6">
 							<el-form-item label="是否有进件" prop="hasLoanApplicationFlag">
 						    	<el-select v-model="form.hasLoanApplicationFlag">
-							    	<el-option label="全部" value=""></el-option>
-							    	<el-option label="是" value="0"></el-option>
-							    	<el-option label="否" value="1"></el-option>
+							    	<el-option label="全部" value="0"></el-option>
+							    	<el-option label="是" value="1"></el-option>
+							    	<el-option label="否" value="2"></el-option>
 							    </el-select>
 							</el-form-item>
 						</el-col>
@@ -88,95 +88,30 @@
 				<el-button @click="addUser" type="primary" size="small">新建用户</el-button>
 				<el-button @click="initPassword" size="small">初始化登录密码</el-button>
 			</div>
-			<el-table
-			ref="multipleTable"
-			:data="list"
-			tooltip-effect="dark"
-			style="width: 100%"
-			@selection-change="handleSelectionChange">
-				<el-table-column
-				  type="selection"
-				  width="55">
-				</el-table-column>
-				<el-table-column
-				  label="用户编号"
-				  width="150"
-				  >
+			<el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+				<el-table-column type="selection" width="55"></el-table-column>
+				<el-table-column label="用户编号" width="150">
 				  <template slot-scope="scope">
 		        <a class="link-color" @click="goUser(scope.$index, scope.row)">{{ scope.row.salesmanCode }}</a>
 		      </template>
 				</el-table-column>
-				<el-table-column
-				  prop="salesmanName"
-				  label="用户姓名"
-				  width="110">
-				</el-table-column>
-				<el-table-column
-				  prop="phoneNo"
-				  label="手机号码"
-				 	width="110"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="idNo"
-				  label="身份证号"
-				  width="170"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="createTime"
-				  label="注册时间"
-				  width="170"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="sumLoanAppCount"
-				  label="累计进件笔数"
-				  width="120"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="sumInProgressCount"
-				  label="审核中笔数"
-				  width="100"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="sumFailLoanCount"
-				  label="累计拒件笔数"
-				  width="120"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="email"
-				  label="电子邮箱"
-				  width="170"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="loginCount"
-				  label="登录次数"
-				  width="120"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  prop="channelName"
-				  label="渠道"
-				  width="120"
-				  show-overflow-tooltip>
-				</el-table-column>
-				<el-table-column
-				  label="操作"
-				  show-overflow-tooltip>
+				<el-table-column prop="salesmanName" label="用户姓名" width="110"></el-table-column>
+				<el-table-column prop="phoneNo" label="手机号码" width="110" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="idNo" label="身份证号" width="170" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="createTime" label="注册时间" width="170" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="sumLoanAppCount" label="累计进件笔数" width="120" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="sumInProgressCount" label="审核中笔数" width="100" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="sumFailLoanCount" label="累计拒件笔数" width="120" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="email" label="电子邮箱" width="170" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="loginCount" label="登录次数" width="120" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="channelName" label="渠道" width="120" show-overflow-tooltip></el-table-column>
+				<el-table-column label="操作" show-overflow-tooltip>
 				  <template slot-scope="scope">
 		        <el-button type="text" size="small" @click="modifyUser(scope.$index, scope.row)">修改</el-button>
 		      </template>
 				</el-table-column>
 			</el-table>
-			<el-pagination
-        layout="prev, pager, next"
-        :total="total"
-        @current-change="pageChange">
+			<el-pagination layout="prev, pager, next" :total="total" @current-change="pageChange">
       </el-pagination>
 		</el-card>
 	</div>
@@ -185,7 +120,7 @@
   export default {
     data() {
       return {
-				timeRange:'',
+				timeRange:[],
 				multipleSelection: [],
 				form:{
 					phoneNo:'',
@@ -194,10 +129,10 @@
 					cardNo:'',
 					salesmanCode:'',
 					loanApplicationCode:'',
-					channelId:1,
+					channelId:'',
 					hasLoanApplicationFlag:'',
-					registerBeginDate:'2017-10-10',
-					registerEndDate:'2017-10-11',
+					registerBeginDate:'',
+					registerEndDate:'',
 					currentPage:1,
 					pageSize:10,
 				},
@@ -218,7 +153,9 @@
         this.getSalesman();
       },
 			async getSalesman(){
-				const data = await $http.salesmanList(this.form)
+				this.form.registerBeginDate = this.GMTToStr(this.timeRange[0]);
+				this.form.registerEndDate = this.GMTToStr(this.timeRange[1]);
+				const data = await $http.salesmanList(this.form) 
         if(data.success){
 					this.list = data.datas.result;
 					this.list[0].salesmanCode = '123';

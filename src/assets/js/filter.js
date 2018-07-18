@@ -11,7 +11,7 @@ export function toFixed(num, point) {
   return num.toFixed(point);
 }
 
-export function transferTime(val, format = "yyyy-MM-dd hh:mm:ss") {
+export function transferTime(val, format = "yyyy-MM-dd") {
   isNumber(val) && (val = new Date(val));
   if (!isDate(val))
       return "";
