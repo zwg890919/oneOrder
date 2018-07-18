@@ -27,7 +27,7 @@ export default {
       hidden: true,
       component: () => import('@/views/workbench/firstTrialApply.vue'),
       meta: {
-        title: '操作复审',
+        title: '复审处理',
       },
     }, {
       path: 'firstTrialDetail',
@@ -94,7 +94,7 @@ export default {
       hidden: true,
       component: () => import('@/views/workbench/preliminaryApply.vue'),
       meta: {
-        title: '准入初评',
+        title: '初评处理',
       },
     }, {
       path: 'preliminaryDetail',
