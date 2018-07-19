@@ -42,8 +42,8 @@
               <td>{{product.sumApply | currency}}</td>
             </tr>
             <tr>
-              <td>还款方式?</td>
-              <td></td>
+              <td>还款方式</td>
+              <td>{{repayModeName}}</td>
             </tr>
             <tr>
               <td>最高进件额度</td>
@@ -70,8 +70,8 @@
               <td>{{product.ifTrustees | transIfTrustees}}</td>
             </tr>
             <tr>
-              <td>代理方编码?</td>
-              <td></td>
+              <td>代理方编码</td>
+              <td>{{product.channelCode}}</td>
             </tr>
             <tr>
               <td>活动标签</td>
@@ -101,24 +101,24 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>产品状态??</td>
-              <td></td>
+              <td>产品状态</td>
+              <td>{{product.status | transProductStatus}}</td>
             </tr>
             <tr>
-              <td>发布时间??</td>
-              <td></td>
+              <td>发布时间</td>
+              <td>{{product.putawayTime}}</td>
             </tr>
             <tr>
-              <td>下架时间??</td>
-              <td></td>
+              <td>下架时间</td>
+              <td>{{product.soldoutTime }}</td>
             </tr>
             <tr>
-              <td>暂停时间??</td>
-              <td></td>
+              <td>暂停时间</td>
+              <td>{{product.suspendTime }}</td>
             </tr>
             <tr>
-              <td>最后操作人??</td>
-              <td></td>
+              <td>最后操作人</td>
+              <td>{{product.updateBy }}</td>
             </tr>
 	        </tbody>
 	      </table>
@@ -130,11 +130,9 @@
 				<table class="infoTable" cellspacing="0" cellpadding="0" border="0">
 					<tbody>
             <tr>
-              <td>标题</td>
               <td>条件</td>
             </tr>
             <tr v-for="(x, index) in product.productCond" :key="index">
-              <td>{{x.title}}</td>
               <td>{{x.condition}}</td>
             </tr>
 	        </tbody>
@@ -172,8 +170,8 @@
               <td>问题</td>
               <td>答案</td>
             </tr>
-            <tr v-for="(x, index) in product.productQuestionDTOList" :key="index">
-              <td>{{index}}</td>
+            <tr v-for="(x, index) in product.productQuestionVOList" :key="index">
+              <td>{{index + 1}}</td>
               <td>{{x.answer}}</td>
               <td>{{x.questionl}}</td>
             </tr>
@@ -193,12 +191,12 @@
               <td>固定金额</td>
               <td>收费规则</td>
             </tr>
-            <tr v-for="(x, index) in product.productRateDtoList" :key="index">
-              <td>{{index}}</td>
-              <td>{{x.productRateType}}</td>
+            <tr v-for="(x, index) in product.productRateVOList" :key="index">
+              <td>{{index + 1}}</td>
+              <td>{{x.typeName}}</td>
               <td>{{x.productRateTerm}}</td>
-              <td>{{x.repayMode}}</td>
-              <td>{{x.description}}%</td>
+              <td>{{x.repayModeName}}</td>
+              <td>{{x.minRate}} ~ {{x.maxRate}}</td>
               <td>{{x.fixedMoney}}</td>
               <td>{{x.chargeRole}}</td>
             </tr>
@@ -218,7 +216,8 @@ export default{
   data(){
     return {
       product:{},
-      provinceList:[]
+      provinceList:[],
+      repayModeName:''
     }
   },
   created(){
@@ -233,16 +232,18 @@ export default{
       })
       if(data.success){
         this.product = data.datas;
+        for(let x in this.product.productRateVOList){
+          if(this.product.productRateVOList[x].repayModeName){
+            this.repayModeName = this.product.productRateVOList[x].repayModeName;
+          }
+        }
       }
     },
     /* 获取省份城市信息	*/
 		getCity(){
-			axios.get('/static/cities.json').then((res) => {
-				if(res.data.success){
-          this.provinceList = res.data.datas;
-          console.log(this.provinceList);
-				}
-			})
+      if(localStorage.provinceList){
+        this.provinceList = JSON.parse(localStorage.provinceList)      
+      }
 		},
   },
   

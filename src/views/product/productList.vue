@@ -33,8 +33,8 @@
               </el-form-item>
             </el-col>
             <el-col :span="6">
-              <el-form-item label="产品类型" prop="status">
-                <el-select v-model="form.status">
+              <el-form-item label="产品类型" prop="productType">
+                <el-select v-model="form.productType">
                   <el-option label="全部" value="0"></el-option>
                   <el-option label="企业经营贷款" value="1"></el-option>
                 </el-select>
@@ -80,15 +80,27 @@
         </el-table-column>
         <el-table-column prop="productCode" label="产品编号" width="200">
         </el-table-column>
-        <el-table-column prop="" label="产品方简称?" width="110" show-overflow-tooltip>
+        <el-table-column prop="productOwnShortName" label="产品方简称" width="110" show-overflow-tooltip>
         </el-table-column>
         <el-table-column prop="financeType" label="融资类型" width="80" show-overflow-tooltip>
+          <template slot-scope="scope">
+            {{ scope.row.financeType == 1 ? '抵押':'信贷' }}
+          </template>
         </el-table-column>
-        <el-table-column prop="productType" label="产品类型" width="80" show-overflow-tooltip>
+        <el-table-column label="产品类型" width="80" show-overflow-tooltip>
+          <template slot-scope="scope">
+            {{ scope.row.productType == 1 ? '企业经营贷款':'' }}
+          </template>
         </el-table-column>
-        <el-table-column prop="minAlppy" label="最低申请金额" width="120" show-overflow-tooltip>
+        <el-table-column label="最低申请金额" width="120" show-overflow-tooltip>
+          <template slot-scope="scope">
+            {{ scope.row.minApply | currency }}
+          </template>
         </el-table-column>
-        <el-table-column prop="maxApply" label="最高申请金额" width="120" show-overflow-tooltip>
+        <el-table-column label="最高申请金额" width="120" show-overflow-tooltip>
+          <template slot-scope="scope">
+            {{ scope.row.maxApply | currency }}
+          </template>
         </el-table-column>
         <el-table-column prop="" label="借款期限区间???" width="110" show-overflow-tooltip>
         </el-table-column>
@@ -98,7 +110,10 @@
         </el-table-column>
         <el-table-column prop="" label="累计放款笔数???" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="" label="产品状态??" width="80" show-overflow-tooltip>
+        <el-table-column label="产品状态" width="80" show-overflow-tooltip>
+          <template slot-scope="scope">
+            {{ scope.row.status | transProductStatus }}
+          </template>
         </el-table-column>
         <el-table-column label="操作" show-overflow-tooltip>
           <template slot-scope="scope">
@@ -136,7 +151,8 @@
           pageSize:10,
           productName:'',
           productOwnId:'',
-          status:''
+          status:'',
+          productType:''
         },
         statusForm: {
           id:'',
@@ -182,6 +198,7 @@
             title: '提示',
             message: '操作成功'
           });
+          this.getProductList();
         }
       },
       pageChange(page){
@@ -189,7 +206,6 @@
         this.getProductList();
       },
       async getProductList(){
-        console.log(this.form)
         const data = await $http.productList(this.form)
         if(data.success){
           this.list = data.datas.list;

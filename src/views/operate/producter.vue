@@ -97,6 +97,7 @@
 			<el-pagination layout="prev, pager, next" :total="total" @current-change="pageChange">
       </el-pagination>
 		</el-card>
+			<!-- @close="closeDialog" -->
 		<el-dialog
 		  :visible.sync="dialogVisible"
 			@close="closeDialog"
@@ -117,7 +118,7 @@
 		    </el-form-item>
 		  </el-form>
 		  <span slot="footer" class="dialog-footer">
-		    <el-button @click="dialogVisible = false">取 消</el-button>
+		    <el-button @click="cancleSubmit">取 消</el-button>
 		    <el-button type="primary"  @click="submitForm('form')">确 定</el-button>
 		  </span>
 		</el-dialog>
@@ -150,36 +151,27 @@
 				title:'',
 				rules: {
 					productSideName: [
-						{ required: true, message: '请输入产品方名称', trigger: 'change' },
+						{ required: true, message: '请输入产品方名称', trigger: 'blur' },
 					],
 					productOwnShortName: [
-						{ required: true, message: '请输入产品方简称', trigger: 'change' }
+						{ required: true, message: '请输入产品方简称', trigger: 'blur' }
 					],
 					fryPay: [
-						{ required: true, message: '请选择是否受托支付', trigger: 'change' }
+						{ required: true, message: '请选择是否受托支付', trigger: 'blur' }
 					],
 					payAccount: [
-						{ required: true, message: '请输入受托支付账户', trigger: 'change' }
+						{ required: true, message: '请输入受托支付账户', trigger: 'blur' }
 					],
 				}
       }
-		},
-		watch:{
-			// dialogVisible(val){
-			// 	if(!val){
-			// 		console.log(val)
-			// 		this.$refs['form'].resetFields();
-			// 	}
-			// }
 		},
 		created(){
 			this.getList();
 		},
     methods: {
 			closeDialog(){
+				// this.form = {}
 				this.$refs['form'].resetFields();
-				// this.form = ''
-				console.log('closeDialog')
 			},
 			pageChange(page){
         this.search.currentPage = page;
@@ -251,13 +243,11 @@
 			/* 点击修改产品方按钮 */
 			updateOperate(){
 				if (this.multipleSelection.length === 1) {
-					this.form.id = this.multipleSelection[0].id
-					this.form.productSideName = this.multipleSelection[0].productSideName
-					this.form.productOwnShortName = this.multipleSelection[0].productOwnShortName
-					this.form.fryPay = this.multipleSelection[0].fryPay
-					this.form.payAccount = this.multipleSelection[0].payAccount
 					this.title = '修改产品方';
 					this.dialogVisible = true;
+					this.$nextTick(() => {
+            this.form = Object.assign({}, this.multipleSelection[0])
+          })
         } else if(this.multipleSelection.length > 1) {
           this.$message({
             message: '只能操作一个产品方',
@@ -294,7 +284,11 @@
 						this.getList();
 					}
         }
-			}
+			},
+			cancleSubmit() {
+					this.dialogVisible = false
+					this.$refs['form'].resetFields()
+			},
     }
   }
 </script>
