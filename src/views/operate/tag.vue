@@ -18,7 +18,7 @@
                 </el-table-column>
                 <el-table-column label="序号" width="55" type="index">
                 </el-table-column>
-                <el-table-column label="创建时间" prop="createTime">
+                <el-table-column label="创建时间" prop="createTimeStr">
                 </el-table-column>
                 <el-table-column label="标签名称" prop="tagName">
                 </el-table-column>
@@ -31,7 +31,7 @@
                 </el-table-column>
             </el-table>
             <div class="text-center pd10">
-                <el-pagination v-if="searchForm.total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.pageNum" :page-sizes="[10, 20, 50, 100, 500]" :page-size="10" layout="total, prev, pager, next,sizes" :total="searchForm.total">
+                <el-pagination v-if="searchForm.total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.pageNum" :page-sizes="[ 20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="searchForm.total">
                 </el-pagination>
             </div>
         </el-card>
@@ -89,8 +89,7 @@
                     this.list = data.datas.list || []
                     this.searchForm = {
                         total: data.datas.total,
-                        pageNum: data.datas.pageNum,
-                        size: data.datas.size
+                        pageNum: data.datas.pageNum
                     }
                 }
             },

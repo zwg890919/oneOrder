@@ -28,13 +28,13 @@
                         {{scope.row.status | statusFil}}
                     </template>
                 </el-table-column>
-                <el-table-column label="创建时间" prop="createTime">
+                <el-table-column label="创建时间" prop="createTimeStr">
                 </el-table-column>
                 <el-table-column label="更新人" prop="updateBy">
                 </el-table-column>
             </el-table>
             <div class="text-center pd10">
-                <el-pagination v-if="searchForm.total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.pageNum" :page-sizes="[10, 20, 50, 100, 500]" :page-size="10" layout="total, prev, pager, next,sizes" :total="searchForm.total">
+                <el-pagination v-if="searchForm.total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.pageNum" :page-sizes="[20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="searchForm.total">
                 </el-pagination>
             </div>
         </el-card>
@@ -76,7 +76,8 @@
                         { required: true, message: '请选择银行状态', trigger: 'change' }
                     ]
                 },
-                searchForm: {},
+                searchForm: {
+                },
                 bankList: [],
                 multipleSelection: []
             }
@@ -93,8 +94,7 @@
                     this.loading = false
                     this.searchForm = {
                         total: data.datas.total,
-                        pageNum: data.datas.pageNum,
-                        size: data.datas.size
+                        pageNum: data.datas.pageNum
                     }
                 }
             },
