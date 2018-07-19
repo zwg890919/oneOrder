@@ -14,7 +14,7 @@ module.exports = {
         "/api": {
             // target: "http://192.168.34.26:8888",
             // target: "http://192.168.34.25:8888",
-            target: "http://192.168.34.25:7778",
+            target: "http://192.168.34.25:8888",
             changeOrigin: true,
             pathRewrite: {
                 "^/api": "/"
