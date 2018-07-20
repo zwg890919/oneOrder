@@ -58,9 +58,27 @@ export function transIfPayBackEarly(val) {
     return val == 1 ? '是' : '否'
 }
 
+/* 转换产品状态 */
+export function transProductStatus(val){
+    let map = {
+        '1':'未发布',
+        '2':'已发布',
+        '3':'已暂停',
+        '4':'已下架'
+    }
+    return map[val];
+}
+
+/* 转换费用类型 */
+export function transProductRateType(val){
+    // let costType = JSON.parse(localStorage.cost_type);
+    // console.log(costType)
+    // return '2222';
+}
+
+
 /* 转换省 */
 export function transProvince(val){
-    console.log('va;:'+val)
     let provinceList = JSON.parse(localStorage.provinceList);
     for(let x in provinceList){
         if(provinceList[x].areaId == val){

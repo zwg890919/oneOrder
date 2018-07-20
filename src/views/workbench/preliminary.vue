@@ -88,8 +88,8 @@
                 searchForm:{
                     pagesize: 20,
                     currentPage: 1,
-                    nodeType:0,
-                    taskStatus:0
+                    nodesType:2,
+                    taskStatus:1
                 },
                 loading: false,
             }
@@ -164,8 +164,8 @@
                 const data = await $http.backuplist(form)
                 if (data.success) {
                     this.loading = false;
-                    this.tableData = data.body.list;
-                    this.searchForm = data.body.parameter;
+                    this.tableData = data.datas.list;
+                    // this.searchForm = data.body.parameter;
                 }
             },
             changeStatus(tab) {
