@@ -23,15 +23,15 @@
                         </tr>
                         <tr>
                             <td>性别</td>
-                            <td>{{user.gender}}</td>
+                            <td>{{user.gender | sexFil}}</td>
                         </tr>
                         <tr>
-                            <td>年龄???</td>
-                            <td>{{user.salesmanCode}}</td>
+                            <td>年龄</td>
+                            <td>{{user.age}}</td>
                         </tr>
                         <tr>
-                            <td>手机号码归属地???</td>
-                            <td>{{user.salesmanCode}}</td>
+                            <td>手机号码归属地</td>
+                            <td>{{user.phoneRegisterDistrict}}</td>
                         </tr>
                         <tr>
                             <td>职业</td>
@@ -53,34 +53,34 @@
                 <table class="infoTable" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                         <tr>
-                            <td>用户类型???</td>
-                            <td>{{user.salesmanCode}}</td>
+                            <td>用户类型</td>
+                            <td>{{user.userType | useTypeFil}}</td>
                         </tr>
                         <tr>
                             <td>注册时间</td>
                             <td>{{user.registerDate}}</td>
                         </tr>
                         <tr>
-                            <td>注册来源???</td>
+                            <td>注册来源</td>
                             <td>{{user.salesmanCode}}</td>
                         </tr>
                         <tr>
                             <td>渠道</td>
                             <td>{{user.channelName}}
-                                <el-button class="table-button" size="mini" type="primary" @click="dialogVisible = true">修改</el-button>
+                                <el-button class="table-button" size="mini" type="primary" @click="modifyUserChannel">修改</el-button>
                             </td>
                         </tr>
                         <tr>
-                            <td>注册方式???</td>
-                            <td>{{user.salesmanCode}}</td>
+                            <td>注册方式</td>
+                            <td>{{user.registerMode | registerFil}}</td>
                         </tr>
                         <tr>
-                            <td>版本???</td>
-                            <td>{{user.salesmanCode}}</td>
+                            <td>版本</td>
+                            <td>{{user.appVersion}}</td>
                         </tr>
                         <tr>
-                            <td>平台???</td>
-                            <td>{{user.salesmanCode}}</td>
+                            <td>平台</td>
+                            <td>{{user.registerTerminal}}</td>
                         </tr>
                         <tr>
                             <td>备注</td>
@@ -104,7 +104,7 @@
                 <table class="infoTable" cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                         <tr>
-                            <td>总计???</td>
+                            <td>总计</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -175,6 +175,7 @@
                         message: '操作成功'
                     });
                 }
+                this.getSalesman()
             },
             async updateChannel() {
                 const data = await $http.salesmanConfirmchannelupdate({
@@ -196,8 +197,23 @@
                 })
                 if (data.success) {
                     this.user = data.datas;
+                    this.channelId = data.datas.channelId
                 }
             },
+            modifyUserChannel(){
+                this.dialogVisible = true
+            }
+        },
+        filters:{
+            registerFil(val){
+                return val == 1 ? '前台注册':'后台注册'
+            },
+            useTypeFil(val){
+                return val == 1 ? '业务员' : '办事员'
+            },
+            sexFil(val){
+                return val == 1 ? '男' : '女'
+            }
         }
     }
 </script>

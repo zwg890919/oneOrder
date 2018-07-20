@@ -14,32 +14,32 @@
                 <el-button @click="initPassword" size="small">初始化登录密码</el-button>
             </div>
             <el-table ref="multipleTable" v-loading="loading" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-                <el-table-column type="selection" width="55">
+                <el-table-column type="selection" min-width="55">
                 </el-table-column>
-                <el-table-column label="用户编号" width="150">
+                <el-table-column label="用户编号" min-width="200">
                     <template slot-scope="scope">
                         <a class="link-color" @click="goUser(scope.$index, scope.row)">{{ scope.row.salesmanCode }}</a>
                     </template>
                 </el-table-column>
-                <el-table-column prop="salesmanName" label="用户姓名" width="110">
+                <el-table-column prop="salesmanName" label="用户姓名" min-width="110">
                 </el-table-column>
-                <el-table-column prop="phoneNo" label="手机号码" width="110" show-overflow-tooltip>
+                <el-table-column prop="phoneNo" label="手机号码" min-width="110" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="idNo" label="身份证号" width="170" show-overflow-tooltip>
+                <el-table-column prop="idNo" label="身份证号" min-width="170" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="registerDate" label="注册时间" width="170" show-overflow-tooltip>
+                <el-table-column prop="registerDateStr" label="注册时间" min-width="170" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="sumLoanAppCount" label="累计进件笔数" width="120" show-overflow-tooltip>
+                <el-table-column prop="sumLoanAppCount" label="累计进件笔数" min-width="120" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="sumInProgressCount" label="审核中笔数" width="100" show-overflow-tooltip>
+                <el-table-column prop="sumInProgressCount" label="审核中笔数" min-width="100" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="sumFailLoanCount" label="累计拒件笔数" width="120" show-overflow-tooltip>
+                <el-table-column prop="sumFailLoanCount" label="累计拒件笔数" min-width="120" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="email" label="电子邮箱" width="170" show-overflow-tooltip>
+                <el-table-column prop="email" label="电子邮箱" min-width="170" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="loginCount" label="登录次数" width="120" show-overflow-tooltip>
+                <el-table-column prop="loginTotalTimes" label="登录次数" min-width="120" show-overflow-tooltip>
                 </el-table-column>
-                <el-table-column prop="channelName" label="渠道" width="120" show-overflow-tooltip>
+                <el-table-column prop="channelName" label="渠道" min-width="120" show-overflow-tooltip>
                 </el-table-column>
                 <el-table-column label="操作" show-overflow-tooltip>
                     <template slot-scope="scope">
@@ -48,7 +48,7 @@
                 </el-table-column>
             </el-table>
             <div class="text-center pd10">
-                <el-pagination v-if="searchForm.total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.pageNum" :page-sizes="[10, 20, 50, 100, 500]" :page-size="10" layout="total, prev, pager, next,sizes" :total="searchForm.total">
+                <el-pagination v-if="searchForm.total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.pageNum" :page-sizes="[20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="searchForm.total">
                 </el-pagination>
             </div>
         </el-card>
@@ -158,15 +158,12 @@
                     this.$refs.searchForm ? this.$refs.searchForm.getFormData() : {}
                 );
                 const data = await $http.salesmanList(form)
+                this.loading = false;
                 if (data.success) {
-                    this.loading = false;
                     this.list = data.datas.list;
-                    this.list[0].salesmanCode = '123';
-                    this.list[0].id = 1;
                     this.searchForm = {
                         total: data.datas.total,
                         pageNum: data.datas.pageNum,
-                        size: data.datas.size
                     }
                 }
             },
@@ -213,11 +210,11 @@
                 }
             },
             goUser(index, row) {
-                this.$router.push({ name: 'user.userInfo.index', params: { userId: row.id } })
+                this.$router.push({ name: 'user.userInfo.index', params: { userId: row.salesmanId } })
             },
             modifyUser(index, row) {
                 row.id = 1;
-                this.$router.push({ name: 'user.modifyUser', params: { userId: row.id } })
+                this.$router.push({ name: 'user.modifyUser', params: { userId: row.salesmanId } })
             },
         }
     }
