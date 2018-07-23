@@ -46,7 +46,8 @@ export default {
     basicProductSideUpdate: { type: 'post', url: 'basic/productSideUpdate' },  // 更新产品方
     basicProductSideDelete: { type: 'delete', url: 'basic/productSideDelete' },  // 删除产品方
     /********** 工作台 ***********/
-    backuplist: { type: 'get', url: 'task/backuplist' },
-    initialDetailBefore: { type: 'get', url: 'task/initialDetailBefore' },
-    initialDetailAfter: { type: 'get', url: 'task/initialDetailAfter' },
+    backuplist: { type: 'get', url: 'task/backuplist' }, // 初评复评列表
+    initialDetailBefore: { type: 'get', url: 'task/initialDetailBefore' }, // 初评之前详情
+    initialDetailAfter: { type: 'get', url: 'task/initialDetailAfter' }, // 初评之后
+    taskInitial: { type: 'post', url: 'task/initial' }, // 初评操作
 };

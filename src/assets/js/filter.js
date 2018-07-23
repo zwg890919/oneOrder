@@ -69,14 +69,6 @@ export function transProductStatus(val){
     return map[val];
 }
 
-/* 转换费用类型 */
-export function transProductRateType(val){
-    // let costType = JSON.parse(localStorage.cost_type);
-    // console.log(costType)
-    // return '2222';
-}
-
-
 /* 转换省 */
 export function transProvince(val){
     let provinceList = JSON.parse(localStorage.provinceList);
@@ -99,6 +91,18 @@ export function transCity(val, pro){
             }
         }
     }
+}
+
+/* 转换审核结果 */
+export function transOperateStatus(val){
+    let statusArr = ['','通过','拒绝','终止'];
+    return statusArr[val];
+}
+
+/* 转换分期类型 */
+export function transPayBackType(val){
+    let payBackType = ['','屏幕置换','旧场改造','新厂装修'];
+    return payBackType[val];
 }
 
 

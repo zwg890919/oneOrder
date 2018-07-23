@@ -20,10 +20,10 @@
 
                         </tr>
                         <tr>
-                            <td>DH_18695872813</td>
-                            <td>JK-18695872813</td>
-                            <td>颀财-房抵贷（山东）</td>
-                            <td>2017-08-13 17:57:44</td>
+                            <td>{{dataDetail.orderCode}}</td>
+                            <td>{{dataDetail.customerName}}</td>
+                            <td>{{dataDetail.productName }}</td>
+                            <td>{{dataDetail.arrivedTime }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -41,37 +41,37 @@
                         <tr>
                             <td>1</td>
                             <td>客户名称</td>
-                            <td></td>
+                            <td>{{dataDetail.customerName }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>社会统一信用代码</td>
-                            <td>王珞丹</td>
+                            <td>{{dataDetail.creditCode}}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>客户简称</td>
-                            <td>王珞丹</td>
+                            <td>{{dataDetail.customerShortName }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td>营业地址</td>
-                            <td></td>
+                            <td>{{dataDetail.address }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>5</td>
                             <td>联系人姓名</td>
-                            <td></td>
+                            <td>{{dataDetail.cellMan}}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>6</td>
                             <td>联系人手机号码</td>
-                            <td></td>
+                            <td>{{dataDetail.cellphone }}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -90,13 +90,13 @@
                         <tr>
                             <td>8</td>
                             <td>分期类型</td>
-                            <td>值域：屏幕置换（A），旧场改造（B），新场装修（C）</td>
+                            <td>{{dataDetail.payBackType | transPayBackType}}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>9</td>
                             <td>酒吧每屏账号</td>
-                            <td></td>
+                            <td>{{dataDetail.barMPAccount }}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -110,7 +110,7 @@
                         <tr>
                             <td>11</td>
                             <td>同类型酒吧MP账号一</td>
-                            <td></td>
+                            <td>{{dataDetail.barMPAccount1}}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -135,7 +135,7 @@
                         <tr>
                             <td>14</td>
                             <td>同类型酒吧MP账号二</td>
-                            <td></td>
+                            <td>{{dataDetail.barMPAccount2}}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -160,7 +160,7 @@
                         <tr>
                             <td>17</td>
                             <td>同类型酒吧MP账号三</td>
-                            <td></td>
+                            <td>{{dataDetail.barMPAccount3 }}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -196,55 +196,55 @@
                         <tr>
                             <td>21</td>
                             <td>营业面积</td>
-                            <td></td>
+                            <td>{{dataDetail.workSpace }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>22</td>
                             <td>酒吧座位数</td>
-                            <td></td>
+                            <td>{{dataDetail.workSite }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>23</td>
                             <td>日均人流量</td>
-                            <td></td>
+                            <td>{{dataDetail.dopeoples }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>24</td>
                             <td>客单价</td>
-                            <td></td>
+                            <td>{{dataDetail.price }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>25</td>
                             <td>上座率</td>
-                            <td></td>
+                            <td>{{dataDetail.popRate }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>26</td>
                             <td>翻台率</td>
-                            <td></td>
+                            <td>{{dataDetail.barRate }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>27</td>
                             <td>年销售额</td>
-                            <td></td>
+                            <td>{{dataDetail.annualSales }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>28</td>
                             <td>资产总额</td>
-                            <td></td>
+                            <td>{{dataDetail.totalAssets }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>29</td>
                             <td>负债总额</td>
-                            <td></td>
+                            <td>{{dataDetail.totalLiabilities  }}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -276,8 +276,8 @@
                         <tr>
                             <td>1</td>
                             <td>营业执照照片</td>
-                            <td>已上传
-                                <el-button class="table-button" size="mini" type="primary">预览</el-button>
+                            <td>{{dataDetail.bussinessPhoto ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.bussinessPhoto" class="table-button" size="mini" type="primary">预览</el-button>
                             </td>
                             <td>
                                 <el-radio-group v-model="radio2">
@@ -289,12 +289,9 @@
                         <tr>
                             <td>2</td>
                             <td>名称</td>
-                            <td>北京海淀区零度酒吧</td>
+                            <td></td>
                             <td>
-                                <el-radio-group v-model="radio2">
-                                    <el-radio :label="3">是</el-radio>
-                                    <el-radio :label="6">否</el-radio>
-                                </el-radio-group>
+                                <el-input size="mini"></el-input>
                             </td>
                         </tr>
                         <tr>
@@ -365,7 +362,10 @@
                         <tr>
                             <td>11</td>
                             <td>法人加盖公章的身份证正面照</td>
-                            <td>未上传</td>
+                            <td>
+                                {{dataDetail.idPhoto1 ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.idPhoto1" class="table-button" size="mini" type="primary">预览</el-button>
+                            </td>
                             <td>
                                 <el-radio-group v-model="radio2">
                                     <el-radio :label="3">是</el-radio>
@@ -376,8 +376,8 @@
                         <tr>
                             <td>12</td>
                             <td>法人加盖公章的身份证正面照</td>
-                            <td>已上传
-                                <el-button class="table-button" size="mini" type="primary">预览</el-button>
+                            <td>{{dataDetail.idPhoto2 ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.idPhoto2" class="table-button" size="mini" type="primary">预览</el-button>
                             </td>
                             <td>
                                 <el-radio-group v-model="radio2">
@@ -391,10 +391,7 @@
                             <td>法人姓名</td>
                             <td></td>
                             <td>
-                                <el-radio-group v-model="radio2">
-                                    <el-radio :label="3">是</el-radio>
-                                    <el-radio :label="6">否</el-radio>
-                                </el-radio-group>
+                                <el-input size="mini"></el-input>
                             </td>
                         </tr>
                         <tr>
@@ -417,7 +414,8 @@
                         <tr>
                             <td>16</td>
                             <td>消防许可证</td>
-                            <td>未上传</td>
+                            <td>{{dataDetail.firePermitPhoto  ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.firePermitPhoto " class="table-button" size="mini" type="primary">预览</el-button></td>
                             <td>
                                 <el-radio-group v-model="radio2">
                                     <el-radio :label="3">是</el-radio>
@@ -428,7 +426,9 @@
                         <tr>
                             <td>17</td>
                             <td>特殊行业经营许可证</td>
-                            <td>未上传</td>
+                            <td>{{dataDetail.tradePhoto   ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.tradePhoto  " class="table-button" size="mini" type="primary">预览</el-button>
+                            </td>
                             <td>
                                 <el-radio-group v-model="radio2">
                                     <el-radio :label="3">是</el-radio>
@@ -439,7 +439,10 @@
                         <tr>
                             <td>18</td>
                             <td>房屋租赁合同</td>
-                            <td>未上传</td>
+                            <td>
+                                {{dataDetail.contractPhoto    ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.contractPhoto   " class="table-button" size="mini" type="primary">预览</el-button>
+                            </td>
                             <td>
                                 <el-radio-group v-model="radio2">
                                     <el-radio :label="3">是</el-radio>
@@ -500,7 +503,9 @@
                         <tr>
                             <td>24</td>
                             <td>酒吧实景照片</td>
-                            <td></td>
+                            <td>{{dataDetail.barLivePhoto    ? '已上传' : '未上传' }}
+                                <el-button v-if="dataDetail.barLivePhoto   " class="table-button" size="mini" type="primary">预览</el-button>
+                            </td>
                             <td>
                                 <el-radio-group v-model="radio2">
                                     <el-radio :label="3">是</el-radio>
@@ -520,7 +525,7 @@
                         </el-form-item>
                         <el-form-item label="授信额度">
                             <el-input v-model="form.name"></el-input>
-                            <span>申请额度：50000</span>
+                            <span>申请额度：{{dataDetail.offerMoney }}</span>
                         </el-form-item>
                         <el-form-item label="备注">
                             <el-input type="textarea" :rows="4" v-model="form.name"></el-input>
@@ -543,6 +548,128 @@
                 form: {
 
                 },
+                auditListCust:[{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                },{
+                    auditContent: "string",
+                    auditDesc: "string",
+                    auditPro: "string",
+                    auditRes: "string"
+                }],
+                dataDetail:{},
                 taskId: this.$route.query.taskId
             }
         },
@@ -552,7 +679,9 @@
         methods: {
             async getDetail() {
                 const data = await $http.initialDetailBefore({taskId:this.taskId})
-                console.log(data)
+                if(data.success){
+                    this.dataDetail = data.datas;
+                }
             },
             async submitApply(){
                 this.$store.dispatch('delVisitedViews', this.$route)

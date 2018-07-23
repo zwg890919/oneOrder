@@ -97,7 +97,7 @@ export default {
         title: '初评处理',
       },
     }, {
-      path: 'preliminaryDetail',
+      path: 'preliminaryDetail/:taskId',
       name: 'operate.preliminaryDetail',
       hidden: true,
       component: () => import('@/views/workbench/preliminaryDetail.vue'),

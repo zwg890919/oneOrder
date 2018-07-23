@@ -13,39 +13,39 @@
 					<tbody>
             <tr>
               <td>借款申请编号</td>
-              <td>DH_18695872813</td>
+              <td>{{dataDetail.orderCode}}</td>
             </tr>
             <tr>
               <td>借款主体</td>
-              <td>JK-18695872813</td>
+              <td>{{dataDetail.customerName }}</td>
             </tr>
             <tr>
               <td>产品名称</td>
-              <td>颀财-房抵贷（山东）</td>
+              <td>{{dataDetail.productName}}</td>
             </tr>
             <tr>
               <td>下发时间</td>
-              <td>2017-08-13 17:57:44</td>
+              <td>{{dataDetail.arrivedTime }}</td>
             </tr>
             <tr>
               <td>操作员</td>
-              <td>张庭</td>
+              <td>{{dataDetail.operateName}}</td>
             </tr>
             <tr>
               <td>提交时间</td>
-              <td></td>
+              <td>{{dataDetail.operateTime }}</td>
             </tr>
             <tr>
               <td>审核结果</td>
-              <td></td>
+              <td>{{dataDetail.operateStatus | transOperateStatus }}</td>
             </tr>
             <tr>
               <td>评价</td>
-              <td></td>
+              <td>{{dataDetail.description }}</td>
             </tr>
             <tr>
               <td>授信额度（元）</td>
-              <td></td>
+              <td>{{dataDetail.creditMoney }}</td>
             </tr>
 			    </tbody>
 			  </table>
@@ -61,14 +61,14 @@
               <td>审核结果</td>
               <td>备注</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>客户名称</td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr v-for="(x, index) in dataDetail.auditVOCustList" :key="index">
+              <td>{{index+1}}</td>
+              <td>{{x.auditPro}}</td>
+              <td>{{x.auditContent}}</td>
+              <td>{{x.auditRes}}</td>
+              <td>{{x.auditDesc}}</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>2</td>
               <td>社会统一信用代码</td>
               <td></td>
@@ -274,7 +274,7 @@
               <td>
               </td>
               <td></td>
-            </tr>
+            </tr> -->
 			    </tbody>
 			  </table>
 			</el-card>
@@ -291,14 +291,21 @@
               <td>审核结果</td>
               <td>备注</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>1</td>
               <td>营业执照照片</td>
               <td>已上传<el-button class="table-button"  size="mini" type="primary">预览</el-button></td>
               <td></td>
               <td></td>
+            </tr> -->
+            <tr v-for="(x, index) in dataDetail.auditVOPhotoList" :key="index">
+              <td>{{index+1}}</td>
+              <td>{{x.auditPro}}</td>
+              <td>{{x.auditContent}}</td>
+              <td>{{x.auditRes}}</td>
+              <td>{{x.auditDesc}}</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>2</td>
               <td>名称</td>
               <td>北京海淀区零度酒吧</td>
@@ -472,7 +479,7 @@
               <td></td>
               <td></td>
               <td></td>
-            </tr>
+            </tr> -->
 			    </tbody>
 			  </table>
 			</el-card>
@@ -487,11 +494,25 @@
         radio2:3,
         form:{
 
+        },
+        dataDetail:{
+
         }
       }
     },
+    created(){
+      this.getDetail();
+    },
     methods:{
-
+      async getDetail(){
+        let taskId = this.$route.params.taskId;
+        const data = await $http.initialDetailAfter({
+          taskId
+        })
+        if(data.success){
+          this.dataDetail = data.datas;
+        }
+      }
     }
   }
 </script>

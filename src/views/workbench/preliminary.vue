@@ -14,7 +14,10 @@
                     <el-table ref="multipleTable" :data="tableData" v-loading="loading" tooltip-effect="dark" style="width: 100%">
                         <el-table-column label="序号" type="index">
                         </el-table-column>
-                        <el-table-column label="融资申请编号" min-width="150" prop="t.orderCode">
+                        <el-table-column label="融资申请编号" min-width="160">
+                            <template slot-scope="scope">
+                                <a class="link-color" @click="goPreDetail(scope.$index, scope.row)">{{ scope.row.orderCode }}</a>
+                            </template>
                         </el-table-column>
                         <el-table-column label="初评任务编号" min-width="180" prop="taskCode">
                         </el-table-column>
@@ -45,7 +48,10 @@
                     <el-table ref="multipleTable" :data="tableData" v-loading="loading" tooltip-effect="dark" style="width: 100%">
                         <el-table-column label="序号" type="index">
                         </el-table-column>
-                        <el-table-column label="融资申请编号" min-width="150" prop="t.orderCode">
+                        <el-table-column label="融资申请编号" min-width="160">
+                            <template slot-scope="scope">
+                                <a class="link-color" @click="goPreDetail(scope.$index, scope.row)">{{ scope.row.orderCode }}</a>
+                            </template>
                         </el-table-column>
                         <el-table-column label="初评任务编号" min-width="150" prop="taskCode">
                         </el-table-column>
@@ -65,12 +71,12 @@
                         </el-table-column>
                         <el-table-column label="操作" align="center">
                             <template slot-scope="scope">
-                                <el-button type="primary" size="mini">修改</el-button>
+                                <el-button type="primary" size="mini" @click="goDispose(scope.row)">修改</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
                     <div class="text-center pd10">
-                        <el-pagination v-if="searchForm.totalCount" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.currentPage" :page-sizes="[20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="searchForm.totalCount">
+                        <el-pagination v-if="total" @size-change="changePageSize" @current-change="changePage" :current-page="searchForm.currentPage" :page-sizes="[20, 50, 100, 500]" :page-size="20" layout="total, prev, pager, next,sizes" :total="total">
                         </el-pagination>
                     </div>
                 </el-tab-pane>
@@ -92,6 +98,7 @@
                     taskStatus:1
                 },
                 loading: false,
+                total:0,
             }
         },
         computed: {
@@ -165,11 +172,11 @@
                 if (data.success) {
                     this.loading = false;
                     this.tableData = data.datas.list;
-                    // this.searchForm = data.body.parameter;
+                    this.total = data.datas.total;
                 }
             },
             changeStatus(tab) {
-                this.searchForm.taskStatus = tab.name;
+                this.searchForm.taskStatus = parseInt(tab.name)+1;
                 this.changePage(1)
             },
             changePage(page) {
@@ -182,6 +189,9 @@
             },
             goDispose(row){
                 this.$router.push({ path: 'preliminaryApply', query: { taskId: row.id }})
+            },
+            goPreDetail(index,row){
+                this.$router.push({ name: 'operate.preliminaryDetail', params: { taskId: row.id } })
             }
         }
     }

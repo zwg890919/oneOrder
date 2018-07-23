@@ -102,13 +102,16 @@
             {{ scope.row.maxApply | currency }}
           </template>
         </el-table-column>
-        <el-table-column prop="" label="借款期限区间???" width="110" show-overflow-tooltip>
+        <el-table-column prop="" label="借款期限区间" width="110" show-overflow-tooltip>
+          <template slot-scope="scope" v-if="scope.row.minApplyTime || scope.row.maxApplyTime">
+            {{ scope.row.minApplyTime }} ~ {{ scope.row.maxApplyTime }}
+          </template>
         </el-table-column>
-        <el-table-column prop="" label="累计申请笔数???" width="120" show-overflow-tooltip>
+        <el-table-column prop="sumApplyCount " label="累计申请笔数" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="" label="审核中笔数???" width="120" show-overflow-tooltip>
+        <el-table-column prop="sumTaskCount" label="审核中笔数" width="120" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="" label="累计放款笔数???" width="120" show-overflow-tooltip>
+        <el-table-column prop="releaseMoneyCount " label="累计放款笔数" width="120" show-overflow-tooltip>
         </el-table-column>
         <el-table-column label="产品状态" width="80" show-overflow-tooltip>
           <template slot-scope="scope">
